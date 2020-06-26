@@ -1,12 +1,24 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [text]="'PAGE.back' | translate" defaultHref="/auth/login"></ion-back-button>
+      <ion-back-button [text]="'back_title' | translate" defaultHref="/auth/login"></ion-back-button>
     </ion-buttons>
     <ion-title>forgot</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!forgot.valid" (click)="done()">
+        Done
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <p class="ion-margin-start ion-margin-end">
+    Please enter the email that you used to sign in
+  </p>
+  <ion-card color="light" class="auth-card ion-margin">
+    <ion-item lines="none" color="light">
+      <ion-input type="email" placeholder="Email" [formControl]="forgot"></ion-input>
+    </ion-item>
+  </ion-card>
 </ion-content>
