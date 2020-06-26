@@ -6,32 +6,37 @@
   <ion-grid>
     <ion-row>
       <ion-col class="ion-text-center" size-md="6" size-lg="5" size-xs="12">
-        <div class="logo">
-          <img src="./assets/icon/favicon.png">
-        </div>
-        <p class="ion-text-center">Ionic Social Network</p>
+        <form [formGroup]="login" (ngSubmit)="onLogin()">
+          <div class="logo">
+            <img src="./assets/icon/favicon.png">
+          </div>
+          <p class="ion-text-center">Ionic Social Network</p>
 
-        <ion-card color="light" class="auth-card ion-margin">
-          <ion-item lines="none" color="light">
-            <ion-input type="email" placeholder="Email or phone"></ion-input>
-          </ion-item>
-          <ion-item lines="none" color="light" class="ion-no-inner-padding-end">
-            <ion-input type="password" placeholder="Password"></ion-input>
-            <ion-button slot="end" fill="clear" class="ion-no-margin" [routerLink]="[ '/auth', 'forgot' ]">
-              <ion-icon slot="icon-only" color="medium" name="help-circle-outline"></ion-icon>
-            </ion-button>
-          </ion-item>
-        </ion-card>
+          <ion-card color="light" class="auth-card ion-margin">
+            <ion-item lines="none" color="light">
+              <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item lines="none" color="light" class="ion-no-inner-padding-end">
+              <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+              <ion-button slot="end" fill="clear" class="ion-no-margin" [routerLink]="[ '/auth', 'forgot' ]"
+                routerDirection="forward">
+                <ion-icon slot="icon-only" color="medium" name="help-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-card>
 
-        <ion-button expand="block" class="ion-margin-start ion-margin-end ion-margin-bottom">
-          Log In
-        </ion-button>
-        <span class="ion-margin"></span>
-        <ion-text>or</ion-text>
-        <span class="ion-margin"></span>
-        <ion-button expand="block" class="ion-margin" [routerLink]="[ '/auth', 'register' ]">
-          Sign Up
-        </ion-button>
+          <ion-button expand="block" class="ion-margin-start ion-margin-end ion-margin-bottom" type="submit"
+            [disabled]="!login.valid">
+            Log In
+          </ion-button>
+          <span class="ion-margin"></span>
+          <ion-text>or</ion-text>
+          <span class="ion-margin"></span>
+          <ion-button expand="block" class="ion-margin" [routerLink]="[ '/auth', 'register' ]"
+            routerDirection="forward">
+            Sign Up
+          </ion-button>
+        </form>
       </ion-col>
     </ion-row>
   </ion-grid>
