@@ -1,0 +1,50 @@
+.post-card {
+    margin: 0px;
+    margin-top: var(--ion-margin, 16px);
+    border-radius: 0px;
+    // box-shadow: none;
+
+    .post-item {
+        --inner-padding-end: 0px;
+    }
+
+    .post-some {
+        --box-shadow: none;
+        width: 100%;
+        height: 32px;
+    }
+
+    .post-some-title {
+        display: flex;
+        flex: 1 1 0%;
+        text-transform: capitalize;
+    }
+}
+
+// Post card list
+.post-list-card {
+    margin-top: var(--ion-margin, 16px);
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+
+    &:last-child {
+        margin-bottom: var(--ion-margin, 32px);
+    }
+
+    ion-item {
+        --inner-padding-end: 0px;
+    }
+
+    .post-list-content {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .action-item {
+        .action-button {
+            margin-right: var(--ion-margin, 16px) !important;
+        }
+    }
+}

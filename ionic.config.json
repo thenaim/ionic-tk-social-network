@@ -1,0 +1,7 @@
+{
+  "name": "ion-tk-social-network",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

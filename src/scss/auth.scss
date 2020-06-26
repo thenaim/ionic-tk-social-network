@@ -1,0 +1,13 @@
+.auth-page {
+
+    ion-grid,
+    ion-row {
+        margin-top: var(--ion-margin, 16px);
+    }
+
+    .auth-card {
+        ion-item:not(:last-child) {
+            border-bottom: 1px solid var(--ion-color-medium);
+        }
+    }
+}

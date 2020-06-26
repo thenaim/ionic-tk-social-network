@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'back_title' | translate" defaultHref="/tabs/profile/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'settings_privacy_title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let type of types">
+    <ion-list-header lines="none">
+      <ion-label>{{type.id | translate}}</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none" *ngFor="let type_item of type.pages" [routerLink]="type_item.link"
+      routerDirection="forward">
+      <ion-label>
+        {{'settings_privacy.' + type_item.id | translate}}
+        <p style="margin-top: 4px;">
+          <ion-icon size="small" color="medium" name="lock-closed-outline" style="vertical-align: middle;"></ion-icon>
+          Only
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

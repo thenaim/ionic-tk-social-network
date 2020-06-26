@@ -1,0 +1,70 @@
+<ion-app [ngClass]="{'dark-theme': isDarkTheme}">
+  <ion-menu side="start" type="push" menuId="camera" contentId="main" disabled style="--width: 100%;">
+    <ion-content color="secondary">
+      <ion-toolbar style="--background: transparent;">
+        <ion-buttons slot="start">
+          <ion-button color="light">
+            <ion-icon size="large" slot="icon-only" name="cog-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+          <ion-button color="light" (click)="closeCameraSide()">
+            <ion-icon size="large" slot="icon-only" name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-row class="camera-control">
+        <ion-col class="controls">
+          <ion-button color="light" fill="clear">
+            <ion-icon slot="icon-only" name="flash-outline"></ion-icon>
+          </ion-button>
+          <ion-fab-button class="shoot-control">
+            <div class="circle"></div>
+          </ion-fab-button>
+          <ion-button color="light" fill="clear">
+            <ion-icon slot="icon-only" name="sync-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu side="end" type="push" menuId="profile" contentId="main" class="profile-menu" disabled>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>John Smith</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list lines="none">
+        <ion-item button>
+          <ion-icon color="primary" slot="start" name="bookmarks-outline"></ion-icon>
+          <ion-label>Bookmarks</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="goToSettings()">
+            <ion-icon color="primary" slot="icon-only" size="large" name="cog-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{'settings_title' | translate}}</ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="toggleDarkTheme()">
+            <ion-icon color="primary" slot="icon-only" name="moon-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

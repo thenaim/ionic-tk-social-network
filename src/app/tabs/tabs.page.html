@@ -1,0 +1,46 @@
+<ion-tabs (ionTabsDidChange)="tabChanged($event)">
+  <ion-toolbar mode="ios" class="music-toolbar" *ngIf="music.show">
+    <ion-progress-bar [type]="!music.isPlaying && !music.id ? 'indeterminate' : 'determinate'" [value]="progress">
+    </ion-progress-bar>
+    <ion-buttons slot="start" class="music-toolbar-buttons">
+      <ion-button color="primary" class="music-toolbar-button" [disabled]="!music.isPlaying && !music.id"
+        (click)="toggleMusic($event)">
+        <ion-icon slot="icon-only" [name]="music.isPlaying ? 'pause' : 'play'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="music-toolbar-title" (touchstart)="openMusicModal($event)" (click)="openMusicModal($event)">
+      {{music.author}}
+      <p class="ion-no-margin">
+        {{music.song}}
+      </p>
+    </ion-title>
+    <ion-buttons slot="end" class="music-toolbar-buttons">
+      <ion-button color="medium" class="music-toolbar-button" (click)="closePlayer()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-tab-bar slot="bottom" class="tab-animate">
+    <ion-tab-button tab="news">
+      <ion-icon name="reader-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="explore">
+      <ion-icon name="compass-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="message">
+      <ion-icon name="chatbubble-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notification">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile" (click)="openMenu()">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

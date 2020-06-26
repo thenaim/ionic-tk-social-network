@@ -1,0 +1,93 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import "./scss/auth.scss";
+@import "./scss/stories.scss";
+@import "./scss/posts.scss";
+@import "./scss/camera-side.scss";
+
+/*
+ * App CSS
+ * ----------------------------------------------------------------------------
+ * Imports a file that can contain Sass/CSS that should be used throughout
+ * the entire app.
+ */
+
+ion-title {
+    font-weight: bold !important;
+}
+
+ion-app {
+    background-color: var(--ion-background-color);
+}
+
+// Tab bar height
+ion-tab-bar, ion-toolbar {
+    --min-height: 50px;
+    height: 50px;
+}
+
+// Horizontal container
+*[scrollX=true] {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollX {
+        flex: 0 0 auto;
+    }
+}
+
+/*
+ * App iOS CSS
+ * ----------------------------------------------------------------------------
+ * iOS only CSS can go here
+ */
+
+.ios {
+
+    ion-toolbar:last-of-type {
+        --border-width: 0;
+    }
+
+    .dark-theme {}
+}
+
+/*
+   * App Material Design CSS
+   * ----------------------------------------------------------------------------
+   * Material Design only CSS can go here
+   */
+
+.md {
+    .dark-theme {}
+}

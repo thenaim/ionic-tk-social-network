@@ -1,0 +1,31 @@
+.camera-control {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .shoot-control {
+        --background: transparent;
+        --background-activated: transparent;
+        --background-focused: transparent;
+        --background-hover: transparent;
+        --box-shadow: none;
+
+        width: 72px;
+        height: 72px;
+
+        .circle {
+            width: 90%;
+            height: 90%;
+            background: rgba(var(--ion-color-primary-rgb), 0.2);
+            border-radius: 50%;
+            border: 4px solid var(--ion-color-light);
+        }
+    }
+}

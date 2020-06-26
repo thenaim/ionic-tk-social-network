@@ -1,0 +1,161 @@
+
+ion-content, ion-card, ion-list, ion-item, ion-toolbar, ion-range {
+  --background: var(--ion-item-background, #fff) !important;
+}
+
+.music-close-control {
+  --min-height: 10px;
+  height: 24px;
+
+  .close-control {
+    margin: 8px auto;
+    height: 5px;
+    background: rgb(192, 192, 192);
+    width: 37px;
+    border-radius: 4px;
+  }
+}
+
+.music-card {
+    margin: 0px;
+    box-shadow: none;
+}
+
+.music-card ion-card-header {
+  width: auto;
+  height: auto;
+  min-height: 300px;
+  text-align: center;
+  margin: auto;
+  padding-top: 0px;
+  padding-bottom: 8px;
+}
+
+.music-card ion-card-header img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 6px;
+  width: 300px;
+
+  -webkit-transition: width 0.2s ease-in-out;
+  -moz-transition: width 0.2s ease-in-out;
+  -o-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
+
+  &.mini {
+    box-shadow: 0px 2px 8px rgba(2, 8, 20, 0.1), 0px 8px 16px rgba(2, 8, 20, 0.08);
+    width: 230px;
+  }
+}
+
+.music-card ion-card-content {
+  text-align: center;
+}
+
+
+ion-list.music-progress-container {
+  max-width: 340px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-top: 8px;
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+  --padding-start: 0px;
+  --padding-end: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-item.music-progress, ion-item.music-timing {
+  --min-height: 14px;
+  margin: 0px;
+  padding: 0px;
+  --padding-start: 0px;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  z-index: 45;
+}
+
+ion-item.music-timing {
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+
+ion-range.progress-range {
+  margin: 0 !important;
+  padding: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
+  --height: 24px;
+  --knob-size: 16px;
+  z-index: 91;
+}
+
+ion-item.music-controls {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px;
+  --padding-start: 0px;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+}
+
+ion-list.music-value-control-container {
+  max-width: 340px;
+  margin: auto;
+}
+
+ion-item.music-value-control-item {
+  --inner-padding-end: 0px;
+  --padding-inline-start: 0px;
+  --ion-safe-area-right: 0px;
+  --padding-start: 0px;
+  --padding-end: 0px;
+}
+
+ion-toolbar.music-close-main {
+  --min-height: 28px;
+    height: 28px;
+}
+
+ion-footer.music-footer {
+  ion-toolbar:first-of-type {
+    --border-width: 0;
+  }
+}
+
+.music-card h2 {
+  font-weight: 600;
+  font-size: 16px;
+
+  color: var(--text-darker);
+}
+
+.music-card p {
+  color: var(--text-light);
+}
+
+.music-card ion-button {
+  --padding-start: 7px;
+  --padding-end: 7px;
+
+  margin: 0;
+}
+
+.music-card .button-largest {
+  font-size: 28px;
+}
