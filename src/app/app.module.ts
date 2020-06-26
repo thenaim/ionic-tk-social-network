@@ -30,7 +30,7 @@ import { MusicEffects } from './shared/music/music.effects';
 
     /* NGX TRANSLATE */
     TranslateModule.forRoot({
-      defaultLanguage: 'ru',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
