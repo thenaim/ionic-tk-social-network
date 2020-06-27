@@ -39,6 +39,21 @@ npm start
 
 [DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ion-tk-social-network/blob/master/PREVIEW.md)
 
+| Light  | Dark  |
+| -----------------| -----|
+| ![Light](https://i.imgur.com/XKCKrT8.png) | ![Dark](https://i.imgur.com/HT3ko7i.png) |
+
+## Supporting platforms
+
+In pursuit of [adaptive styling](https://ionicframework.com/docs/core-concepts/fundamentals#adaptive-styling), Ionic fully supports and is well tested on the mobile platforms listed below:
+
+| Platform | Version |
+| - | - |
+| **Android** | 5.0+ |
+| **iOS** | 11.0+ |
+
+See [Ionic Docs](https://ionicframework.com/docs/reference/browser-support) for more information.
+
 ## Contributors
 
 Want to start contributing to open source with ionic? Leave your mark and join the growing team of contributors!
