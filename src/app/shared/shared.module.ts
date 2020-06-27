@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
  * Other modules
  */
 import { TranslateModule } from '@ngx-translate/core';
-import { MusicPlayerComponent } from './music-player/music-player.component';
 
 @NgModule({
   imports: [
@@ -15,19 +14,15 @@ import { MusicPlayerComponent } from './music-player/music-player.component';
     FormsModule,
     TranslateModule
   ],
-  declarations: [
-    MusicPlayerComponent
-  ],
+  declarations: [],
   exports: [
     IonicModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
 
-    TranslateModule,
+    TranslateModule
   ],
-  entryComponents: [
-    MusicPlayerComponent
-  ]
+  entryComponents: []
 })
 export class SharedModule { }
