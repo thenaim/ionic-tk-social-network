@@ -9,12 +9,12 @@
 
 <ion-content>
   <ion-list *ngFor="let type of types">
-    <ion-list-header lines="none">
+    <ion-list-header>
       <ion-label>{{type.id | translate}}</ion-label>
     </ion-list-header>
     <ion-item button lines="none" *ngFor="let type_item of type.pages" [routerLink]="type_item.link"
       routerDirection="forward">
-      <ion-label>
+      <ion-label class="ion-text-wrap">
         {{'settings_privacy.' + type_item.id | translate}}
         <p style="margin-top: 4px;">
           <ion-icon size="small" color="medium" name="lock-closed-outline" style="vertical-align: middle;"></ion-icon>
