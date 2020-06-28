@@ -42,7 +42,7 @@ ion-title {
 }
 
 ion-app {
-    background-color: var(--ion-background-color);
+    background-color: var(--ion-background-color, #ffffff);
 }
 
 // Tab bar height

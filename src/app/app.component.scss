@@ -5,3 +5,23 @@
         }
     }
 }
+
+.camera-menu {
+    --width: 100%;
+    ion-button {
+        --color: #ffffff;
+    }
+}
+.camera {
+    --background: transparent !important;
+    background-color: transparent !important;
+
+    ion-menu {
+        --background: transparent !important;
+        background: transparent !important;
+    }
+    ion-content {
+        --background: transparent;
+        background: transparent !important;
+    }
+}
