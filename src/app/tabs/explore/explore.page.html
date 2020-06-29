@@ -11,6 +11,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content>
+  <ion-refresher slot="fixed" style="--ion-text-color: var(--ion-color-medium);" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" size-md="3" size-xl="2" class="ion-no-padding ion-padding-top" *ngFor="let ex of exps">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-label class="ion-no-margin ion-text-center">
+            <ion-icon size="large" [name]="ex.icon" [color]="ex.color"></ion-icon>
+            <h5>{{ex.id | translate}}</h5>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
