@@ -30,6 +30,7 @@ export class NewsPage {
     { id: 'travel' },
     { id: 'music' }
   ];
+  discavery = [];
 
   musics: any[] = [
     { id: '6545421321', author: 'Silent Partner', song: 'Blue Skies' },
@@ -84,9 +85,44 @@ export class NewsPage {
           content: faker.lorem.sentences(),
           likes: faker.random.number(100),
           comments: faker.random.number(100),
-          shared: faker.random.number(100)
+          shared: faker.random.number(100),
+          views: faker.random.number(200)
         };
       });
+      this.discavery = [
+        {
+          type: 'image',
+          data: Array.apply(null, Array(2)).map(() => {
+            return {
+              id: faker.random.uuid(),
+              img: faker.helpers.randomize([faker.image.city(500, 500), faker.image.cats(500, 500), faker.image.fashion(500, 500), faker.image.people(500, 500)])
+            };
+          })
+        },
+        {
+          type: 'post-image',
+          data: Array.apply(null, Array(1)).map(() => {
+            return {
+              id: faker.random.uuid(),
+              avatar: faker.image.avatar(),
+              author: faker.company.companyName(),
+              img: faker.helpers.randomize([faker.image.city(500, 500), faker.image.cats(500, 500), faker.image.fashion(500, 500), faker.image.people(500, 500)])
+            };
+          })
+        },
+        {
+          type: 'post-full',
+          data: Array.apply(null, Array(4)).map(() => {
+            return {
+              id: faker.random.uuid(),
+              avatar: faker.image.avatar(),
+              author: faker.company.companyName(),
+              img: faker.helpers.randomize([faker.image.city(500, 500), faker.image.cats(500, 500), faker.image.fashion(500, 500), faker.image.people(500, 500)]),
+              text: faker.lorem.sentences()
+            };
+          })
+        }
+      ]
     });
   }
 

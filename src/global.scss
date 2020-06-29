@@ -63,6 +63,14 @@ ion-tab-bar, ion-toolbar {
     }
 }
 
+.no-padding-item {
+    --inner-padding-start: 0;
+    --inner-padding-end: 0;
+    --ion-safe-area-right: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+}
+
 /*
  * App iOS CSS
  * ----------------------------------------------------------------------------
@@ -74,7 +82,7 @@ ion-tab-bar, ion-toolbar {
     ion-title {
         font-weight: bold !important;
     }
-    
+
     ion-toolbar:last-of-type {
         --border-width: 0;
     }
