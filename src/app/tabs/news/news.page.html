@@ -152,7 +152,7 @@
                     <img [src]="i.avatar">
                   </ion-avatar>
                   <ion-label>
-                    {{i.author}}
+                    <small>{{i.author}}</small>
                   </ion-label>
                 </ion-item>
 
@@ -184,11 +184,11 @@
             <ion-col size="12" *ngFor="let i of dis.data">
               <ion-card class="post-full ion-no-margin">
                 <ion-item lines="none">
-                  <ion-avatar slot="start">
+                  <ion-avatar slot="start" style="width: 32px;height: 32px;">
                     <img [src]="i.avatar">
                   </ion-avatar>
                   <ion-label>
-                    {{i.author}}
+                    <small>{{i.author}}</small>
                   </ion-label>
                 </ion-item>
 

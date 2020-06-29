@@ -15,10 +15,18 @@
     }
 }
 
+
 .post-image {
 
 }
 
 .post-full {
 
+}
+
+.post-image, .post-full {
+    ion-avatar {
+        width: 32px;
+        height: 32px;
+    }
 }
