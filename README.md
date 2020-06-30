@@ -21,8 +21,12 @@
 ```bash
 git clone https://github.com/thenaim/ion-tk-social-network myApp
 cd myApp
-npm install
-npm start
+
+# Android
+ionic cordova run android
+
+# iOS
+ionic cordova run ios
 ```
 
 # Features
