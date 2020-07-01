@@ -33,8 +33,6 @@ export class NewsPage {
   discavery = [];
 
   musics: any[] = [
-    { id: '6545421321', author: 'Silent Partner', song: 'Blue Skies' },
-    { id: '7854235678', author: 'Kevin MacLeod', song: 'Life of Riley' },
     { id: '5612785349', author: 'Kevin MacLeod', song: 'Sneaky Snitch' }
   ];
 
