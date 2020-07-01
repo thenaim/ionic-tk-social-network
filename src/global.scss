@@ -47,6 +47,11 @@ ion-tab-bar, ion-toolbar {
     height: 50px;
 }
 
+// ion-list
+ion-list {
+    --background: var(--ion-item-background, #fff);
+}
+
 // Horizontal container
 *[scrollX=true] {
     display: flex;

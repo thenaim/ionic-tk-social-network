@@ -18,10 +18,10 @@
   <ion-grid>
     <ion-row>
       <ion-col size="4" size-md="3" size-xl="2" class="ion-no-padding ion-padding-top" *ngFor="let ex of exps">
-        <ion-item lines="none" class="ion-no-padding">
+        <ion-item lines="none" class="explore-item ion-no-padding">
           <ion-label class="ion-no-margin ion-text-center">
-            <ion-icon size="large" [name]="ex.icon" [color]="ex.color"></ion-icon>
-            <h5>{{ex.id | translate}}</h5>
+            <ion-icon [name]="ex.icon" [color]="ex.color" class="explore-category-icon"></ion-icon>
+            <h5 class="explore-category-title">{{ex.id | translate}}</h5>
           </ion-label>
         </ion-item>
       </ion-col>
