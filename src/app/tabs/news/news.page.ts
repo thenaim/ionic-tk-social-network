@@ -58,7 +58,7 @@ export class NewsPage {
   }
 
   playMusic() {
-    this.musicController.playMusic(this.musics[2]);
+    this.musicController.playMusic(this.musics[0]);
   }
 
   ngOnInit(): void {
