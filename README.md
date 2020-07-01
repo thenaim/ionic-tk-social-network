@@ -41,7 +41,7 @@ ionic cordova run ios
 
 # Preview
 
-[DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ion-tk-social-network/blob/master/PREVIEW.md)
+[YOUTUBE DEMO](https://www.youtube.com/watch?v=GCs2TVZkC_U) or [DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ion-tk-social-network/blob/master/PREVIEW.md)
 
 | Light  | Dark  |
 | -----------------| -----|
