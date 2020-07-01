@@ -14,12 +14,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Observable, SubscriptionLike } from 'rxjs';
 import { actionSettingsChangeTheme } from './shared/settings/settings.actions';
 import { FakerService } from './shared/faker/faker.service';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   theme$: Observable<boolean>;
@@ -108,7 +107,7 @@ export class AppComponent {
     this.menu.close('camera');
   }
 
-  onOpenCameraMenu() {
+  onOpenCameraMenu(event) {
     this.isCameraStart = true;
     this.cameraPreviewOpts = { ...this.cameraPreviewOpts, camera: 'rear', width: window.screen.width, height: window.screen.height };
 
@@ -121,7 +120,7 @@ export class AppComponent {
       });
   }
 
-  onCloseCameraMenu() {
+  onCloseCameraMenu(event) {
     this.isCameraStart = false;
     this.cameraPreview.stopCamera();
   }
