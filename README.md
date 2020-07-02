@@ -29,7 +29,7 @@ ionic cordova run android
 ionic cordova run ios
 ```
 
-# Features
+# Main Features
 
 - Lazy-loading
 - Auth pages (login, register, forgot and reset)
@@ -39,7 +39,7 @@ ionic cordova run ios
 - i18n (English and Russion)
 - Responsive design
 
-#### Feature Status:
+#### Feature Status
 
 | Tabs                 | Status                                              | Source Code                                      | Issue          |
 |----------------------|-----------------------------------------------------|--------------------------------------------------|----------------|
