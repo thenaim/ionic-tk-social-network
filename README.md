@@ -39,7 +39,9 @@ ionic cordova run ios
 - i18n (English and Russion)
 - Responsive design
 
+
 # Feature Status
+
 
 | Tabs                 | Status                                              | Source Code                                      | Issue          |
 |----------------------|-----------------------------------------------------|--------------------------------------------------|----------------|
