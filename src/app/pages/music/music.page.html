@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text="''" defaultHref="/tabs/explore"></ion-back-button>
+      <ion-back-button [text]="''" defaultHref="/tabs/explore"></ion-back-button>
     </ion-buttons>
     <ion-searchbar [formControl]="searchMusic" [placeholder]="'music_search_title' | translate"></ion-searchbar>
   </ion-toolbar>
@@ -18,22 +18,70 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
+  </ion-refresher>
+
   <ng-container *ngIf="activeSegment.value === 'my_music'">
     <ion-list-header lines="none">
       <ion-label>Playlists</ion-label>
       <ion-button>Show All</ion-button>
     </ion-list-header>
     <div scrollX="true">
-      <ion-card class="playlist-card scrollX" *ngFor="let item of [1,2,3,4,5,6]">
-        <img src="./assets/musics/img/5612785349.jpg" />
+      <ion-card class="playlist-card scrollX" *ngFor="let pl of playlists">
+        <img [src]="pl.image" />
         <ion-card-content>
           <p class="album-description">
-            <span class="album-name">Веселей</span>
-            <small class="album-author">Скриптонит</small>
-            <small class="album-year">2020</small>
+            <span class="album-name">{{pl.album}}</span>
+            <small class="album-author">{{pl.author}}</small>
+            <small class="album-year">{{pl.year}}</small>
           </p>
         </ion-card-content>
       </ion-card>
     </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" size="small">
+            <ion-icon slot="start" name="play"></ion-icon>
+            Play all
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" size="small">
+            <ion-icon slot="start" name="shuffle-outline"></ion-icon>
+            Shuffle
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-xl="6" *ngFor="let mu of musics">
+          <ion-item button detail="false" lines="none" class="music-item">
+            <img slot="start" [src]="mu.image">
+
+            <ion-label>
+              <h2>{{mu.song}}</h2>
+              <p>{{mu.author}}</p>
+            </ion-label>
+
+            <ion-text slot="end">
+              <small>
+                {{mu.time}}
+              </small>
+            </ion-text>
+
+            <ion-buttons slot="end">
+              <ion-button color="medium">
+                <ion-icon slot="icon-only" md="ellipsis-vertical-outline" ios="ellipsis-horizontal-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ng-container>
 </ion-content>

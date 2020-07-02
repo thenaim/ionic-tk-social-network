@@ -57,9 +57,8 @@ ion-toolbar {
     }
 }
 
-// ion-list
-ion-list {
-    // background: var(--ion-background-color, #ffffff) !important;
+ion-refresher {
+    --ion-text-color: var(--ion-color-medium);
 }
 
 // Horizontal container

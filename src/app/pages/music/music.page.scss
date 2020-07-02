@@ -1,22 +1,22 @@
 .playlist-card {
     --background: var(--ion-background-color, #fff);
     box-shadow: none;
-    width: 120px;
+    width: 150px;
     margin: 0;
-    margin-right: 20px;
+    padding-right: 20px;
 
     &:first-of-type {
         margin-left: 20px;
     }
 
+    img {
+        border-radius: 8px;
+        width: 150px;
+    }
+
     ion-card-content {
         padding: 0;
         padding-top: 6px;
-    }
-
-    img {
-        border-radius: 8px;
-        width: 120px;
     }
 
     .album-description {
@@ -30,5 +30,20 @@
         .album-author, .album-year {
             color: var(--ion-color-medium);
         }
+    }
+}
+
+.music-item {
+    --background: var(--ion-background-color);
+    --padding-start: 0;
+    padding-left: 12px;
+    --ion-safe-area-right: 0;
+    --padding-end: 0;
+    --inner-padding-end: 0;
+
+    img {
+        border-radius: 8px;
+        width: 50px;
+        height: 50px;
     }
 }
