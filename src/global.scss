@@ -47,9 +47,19 @@ ion-tab-bar, ion-toolbar {
     height: 50px;
 }
 
+ion-toolbar {
+    ion-buttons, ion-searchbar {
+        --min-height: 50px;
+        height: 50px;
+    }
+    ion-searchbar.ios {
+        padding-bottom: 0px;
+    }
+}
+
 // ion-list
 ion-list {
-    --background: var(--ion-item-background, #fff);
+    // background: var(--ion-background-color, #ffffff) !important;
 }
 
 // Horizontal container

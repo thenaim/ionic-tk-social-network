@@ -1,0 +1,34 @@
+.playlist-card {
+    --background: var(--ion-background-color, #fff);
+    box-shadow: none;
+    width: 120px;
+    margin: 0;
+    margin-right: 20px;
+
+    &:first-of-type {
+        margin-left: 20px;
+    }
+
+    ion-card-content {
+        padding: 0;
+        padding-top: 6px;
+    }
+
+    img {
+        border-radius: 8px;
+        width: 120px;
+    }
+
+    .album-description {
+        display: grid;
+
+        .album-name {
+            color: var(--ion-color-medium);
+            font-weight: 600;
+        }
+
+        .album-author, .album-year {
+            color: var(--ion-color-medium);
+        }
+    }
+}

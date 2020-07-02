@@ -7,10 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
-  },
-  {
     path: 'bookmarks',
     loadChildren: () => import('./pages/bookmarks/bookmarks.module').then(m => m.BookmarksPageModule)
   },
