@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { Config, MenuController } from '@ionic/angular';
 
 import { FakerService } from '../../shared/faker/faker.service';
-import { MusicController } from '../../shared/music-controller/music-controller.service';
 import { AppData } from 'src/app/providers/app-data';
 
 @Component({
@@ -33,10 +32,6 @@ export class NewsPage {
   ];
   discavery = [];
 
-  musics: any[] = [
-    { id: '5612785349', author: 'Kevin MacLeod', song: 'Sneaky Snitch' }
-  ];
-
   isIos: boolean;
 
   constructor(
@@ -44,8 +39,7 @@ export class NewsPage {
     private menu: MenuController,
 
     private appData: AppData,
-    private fakerService: FakerService,
-    private musicController: MusicController
+    private fakerService: FakerService
   ) { }
 
   doRefresh(event) {
@@ -59,10 +53,6 @@ export class NewsPage {
 
   toggleMenu() {
     this.menu.toggle('camera');
-  }
-
-  playMusic() {
-    this.musicController.playMusic(this.musics[0]);
   }
 
   async dataInit() {

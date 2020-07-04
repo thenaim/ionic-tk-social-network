@@ -61,7 +61,7 @@
     </ion-card>
     <!-- Users stories list -->
     <ion-card class="stories-card" scrollX="true">
-      <ion-list lines="none" class="story-list scrollX" *ngFor="let story of stories" (click)="playMusic()">
+      <ion-list lines="none" class="story-list scrollX" *ngFor="let story of stories">
         <ion-item lines="none" class="story-item">
           <ion-avatar class="story-avatar" [ngClass]="{'seen': false}">
             <img [src]="story.image">
