@@ -59,9 +59,14 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-xl="6" *ngFor="let mu of musics">
-          <ion-item button detail="false" lines="none" class="music-item">
+        <ion-col size="12" size-lg="6" size-xl="4" *ngFor="let mu of musics">
+          <ion-item button detail="false" lines="none" class="music-item" (click)="playMusic(mu)">
             <img slot="start" [src]="mu.image">
+            <div slot="start" class="music-playing" *ngIf="music.id === mu.id">
+              <ion-fab-button size="small" color="light">
+                <ion-icon [name]="music.isPlaying ? 'pause' : 'play'" color="primary"></ion-icon>
+              </ion-fab-button>
+            </div>
 
             <ion-label>
               <h2>{{mu.song}}</h2>

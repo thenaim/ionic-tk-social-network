@@ -18,7 +18,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="false">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
+  </ion-refresher>
+
   <ion-searchbar [formControl]="searchMessageList" cancelButtonIcon="arrow-back-outline"
     [placeholder]="'messages_search_title' | translate" *ngIf="isIos">
   </ion-searchbar>

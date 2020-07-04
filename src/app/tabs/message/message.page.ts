@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Config } from '@ionic/angular';
 
 import { FakerService } from '../../shared/faker/faker.service';
+import { AppData } from 'src/app/providers/app-data';
 
 @Component({
   selector: 'app-message',
@@ -18,23 +19,26 @@ export class MessagePage {
   constructor(
     public config: Config,
 
+    private appData: AppData,
     private fakerService: FakerService
   ) { }
+
+  doRefresh(event) {
+    this.dataInit();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
+  }
+
+  async dataInit() {
+    this.messagesList = await this.appData.getMessages();
+  }
 
   ngOnInit(): void {
     this.isIos = this.config.get('mode') === 'ios';
 
-    this.fakerService.getFaker().then((faker) => {
-      this.messagesList = Array.apply(null, Array(25)).map(() => {
-        return {
-          id: faker.random.uuid(),
-          first_name: faker.name.firstName(),
-          last_name: faker.name.lastName(),
-          email: faker.internet.email(),
-          image: faker.internet.avatar(),
-          last_message: faker.lorem.sentence()
-        };
-      });
-    });
+    this.dataInit();
   }
 }

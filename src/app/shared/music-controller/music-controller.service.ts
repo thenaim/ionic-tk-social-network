@@ -6,12 +6,14 @@ import { tap } from 'rxjs/operators';
 
 export interface PlayerConfiguration {
   id: string;
+  image: string;
   author?: string;
   song?: string;
 };
 
 export interface PlayerEventOptions {
   id?: string;
+  image?: string;
   author?: string;
   song?: string;
   isPlaying?: boolean;
@@ -25,6 +27,7 @@ export interface PlayerEventOptions {
 
 export const initialPlayerEventOptions: PlayerEventOptions = {
   id: '',
+  image: '',
   isPlaying: false,
   isEnd: false,
   duration: 0,
@@ -56,13 +59,14 @@ export class MusicController {
 
   public playMusic(configuration: PlayerConfiguration) {
     if (this.player) {
-      this.abort();
+      this.player.stop();
+      this.unsubscribePlayerEvents();
     }
 
-    this.progress.next({ author: configuration.author, song: configuration.song, show: true });
+    this.progress.next({ image: configuration.image, author: configuration.author, song: configuration.song, show: true });
 
     this.player = new Howl({
-      src: [`./assets/musics/${configuration.id}.mp3`],
+      src: [`./assets/musics/5612785349.mp3`],
       html5: this.config.get('mode') === 'ios',
       volume: 0.5,
 
@@ -76,9 +80,6 @@ export class MusicController {
       onpause: () => {
         this.progress.next({ isPlaying: false });
         this.unsubscribePlayerEvents();
-      },
-      onstop: () => {
-        this.abort();
       },
       // onvolume: () => { },
       // onrate: () => { },

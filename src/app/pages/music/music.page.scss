@@ -1,7 +1,6 @@
 .playlist-card {
     --background: var(--ion-background-color, #fff);
     box-shadow: none;
-    width: 150px;
     margin: 0;
     padding-right: 20px;
 
@@ -11,7 +10,8 @@
 
     img {
         border-radius: 8px;
-        width: 150px;
+        height: 150px;
+        max-height: 150px;
     }
 
     ion-card-content {
@@ -43,7 +43,27 @@
 
     img {
         border-radius: 8px;
+        margin-top: 0px;
+        margin-bottom: 0px;
         width: 50px;
         height: 50px;
+    }
+
+    .music-playing {
+        position: absolute;
+        margin: 0;
+        width: 50px;
+        height: 50px;
+
+        ion-fab-button {
+            width: 32px;
+            height: 32px;
+
+            ion-icon {
+                margin-left: 2px;
+                height: 20px;
+                width: 20px;
+            }
+        }
     }
 }

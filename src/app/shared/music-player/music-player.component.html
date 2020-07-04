@@ -19,7 +19,7 @@
     <ion-col size="11" sizeSm="8" sizeMd="6">
       <ion-card class="music-card">
         <ion-card-header class="ion-text-center">
-          <img [src]="'./assets/musics/img/' + music.id + '.jpg'" [ngClass]="{'mini': !music.isPlaying}" />
+          <img [src]="music.image" [ngClass]="{'mini': !music.isPlaying}" />
         </ion-card-header>
 
         <ion-list lines="none" class="ion-padding-top music-progress-container">

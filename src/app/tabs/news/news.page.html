@@ -33,7 +33,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="false">
-  <ion-refresher slot="fixed" style="--ion-text-color: var(--ion-color-medium);" (ionRefresh)="doRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
   </ion-refresher>
 

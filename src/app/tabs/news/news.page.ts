@@ -4,6 +4,7 @@ import { Config, MenuController } from '@ionic/angular';
 
 import { FakerService } from '../../shared/faker/faker.service';
 import { MusicController } from '../../shared/music-controller/music-controller.service';
+import { AppData } from 'src/app/providers/app-data';
 
 @Component({
   selector: 'app-news',
@@ -42,15 +43,18 @@ export class NewsPage {
     private config: Config,
     private menu: MenuController,
 
+    private appData: AppData,
     private fakerService: FakerService,
     private musicController: MusicController
   ) { }
 
   doRefresh(event) {
+    this.dataInit();
+
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
 
   toggleMenu() {
@@ -61,67 +65,16 @@ export class NewsPage {
     this.musicController.playMusic(this.musics[0]);
   }
 
+  async dataInit() {
+    this.stories = await this.appData.getStories();
+    this.posts = await this.appData.getPosts();
+    this.discavery = await this.appData.getDiscavery();
+  }
+
   ngOnInit(): void {
     this.isIos = this.config.get('mode') === 'ios';
 
-    this.fakerService.getFaker().then((faker) => {
-      this.stories = Array.apply(null, Array(10)).map(() => {
-        return {
-          id: faker.random.uuid(),
-          first_name: faker.name.firstName(),
-          last_name: faker.name.lastName(),
-          image: faker.image.avatar()
-        };
-      });
-
-      this.posts = Array.apply(null, Array(10)).map(() => {
-        return {
-          id: faker.random.uuid(),
-          first_name: faker.name.firstName(),
-          last_name: faker.name.lastName(),
-          image: faker.image.avatar(),
-          content: faker.lorem.sentences(),
-          likes: faker.random.number(100),
-          comments: faker.random.number(100),
-          shared: faker.random.number(100),
-          views: faker.random.number(200)
-        };
-      });
-      this.discavery = [
-        {
-          type: 'image',
-          data: Array.apply(null, Array(2)).map(() => {
-            return {
-              id: faker.random.uuid(),
-              img: faker.helpers.randomize([faker.image.city(500, 500), faker.image.cats(500, 500), faker.image.fashion(500, 500), faker.image.people(500, 500)])
-            };
-          })
-        },
-        {
-          type: 'post-image',
-          data: Array.apply(null, Array(1)).map(() => {
-            return {
-              id: faker.random.uuid(),
-              avatar: faker.image.avatar(),
-              author: faker.company.companyName(),
-              img: faker.helpers.randomize([faker.image.city(500, 500), faker.image.cats(500, 500), faker.image.fashion(500, 500), faker.image.people(500, 500)])
-            };
-          })
-        },
-        {
-          type: 'post-full',
-          data: Array.apply(null, Array(4)).map(() => {
-            return {
-              id: faker.random.uuid(),
-              avatar: faker.image.avatar(),
-              author: faker.company.companyName(),
-              img: faker.helpers.randomize([faker.image.city(500, 500), faker.image.cats(500, 500), faker.image.fashion(500, 500), faker.image.people(500, 500)]),
-              text: faker.lorem.sentences()
-            };
-          })
-        }
-      ]
-    });
+    this.dataInit();
   }
 
   ionViewDidEnter() {
