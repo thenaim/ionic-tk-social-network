@@ -22,14 +22,17 @@ import { SettingsEffects } from './shared/settings/settings.effects';
 import { MusicEffects } from './shared/music/music.effects';
 import { SharedModule } from './shared/shared.module';
 import { MusicPlayerComponent } from './shared/music-player/music-player.component';
+import { StoriesComponent } from './shared/stories/stories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MusicPlayerComponent
+    MusicPlayerComponent,
+    StoriesComponent
   ],
   entryComponents: [
-    MusicPlayerComponent
+    MusicPlayerComponent,
+    StoriesComponent
   ],
   imports: [
     BrowserModule,

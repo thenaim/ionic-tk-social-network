@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Config, MenuController } from '@ionic/angular';
+import { Config, MenuController, ModalController, NavController, AnimationController } from '@ionic/angular';
 
 import { FakerService } from '../../shared/faker/faker.service';
-import { AppData } from 'src/app/providers/app-data';
+import { AppData } from '../../providers/app-data';
+import { StoriesComponent } from '../../shared/stories/stories.component';
 
 @Component({
   selector: 'app-news',
@@ -37,6 +38,9 @@ export class NewsPage {
   constructor(
     private config: Config,
     private menu: MenuController,
+    private modalController: ModalController,
+    private navCtrl: NavController,
+    private animationCtrl: AnimationController,
 
     private appData: AppData,
     private fakerService: FakerService
@@ -53,6 +57,60 @@ export class NewsPage {
 
   toggleMenu() {
     this.menu.toggle('camera');
+  }
+
+  async openStory(event) {
+    const enterAnimation = (baseEl: any) => {
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'scale(0)' },
+          { offset: 1, opacity: '0.99', transform: 'scale(1)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('ease-out')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const leaveAnimation = (baseEl: any) => {
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelector('ion-backdrop')!)
+        .fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')!)
+        .beforeStyles({ 'opacity': 1 })
+        .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)')
+        .fromTo('borderRadius', '0 0 0 0', '30px 30px 0 0')
+        .keyframes([
+          { offset: 0, transform: 'translateY(0vh)', borderRadius: '0px' },
+          { offset: 0.1, borderRadius: '10px' },
+          { offset: 1, transform: 'translateY(100vh)', borderRadius: '30px 30px 0 0' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('cubic-bezier(0.32,0.72,0,1)')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const modal = await this.modalController.create({
+      component: StoriesComponent,
+      mode: 'ios',
+      cssClass: 'story-modal',
+      swipeToClose: true,
+      enterAnimation,
+      leaveAnimation
+    });
+    return await modal.present();
   }
 
   async dataInit() {

@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 
 export interface AppDataInterface {
     stories: any[];
+    stories_list: any[];
     posts: any[];
     discavery: any[];
     messages: any[];
@@ -31,6 +32,12 @@ export class AppData {
     async getStories() {
         return this.load().then((data) => {
             return data.stories;
+        });
+    }
+
+    async getStoriesList() {
+        return this.load().then((data) => {
+            return data.stories_list;
         });
     }
 

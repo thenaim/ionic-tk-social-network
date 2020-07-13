@@ -5,11 +5,11 @@
             "data": [
                 {
                     "id": "9daf8da0-63b0-4d00-b181-1e68b2301536",
-                    "img": "http://lorempixel.com/500/500/city"
+                    "img": "https://picsum.photos/500/500?random=1"
                 },
                 {
                     "id": "284d0620-a166-40a4-a01e-2f0e0dbdc798",
-                    "img": "http://lorempixel.com/500/500/people"
+                    "img": "https://picsum.photos/500/500?random=2"
                 }
             ]
         },
@@ -20,7 +20,7 @@
                     "id": "2d83f512-2a7a-46eb-a417-ee8bc2367f46",
                     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/rickyyean/128.jpg",
                     "author": "Mante and Sons",
-                    "img": "http://lorempixel.com/500/500/city"
+                    "img": "https://picsum.photos/500/500?random=3"
                 }
             ]
         },
@@ -31,28 +31,28 @@
                     "id": "b4c06fd1-b6fb-4ca6-bd16-08f688255658",
                     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/davidcazalis/128.jpg",
                     "author": "Grady and Sons",
-                    "img": "http://lorempixel.com/500/500/cats",
+                    "img": "https://picsum.photos/500/500?random=4",
                     "text": "Itaque nesciunt quo temporibus asperiores dolor aut odit corporis. Doloremque numquam dolore repellat officia error. Iure nam necessitatibus ratione enim provident exercitationem."
                 },
                 {
                     "id": "fd6357aa-9e5f-4e5e-bf32-3b4347692bbb",
                     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/grrr_nl/128.jpg",
                     "author": "Kling and Sons",
-                    "img": "http://lorempixel.com/500/500/people",
+                    "img": "https://picsum.photos/500/500?random=5",
                     "text": "Maxime nisi magnam deserunt numquam voluptate id ipsum. Facere animi aut."
                 },
                 {
                     "id": "b139ab62-2014-462e-b6bf-99b79756aa96",
                     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/jitachi/128.jpg",
                     "author": "Streich, Bogan and Predovic",
-                    "img": "http://lorempixel.com/500/500/people",
+                    "img": "https://picsum.photos/500/500?random=6",
                     "text": "Non nesciunt aut tenetur velit incidunt provident ipsum non. Voluptas quos unde. Porro aperiam nemo."
                 },
                 {
                     "id": "7f7031a9-515c-4c46-b68c-a22b655bfbff",
                     "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/paulfarino/128.jpg",
                     "author": "Kuhn, Kihn and Towne",
-                    "img": "http://lorempixel.com/500/500/city",
+                    "img": "https://picsum.photos/500/500?random=7",
                     "text": "Facilis necessitatibus tenetur ut assumenda sint porro nobis quod. Sequi fuga sapiente vitae sint illo aut. Odit expedita quia. Veritatis voluptatibus sint."
                 }
             ]
@@ -437,56 +437,56 @@
     "playlists": [
         {
             "id": "a0b07ef3-c677-4a23-90ed-bac8428b6465",
-            "image": "http://lorempixel.com/500/500/city",
+            "image": "https://picsum.photos/500/500?random=8",
             "album": "sunt",
             "author": "Maxie_Sporer39",
             "year": 2020
         },
         {
             "id": "9dd2e316-5024-4592-9208-88df5f96762f",
-            "image": "http://lorempixel.com/500/500/fashion",
+            "image": "https://picsum.photos/500/500?random=9",
             "album": "quis",
             "author": "Nils.Aufderhar",
             "year": 2020
         },
         {
             "id": "91c1df74-cf48-45ab-b709-6e617fcb26f4",
-            "image": "http://lorempixel.com/500/500/people",
+            "image": "https://picsum.photos/500/500?random=10",
             "album": "aperiam",
             "author": "Rosendo.Nienow63",
             "year": 2020
         },
         {
             "id": "d6da666b-cece-4f9d-8b22-a1ca6122324e",
-            "image": "http://lorempixel.com/500/500/fashion",
+            "image": "https://picsum.photos/500/500?random=11",
             "album": "id",
             "author": "Mallie18",
             "year": 2020
         },
         {
             "id": "2327e572-fa8f-4dda-8c9a-a5a1e42abb2b",
-            "image": "http://lorempixel.com/500/500/cats",
+            "image": "https://picsum.photos/500/500?random=12",
             "album": "exercitationem",
             "author": "Monserrate.Green",
             "year": 2020
         },
         {
             "id": "48ac3f4d-bc66-45c1-af04-c42511e7e3ce",
-            "image": "http://lorempixel.com/500/500/city",
+            "image": "https://picsum.photos/500/500?random=13",
             "album": "possimus",
             "author": "Erika.Hills80",
             "year": 2020
         },
         {
             "id": "5718f4d2-c25d-4ed8-9012-ff4a2fa1d956",
-            "image": "http://lorempixel.com/500/500/cats",
+            "image": "https://picsum.photos/500/500?random=14",
             "album": "minima",
             "author": "Destiny_Brakus5",
             "year": 2020
         },
         {
             "id": "3602836c-b4b7-4d16-b449-2b3f00a1244f",
-            "image": "http://lorempixel.com/500/500/cats",
+            "image": "https://picsum.photos/500/500?random=15",
             "album": "deserunt",
             "author": "Webster.Ritchie46",
             "year": 2020
@@ -495,59 +495,141 @@
     "musics": [
         {
             "id": "7d7ff0b3-4dea-470b-9a98-143d85384ffc",
-            "image": "http://lorempixel.com/500/500/people",
+            "image": "https://picsum.photos/500/500?random=16",
             "song": "a",
             "author": "Miles51",
             "time": "1:48"
         },
         {
             "id": "c1a439a8-608c-4bd2-96b5-52f74eec00f7",
-            "image": "http://lorempixel.com/500/500/cats",
+            "image": "https://picsum.photos/500/500?random=17",
             "song": "qui",
             "author": "Else.Rodriguez37",
             "time": "1:41"
         },
         {
             "id": "df9aeee8-1571-4582-bda4-133d40257e9f",
-            "image": "http://lorempixel.com/500/500/fashion",
+            "image": "https://picsum.photos/500/500?random=18",
             "song": "quidem",
             "author": "Zena18",
             "time": "1:40"
         },
         {
             "id": "6e1f9862-e807-4d93-a940-8bb5ac77a393",
-            "image": "http://lorempixel.com/500/500/people",
+            "image": "https://picsum.photos/500/500?random=19",
             "song": "et",
             "author": "Gavin78",
             "time": "4:19"
         },
         {
             "id": "df1ebca3-0ca7-479b-9269-010ed3e0d57d",
-            "image": "http://lorempixel.com/500/500/people",
+            "image": "https://picsum.photos/500/500?random=20",
             "song": "sed",
             "author": "Rosamond17",
             "time": "1:22"
         },
         {
             "id": "756f40d1-de47-46a7-913b-87c0ebc3cc8f",
-            "image": "http://lorempixel.com/500/500/city",
+            "image": "https://picsum.photos/500/500?random=21",
             "song": "quos",
             "author": "Erin.Bahringer97",
             "time": "1:18"
         },
         {
             "id": "6bf56bae-49bd-4a8c-a84f-c7e928723dfe",
-            "image": "http://lorempixel.com/500/500/city",
+            "image": "https://picsum.photos/500/500?random=22",
             "song": "ullam",
             "author": "Arno_Murazik",
             "time": "4:57"
         },
         {
             "id": "83b61af0-73b5-40a2-89a2-e87a0cdd22a1",
-            "image": "http://lorempixel.com/500/500/city",
+            "image": "https://picsum.photos/500/500?random=23",
             "song": "aspernatur",
             "author": "Hal.Mills50",
             "time": "3:36"
+        }
+    ],
+    "stories_list": [
+        {
+            "owner": {
+                "id": "42357961",
+                "username": "@thenaim",
+                "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nemanjaivanovic/128.jpg",
+                "requested_by_viewer": false
+            },
+            "items": [
+                {
+                    "id": "235486521",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/658/640/1137"
+                },
+                {
+                    "id": "152348975",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/1003/640/1137"
+                },
+                {
+                    "id": "965123485",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/1002/640/1137"
+                },
+                {
+                    "id": "784256315",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                },
+                {
+                    "id": "154289562",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/1001/640/1137"
+                },
+                {
+                    "id": "895231456",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                },
+                {
+                    "id": "782456318",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                },
+                {
+                    "id": "521364859",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                }
+            ]
+        },
+        {
+            "owner": {
+                "id": "245237859",
+                "username": "@thenaim",
+                "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/soyjavi/128.jpg",
+                "requested_by_viewer": true
+            },
+            "items": [
+                {
+                    "id": "154289562",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/1001/640/1137"
+                },
+                {
+                    "id": "895231456",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                },
+                {
+                    "id": "782456318",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                },
+                {
+                    "id": "521364859",
+                    "type": "image",
+                    "src": "https://picsum.photos/id/237/640/1137"
+                }
+            ]
         }
     ]
 }

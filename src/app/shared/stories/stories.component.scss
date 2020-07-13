@@ -1,0 +1,102 @@
+
+ion-button, ion-label {
+    --color: #fff !important;
+}
+
+// Story container
+.story-container {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    ion-slides {
+        height: 100%;
+    }
+
+    .swiper-container-3d {
+        perspective: none;
+    }
+}
+
+.story-item-container {
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+// Header progress bar
+.progress-bar-story {
+    display: flex;
+
+    ion-progress-bar {
+        --progress-background: #fff;
+        --background: var(--ion-color-medium);
+        height: 4px;
+        border-radius: 4px;
+        margin: 8px 0px 0px 4px;
+
+        &:last-of-type {
+            margin-right: 0px;
+        }
+    }
+}
+
+// Header
+.story-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    --background: transparent;
+
+    ion-toolbar {
+        --background: transparent;
+    }
+
+    ion-item {
+        --background: transparent;
+        --ion-safe-area-left: 0px;
+        --ion-safe-area-right: 0px;
+        --inner-padding-end: 0px;
+        --padding-start: 0px;
+        --padding-end: 0px;
+    }
+}
+
+// Prev/Next buttons
+.story-change {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 50px;
+
+    &.prev {
+        left: 0;
+    }
+
+    &.next {
+        right: 0;
+    }
+}
+
+// Footer
+.story-footer {
+    position: absolute;
+    --background: transparent;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    ion-toolbar {
+        --background: transparent;
+    }
+}
