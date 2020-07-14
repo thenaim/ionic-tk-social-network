@@ -66,83 +66,54 @@ export class StoriesComponent implements OnInit {
   * Add story share
   */
   addStory(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
+    console.log('story add button');
   }
 
   /*
   * Share story
   */
   shareStory(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
+    console.log('story share button');
   }
 
   /*
   * Story options
   */
   storyOptions(event) {
-    event.stopPropagation();
-    event.preventDefault();
-
+    console.log('story options button');
   }
 
-  //Move to Next slide
-  slideNext(event: Event) {
-    // event.stopPropagation();
-    // event.preventDefault();
-
-  }
-
-  //Move to previous slide
-  slidePrev(event: Event) {
-    event.stopPropagation();
-    // event.preventDefault();
-
-  }
-
-  slideDidLoad(event) {
-    console.log('slideDidLoad');
+  /*
+  * Event when story load
+  */
+  storyDidLoad(event) {
     this.story.update();
+    console.log('storyDidLoad');
   }
 
-  slideDidChange(event) {
-    console.log('DidChange');
-  }
-
-  slideWillChange(event) {
-    console.log('WillChange');
-  }
-
-  slideTap(event) {
-    console.log('Tap');
-  }
-
+  /*
+  * Story touchstart event
+  */
   storyTouchStart(event: any) {
+    console.log('storyTouchStart', event.target.localName);
     const target = event.target || event.srcElement;
-    const id = target.id.replace(/[0-9]/g, '');
-    // const allowElement = ['story-image-'];
-    const ignoreElement = ['ion-avatar', 'ion-text', 'ion-progress-bar', 'ion-button'];
-    // const ignoreElementId = ['ion-text', 'ion-button'];
-
+    const ignoreElement = ['ion-avatar', 'ion-text', 'ion-button'];
     if (ignoreElement.includes(target.localName) || target.id === 'avatar') return;
 
-    this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStory].tap = true;
-
-    console.log('storyTouchStart');
+    this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStoryIndex].tap = true;
   }
 
+  /*
+  * Story touchend event
+  */
   storyTouchEnd(event) {
-    this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStory].tap = false;
+    this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStoryIndex].tap = false;
 
-    this.story.getActiveIndex().then(index => {
+    this.story.getActiveIndex().then(async (index) => {
       // Prev
       if (index < this.activeStoryOption.activeStory) {
         this.activeStoryOption.activeStory = index;
       }
-
       // Next
       if (index > this.activeStoryOption.activeStory) {
         this.activeStoryOption.activeStory = index;
@@ -152,46 +123,40 @@ export class StoriesComponent implements OnInit {
     console.log('storyTouchEnd');
   }
 
-  slidePrevEnd(event) {
-    console.log('slidePrevEnd');
-    setTimeout(() => {
-
-      this.activeStoryOption.activeStory -= this.activeStoryOption.activeStory;
-    }, 100);
-  }
-
-  slideNextEnd(event) {
-    console.log('slideNextEnd');
-    this.activeStoryOption.activeStory += this.activeStoryOption.activeStory;
-  }
-
+  /*
+  * Get image color for background
+  */
   async getColor(url: string) {
     const result = await analyze(url, { scale: 0.5 });
 
     return result[0].color;
   }
 
-  async imageLoaded(event, contentIndex) {
-    if (event && event.target) {
-      const slideImg: any = document.getElementById('story-image-' + contentIndex);
-
-      // this.activeStoryOption.storyActiveColor = await this.getColor(slideImg.src);
-    }
+  /*
+  * Image loaded event
+  */
+  imageLoaded(event, contentIndex) {
+    console.log('imageLoaded');
+    /*const slideImg: any = document.getElementById('story-image-' + contentIndex);
+    this.getColor(slideImg.src).then((res => {
+      this.activeStoryOption.storyActiveColor = res;
+    }));*/
   }
 
+  /*
+  * Modal dismiss event
+  */
   async modalWillDismiss() {
     return (await this.modalCtrl.getTop()).onWillDismiss();
   }
 
-  async storyDataInit() {
-    this.stories = await this.appData.getStoriesList();
-  }
-
   ngOnInit() {
-    this.storyDataInit();
+    this.appData.getStoriesList().then((stories) => {
+      this.stories = stories;
+    })
 
     this.modalWillDismiss().then(() => {
-      console.log('modalWillDismiss');
+      console.log('storyModalWillDismiss');
     });
   }
 
@@ -211,8 +176,11 @@ export class StoriesComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.activeStoryOption.storyActiveColor = '#fff';
+    // this.activeStoryOption.storyActiveColor = '#fff';
 
+    /*
+    * Unlisten story modal events
+    */
     if (this.storyEventListner) {
       this.storyEventListner();
     }

@@ -1,14 +1,15 @@
 <div class="story-container" [ngStyle]="{'background-color': activeStoryOption.storyActiveColor}">
-  <ion-slides pager="false" [options]="storyCubeOptions" (ionSlidesDidLoad)="slideDidLoad($event)" #story>
+  <ion-slides pager="false" [options]="storyCubeOptions" (ionSlidesDidLoad)="storyDidLoad($event)" #story>
     <ion-slide *ngFor="let storyItem of stories; let storyIndex = index">
       <div class="story-item-container">
-        <ion-header class="story-header" *ngIf="!storyItem.items[activeStoryOption.activeStory].tap">
+        <ion-header class="story-header"
+          [ngClass]="{'ion-hide': storyItem.items[activeStoryOption.activeStoryIndex].tap}">
           <div class="progress-bar-story">
             <ion-progress-bar *ngFor="let content of storyItem.items; let contentIndex = index"
               [value]="!contentIndex ? '0.6' : 0"></ion-progress-bar>
           </div>
-          <ion-toolbar style="pointer-events: none">
-            <ion-item lines="none" class="ion-no-padding" style="pointer-events: none">
+          <ion-toolbar>
+            <ion-item lines="none" class="ion-no-padding" style="pointer-events: fill;">
               <ion-avatar slot="start">
                 <img id="avatar" [src]="storyItem.owner.avatar" />
               </ion-avatar>
@@ -34,9 +35,8 @@
             *ngIf="contentIndex === activeStoryOption.activeStoryIndex" />
         </ng-container>
 
-
-        <ion-footer class="story-footer" style="pointer-events: none"
-          *ngIf="!storyItem.items[activeStoryOption.activeStory].tap">
+        <ion-footer class="story-footer"
+          [ngClass]="{'ion-hide': storyItem.items[activeStoryOption.activeStoryIndex].tap}">
           <ion-toolbar>
             <ion-buttons slot="start">
               <ion-button (click)="addStory($event)">
