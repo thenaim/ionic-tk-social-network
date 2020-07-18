@@ -5,6 +5,7 @@ import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from '
 import { SubscriptionLike } from 'rxjs';
 
 import { AppData } from '../../providers/app-data';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-music',
@@ -12,7 +13,6 @@ import { AppData } from '../../providers/app-data';
   styleUrls: ['./music.page.scss'],
 })
 export class MusicPage implements OnInit {
-
   searchMusic: FormControl = new FormControl('');
   activeSegment: FormControl = new FormControl('my_music');
 
@@ -30,7 +30,13 @@ export class MusicPage implements OnInit {
   ) { }
 
   doRefresh(event) {
-    this.dataInit();
+    this.appData.getPlaylists().then((playlist) => {
+      this.playlists = playlist;
+
+      this.appData.getMusics().then((music) => {
+        this.musics = music;
+      });
+    });
 
     setTimeout(() => {
       console.log('Async operation has ended');
@@ -43,16 +49,32 @@ export class MusicPage implements OnInit {
     this.musicController.playMusic(music);
   }
 
-  async dataInit() {
-    this.musics = await this.appData.getMusics();
-    this.playlists = await this.appData.getPlaylists();
+  imgMusicLoaded(event) {
+    console.log(event);
   }
 
   ngOnInit() {
-    this.dataInit();
+    this.appData.getPlaylists().then((playlist) => {
+      this.playlists = playlist;
+
+      this.appData.getMusics().then((music) => {
+        this.musics = music;
+      });
+    });
 
     this.music = this.musicController.getOptions();
     this.audioSubscription.push(
+      this.activeSegment.valueChanges.subscribe((res) => {
+
+        // cleare random image loaded value on tab change
+        this.playlists.forEach((element) => {
+          element.imgLoaded = false;
+        });
+        this.musics.forEach((element) => {
+          element.imgLoaded = false;
+        });
+      }),
+
       this.musicController.onProgress.subscribe((res) => {
         this.music = { ...this.music, ...res };
       })

@@ -63,28 +63,28 @@ export class StoriesComponent implements OnInit {
   }
 
   /*
-  * Add story share
+  * Add story share clicked
   */
   addStory(event) {
     console.log('story add button');
   }
 
   /*
-  * Share story
+  * Share story clicked
   */
   shareStory(event) {
     console.log('story share button');
   }
 
   /*
-  * Story options
+  * Story options clicked
   */
   storyOptions(event) {
     console.log('story options button');
   }
 
   /*
-  * Event when story load
+  * When story load event
   */
   storyDidLoad(event) {
     this.story.update();
@@ -124,7 +124,7 @@ export class StoriesComponent implements OnInit {
   }
 
   /*
-  * Get image color for background
+  * Get image dominant color for background
   */
   async getColor(url: string) {
     const result = await analyze(url, { scale: 0.5 });

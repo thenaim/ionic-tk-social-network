@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, Platform, ModalController, IonRouterOutlet } from '@ionic/angular';
+import { MenuController, Platform, ModalController, IonRouterOutlet, AnimationController } from '@ionic/angular';
 import { interval, Subscription, Observable } from 'rxjs';
 import { MusicPlayerComponent } from '../shared/music-player/music-player.component';
 
@@ -34,6 +34,7 @@ export class TabsPage {
     private platform: Platform,
 
     private menu: MenuController,
+    private animationCtrl: AnimationController,
     private modalController: ModalController,
     private routerOutlet: IonRouterOutlet,
     private musicController: MusicController,
@@ -68,13 +69,55 @@ export class TabsPage {
     event.stopPropagation();
     event.preventDefault();
 
+    const enterAnimation = (baseEl: any) => {
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelector('ion-backdrop')!)
+        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelector('.modal-wrapper')!)
+        .keyframes([
+          { offset: 0, opacity: '0', transform: 'translateY(100vh)' },
+          { offset: 1, opacity: '0.99', transform: 'translateY(0vh)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('cubic-bezier(0.32,0.72,0,1)')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
+    const leaveAnimation = (baseEl: any) => {
+      const backdropAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelector('ion-backdrop')!)
+        .fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
+
+      const wrapperAnimation = this.animationCtrl.create()
+        .addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')!)
+        .beforeStyles({ 'opacity': 1 })
+        .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)')
+        .keyframes([
+          { offset: 0, transform: 'translateY(0vh)' },
+          { offset: 1, transform: 'translateY(100vh)' }
+        ]);
+
+      return this.animationCtrl.create()
+        .addElement(baseEl)
+        .easing('cubic-bezier(0.32,0.72,0,1)')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+    }
+
     const modal = await this.modalController.create({
       component: MusicPlayerComponent,
       cssClass: 'music-modal',
       swipeToClose: true,
       componentProps: {
         music: this.music
-      }
+      },
+      enterAnimation,
+      leaveAnimation,
       // presentingElement: this.routerOutlet.nativeEl
     });
     return await modal.present();

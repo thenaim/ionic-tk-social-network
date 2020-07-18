@@ -1,11 +1,18 @@
-.explore-item {
-    --background: var(--ion-background-color, #fff);
+.explore {
+    margin-top: 16px;
+}
+
+.explore-category {
+    padding: 0;
+    margin-bottom: 16px;
+    text-align: center;
 }
 
 .explore-category-icon {
-    font-size: 38px;
+    font-size: 34px;
 }
 
 .explore-category-title {
-    font-weight: 600;
+    margin: 0;
+    font-weight: 400;
 }

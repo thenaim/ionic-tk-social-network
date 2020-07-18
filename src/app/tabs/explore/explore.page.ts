@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['explore.page.scss']
 })
 export class ExplorePage {
-  exps: any[] = [
+  explores: any[] = [
     { id: 'friends_title', icon: 'people-outline', color: 'danger', link: 'friends' },
     { id: 'communities_title', icon: 'people-circle', color: 'warning', link: 'communities' },
     { id: 'music_title', icon: 'musical-notes', color: 'primary', link: 'music' },

@@ -16,15 +16,11 @@
     <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row>
-      <ion-col size="4" size-md="3" size-xl="2" class="ion-no-padding ion-padding-top" *ngFor="let ex of exps">
-        <ion-item lines="none" detail="false" class="explore-item ion-no-padding" [routerLink]="ex.link"
-          routerDirection="forward">
-          <ion-label class="ion-no-margin ion-text-center">
-            <ion-icon [name]="ex.icon" [color]="ex.color" class="explore-category-icon"></ion-icon>
-            <h5 class="explore-category-title">{{ex.id | translate}}</h5>
-          </ion-label>
-        </ion-item>
+    <ion-row class="explore">
+      <ion-col size="4" size-md="3" size-xl="2" class="explore-category" *ngFor="let explore of explores"
+        [routerLink]="explore.link" routerDirection="forward">
+        <ion-icon [name]="explore.icon" [color]="explore.color" class="explore-category-icon"></ion-icon>
+        <h6 class="explore-category-title">{{explore.id | translate}}</h6>
       </ion-col>
     </ion-row>
   </ion-grid>
