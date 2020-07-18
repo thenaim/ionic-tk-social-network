@@ -8,9 +8,6 @@
   <a href="https://github.com/thenaim/ion-tk-social-network/releases">
     <img src="https://flat.badgen.net/github/release/thenaim/ion-tk-social-network">
   </a>
-  <a href="https://github.com/thenaim/ion-tk-social-network/commits/master">
-    <img src="https://flat.badgen.net/github/last-commit/thenaim/ion-tk-social-network">
-  </a>
   <a href="https://github.com/thenaim/ion-tk-social-network/blob/master/LICENSE">
     <img src="https://flat.badgen.net/github/license/thenaim/ion-tk-social-network">
   </a>
@@ -21,6 +18,7 @@
 ```bash
 git clone https://github.com/thenaim/ion-tk-social-network myApp
 cd myApp
+npm i
 
 # Android
 ionic cordova run android
@@ -57,6 +55,7 @@ ionic cordova run ios
 | Reset | Available, but needs to be modified | [reset.ts](src/app/pages/auth/reset)  | - |
 | Music | Available | [music.ts](src/app/pages/settings) | - |
 | Music modal | Available | [music-player.ts](src/app/shared/music-player) | - |
+| Story modal | Available | [stories.component.ts](src/app/shared/stories) | - |
 | Settings | Available | [settings.ts](src/app/pages/music) | - |
 | About | Available, but needs to be modified | [about.ts](src/app/pages/settings/about) | - |
 | Account | Available, but needs to be modified | [account.ts](src/app/pages/settings/account) | - |
