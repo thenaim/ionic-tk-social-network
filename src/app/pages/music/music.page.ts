@@ -29,6 +29,9 @@ export class MusicPage implements OnInit {
     private fakerService: FakerService
   ) { }
 
+  /**
+  * On refresh
+  */
   doRefresh(event) {
     this.appData.getPlaylists().then((playlist) => {
       this.playlists = playlist;
@@ -44,13 +47,14 @@ export class MusicPage implements OnInit {
     }, 400);
   }
 
+  /**
+  * Play music
+  * 
+  * @param {Object} music - music data for play
+  */
   playMusic(music) {
     this.playingSongId = music.id;
     this.musicController.playMusic(music);
-  }
-
-  imgMusicLoaded(event) {
-    console.log(event);
   }
 
   ngOnInit() {

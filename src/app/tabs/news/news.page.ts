@@ -46,6 +46,9 @@ export class NewsPage {
     private fakerService: FakerService
   ) { }
 
+  /**
+  * On refresh
+  */
   doRefresh(event) {
     this.dataInit();
 
@@ -55,11 +58,18 @@ export class NewsPage {
     }, 1000);
   }
 
+  /**
+  * Toggle camera side
+  */
   toggleMenu() {
     this.menu.toggle('camera');
   }
 
+  /**
+  * Open story modal
+  */
   async openStory(event) {
+    // modal enter animation
     const enterAnimation = (baseEl: any) => {
       const backdropAnimation = this.animationCtrl.create()
         .addElement(baseEl.querySelector('ion-backdrop')!)
@@ -79,6 +89,7 @@ export class NewsPage {
         .addAnimation([backdropAnimation, wrapperAnimation]);
     }
 
+    // modal leave animation
     const leaveAnimation = (baseEl: any) => {
       const backdropAnimation = this.animationCtrl.create()
         .addElement(baseEl.querySelector('ion-backdrop')!)
@@ -102,6 +113,7 @@ export class NewsPage {
         .addAnimation([backdropAnimation, wrapperAnimation]);
     }
 
+    // create modal
     const modal = await this.modalController.create({
       component: StoriesComponent,
       mode: 'ios',

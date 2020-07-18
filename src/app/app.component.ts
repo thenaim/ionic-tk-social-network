@@ -72,6 +72,9 @@ export class AppComponent {
     this.initializeApp();
   }
 
+  /**
+  * App init
+  */
   initializeApp() {
     this.translate.setDefaultLang('en');
     this.fakerService.setLang('en');
@@ -79,16 +82,21 @@ export class AppComponent {
 
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
       this.screenOrientation.unlock();
     });
   }
 
+  /**
+  * Theme toggle
+  */
   toggleDarkTheme() {
     this.store.dispatch(actionSettingsChangeTheme({ isDark: !this.isDarkTheme }));
   }
 
+  /**
+  * Navigate to settings page
+  */
   async goToSettings() {
     const loading = await this.loadingController.create();
     await loading.present().then(() => {
@@ -100,6 +108,9 @@ export class AppComponent {
     });
   }
 
+  /**
+  * Close camera side
+  */
   closeCameraSide(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -107,6 +118,9 @@ export class AppComponent {
     this.menu.close('camera');
   }
 
+  /**
+  * On open camera side
+  */
   onOpenCameraMenu(event) {
     this.isCameraStart = true;
     this.cameraPreviewOpts = { ...this.cameraPreviewOpts, camera: 'rear', width: window.screen.width, height: window.screen.height };
@@ -120,11 +134,18 @@ export class AppComponent {
       });
   }
 
+  /**
+  * On close camera side
+  */
   onCloseCameraMenu(event) {
     this.isCameraStart = false;
     this.cameraPreview.stopCamera();
   }
 
+  /**
+  * Switch camera mode 
+  * rear/front
+  */
   switchCamera(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -138,6 +159,9 @@ export class AppComponent {
     });
   }
 
+  /**
+  * Take picture camera
+  */
   takePicture(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -152,6 +176,10 @@ export class AppComponent {
     });
   }
 
+  /**
+  * Switch flash mode
+  * ON/OFF
+  */
   switchFlashMode(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -161,28 +189,35 @@ export class AppComponent {
     this.cameraPreview.setFlashMode(this.isCameraFlashMode ? this.cameraPreview.FLASH_MODE.ON : this.cameraPreview.FLASH_MODE.OFF);
   }
 
-  getCameraFocusCoordinates(event) {
-    this.cameraFocusPosition.top = event.clientY;
-    this.cameraFocusPosition.left = event.clientX;
+  /**
+  * Focus camera on click area
+  */
+  async getCameraFocusCoordinates(event) {
+    this.cameraFocusPosition.top = event.y - 15;
+    this.cameraFocusPosition.left = event.x - 20;
+
+    // start focus animation
     this.cameraFocusPosition.show = false;
-    this.cameraFocusPosition.show = true;
-
-    console.log(this.cameraFocusPosition);
-
-    this.cameraPreview.tapToFocus(event.clientX || 0, event.clientY || 0).finally(() => {
-      setTimeout(() => {
-        this.cameraFocusPosition.show = false;
-      }, 400);
+    setTimeout(() => {
+      this.cameraFocusPosition.show = true;
     });
+
+    await this.cameraPreview.tapToFocus(event.clientX || 0, event.clientY || 0);
   }
 
   ngOnInit(): void {
+    /**
+    * Subscribe to theme change
+    */
     this.subscriptions.push(
       this.theme$.subscribe((isDark) => {
         this.isDarkTheme = isDark;
       })
     );
 
+    /**
+    * Subscribe to orientation change
+    */
     this.subscriptions.push(
       this.screenOrientation.onChange().subscribe(async () => {
         await this.cameraPreview.stopCamera();

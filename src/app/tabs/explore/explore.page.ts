@@ -19,6 +19,9 @@ export class ExplorePage {
 
   constructor() { }
 
+  /**
+  * On refresh
+  */
   doRefresh(event) {
     setTimeout(() => {
       console.log('Async operation has ended');

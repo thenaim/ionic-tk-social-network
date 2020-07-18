@@ -26,6 +26,9 @@ export class MusicPlayerComponent implements OnInit {
     private musicController: MusicController
   ) { }
 
+  /**
+  * On close music modal
+  */
   closeModal(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -35,6 +38,9 @@ export class MusicPlayerComponent implements OnInit {
     });
   }
 
+  /**
+  * On change music progress
+  */
   progressChanged() {
     this.musicController.seek(this.progress.value);
 
@@ -43,19 +49,32 @@ export class MusicPlayerComponent implements OnInit {
     this.progressTimeEnding = '-' + this.musicController.secondsToTime(this.music.duration - seek);
   }
 
+  /**
+  * On music value change
+  */
   volumeChanged() {
     const volume = (+this.volume.value / 100);
     this.musicController.volume(volume);
   }
 
+  /**
+  * Toggle music
+  * play/pause
+  */
   togglePlayer() {
     this.musicController.togglePlayer(this.music.isPlaying, this.progress.value);
   }
 
+  /**
+  * Toggle music repeat
+  */
   repeat(repeat: boolean) {
     this.musicController.progress.next({ repeat: !repeat });
   }
 
+  /**
+  * Music value update function
+  */
   updateMusicValue() {
     this.progress.setValue(((this.music.seek / this.music.duration) * 100).toFixed(0), { emitEvent: false });
     this.progressTime = this.musicController.secondsToTime(this.music.seek);
@@ -68,6 +87,9 @@ export class MusicPlayerComponent implements OnInit {
     this.music = this.musicController.getOptions();
     this.updateMusicValue();
 
+    /**
+    * Subscribe to music value
+    */
     this.audioSubscription.add(
       this.musicController.onProgress.subscribe((res) => {
         this.music = { ...this.music, ...res };

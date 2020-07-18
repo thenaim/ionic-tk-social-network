@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, Platform, ModalController, IonRouterOutlet, AnimationController } from '@ionic/angular';
-import { interval, Subscription, Observable } from 'rxjs';
+import { interval, Subscription, Observable, SubscriptionLike } from 'rxjs';
 import { MusicPlayerComponent } from '../shared/music-player/music-player.component';
 
 import { Howl, Howler } from 'howler';
@@ -29,7 +29,7 @@ export class TabsPage {
   progress = 0;
   music: PlayerEventOptions = initialPlayerEventOptions;
 
-  audioSubscription: Subscription = new Subscription;
+  private subscriptions: SubscriptionLike[] = [];
   constructor(
     private platform: Platform,
 
@@ -41,14 +41,16 @@ export class TabsPage {
     private store: Store
   ) { }
 
-  scrolled(event) {
-    console.log(event);
-  }
-
+  /**
+  * Toggle music play/pause
+  */
   toggleMusic() {
     this.musicController.togglePlayer(this.music.isPlaying, (this.music.seek / this.music.duration) * 100);
   }
 
+  /**
+  * Close music player
+  */
   closePlayer() {
     this.musicController.abort();
   }
@@ -61,14 +63,22 @@ export class TabsPage {
 
   updateProgressMusic() { }
 
+  /**
+  * On tab change
+  * check tab if profile tab or not
+  */
   tabChanged(event) {
     this.canOpenMenu = event.tab === 'profile';
   }
 
+  /**
+  * Open music modal
+  */
   async openMusicModal(event: Event) {
     event.stopPropagation();
     event.preventDefault();
 
+    // modal enter animation
     const enterAnimation = (baseEl: any) => {
       const backdropAnimation = this.animationCtrl.create()
         .addElement(baseEl.querySelector('ion-backdrop')!)
@@ -88,6 +98,7 @@ export class TabsPage {
         .addAnimation([backdropAnimation, wrapperAnimation]);
     }
 
+    // modal leave animation
     const leaveAnimation = (baseEl: any) => {
       const backdropAnimation = this.animationCtrl.create()
         .addElement(baseEl.querySelector('ion-backdrop')!)
@@ -109,6 +120,7 @@ export class TabsPage {
         .addAnimation([backdropAnimation, wrapperAnimation]);
     }
 
+    // create modal
     const modal = await this.modalController.create({
       component: MusicPlayerComponent,
       cssClass: 'music-modal',
@@ -123,6 +135,9 @@ export class TabsPage {
     return await modal.present();
   }
 
+  /**
+  * Close modal
+  */
   openMenu(): void {
     if (this.canOpenMenu) {
       this.menu.open();
@@ -130,9 +145,19 @@ export class TabsPage {
   }
 
   ngOnInit(): void {
-    this.musicController.onProgress.subscribe((res) => {
-      this.music = { ...this.music, ...res };
-      this.progress = +(this.music.seek / this.music.duration);
-    });
+    /**
+    * Subscribe to music events
+    */
+    this.subscriptions.push(
+      this.musicController.onProgress.subscribe((res) => {
+        this.music = { ...this.music, ...res };
+        this.progress = +(this.music.seek / this.music.duration);
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions = [];
   }
 }

@@ -57,6 +57,9 @@ export class MusicController {
     private config: Config
   ) { }
 
+  /**
+  * Play music function
+  */
   public playMusic(configuration: PlayerConfiguration) {
     if (this.player) {
       this.player.stop();
@@ -85,8 +88,10 @@ export class MusicController {
       // onrate: () => { },
       // onseek: () => { },
       onplay: () => {
+        // unsubscribe player events before start
         this.unsubscribePlayerEvents();
 
+        // send music data
         this.progress.next({
           id: configuration.id,
           isPlaying: true,
@@ -95,20 +100,25 @@ export class MusicController {
           volume: this.player.volume()
         });
 
+        // subscribe to music playing events
         this.playerSubscriptions.push(
           this.playerCheckInterval.subscribe(() => {
+            // if not playing stop sending event
             if (!this.options.isPlaying) {
               return;
             }
 
+            // send music position
             this.progress.next({ seek: +this.player.seek() });
           })
         );
       },
       onend: () => {
+        // if music repeat active, then play repeat
         if (this.options.repeat) {
           this.player.play();
         } else {
+          // unsubscribe and stop playing
           this.unsubscribePlayerEvents();
           this.progress.next({ isPlaying: false, isEnd: true });
         }
@@ -118,6 +128,11 @@ export class MusicController {
     this.player.play();
   }
 
+  /**
+  * Toggle player function
+  * @param {boolean} pause
+  * @param {number} seek - music position
+  */
   public togglePlayer(pause: boolean, seek: number) {
     if (pause) {
       this.player.pause();
@@ -129,19 +144,33 @@ export class MusicController {
     }
   }
 
-  public seek(value: number) {
-    this.player.seek(this.player.duration() * (value / 100));
+  /**
+  * Music seek function
+  * @param {number} seek - music position
+  */
+  public seek(seek: number) {
+    this.player.seek(this.player.duration() * (seek / 100));
   }
 
-  public volume(value: number) {
-    this.player.volume(value);
+  /**
+  * Music value function
+  * @param {number} value - music valume
+  */
+  public volume(volume: number) {
+    this.player.volume(volume);
     this.progress.next({ volume: this.player.volume() });
   }
 
+  /**
+  * Get player options (data)
+  */
   public getOptions(): PlayerEventOptions {
     return this.options;
   }
 
+  /**
+  * Music abort
+  */
   public abort() {
     this.player.unload();
 
@@ -150,6 +179,12 @@ export class MusicController {
     this.unsubscribePlayerEvents();
   }
 
+  /**
+  * Seconds to time function
+  * for music player modal
+  * 
+  * @param {number} seconds
+  */
   public secondsToTime(seconds: number) {
     let h = Math.floor(seconds / 3600);
     let m = Math.floor(seconds % 3600 / 60);

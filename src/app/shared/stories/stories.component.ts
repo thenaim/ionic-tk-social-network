@@ -50,7 +50,7 @@ export class StoriesComponent implements OnInit {
     private modalCtrl: ModalController,
   ) { }
 
-  /*
+  /**
   * Close story modal
   */
   closeModal(event) {
@@ -62,28 +62,28 @@ export class StoriesComponent implements OnInit {
     });
   }
 
-  /*
+  /**
   * Add story share clicked
   */
   addStory(event) {
     console.log('story add button');
   }
 
-  /*
+  /**
   * Share story clicked
   */
   shareStory(event) {
     console.log('story share button');
   }
 
-  /*
+  /**
   * Story options clicked
   */
   storyOptions(event) {
     console.log('story options button');
   }
 
-  /*
+  /**
   * When story load event
   */
   storyDidLoad(event) {
@@ -91,7 +91,7 @@ export class StoriesComponent implements OnInit {
     console.log('storyDidLoad');
   }
 
-  /*
+  /**
   * Story touchstart event
   */
   storyTouchStart(event: any) {
@@ -103,7 +103,7 @@ export class StoriesComponent implements OnInit {
     this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStoryIndex].tap = true;
   }
 
-  /*
+  /**
   * Story touchend event
   */
   storyTouchEnd(event) {
@@ -123,7 +123,7 @@ export class StoriesComponent implements OnInit {
     console.log('storyTouchEnd');
   }
 
-  /*
+  /**
   * Get image dominant color for background
   */
   async getColor(url: string) {
@@ -132,18 +132,18 @@ export class StoriesComponent implements OnInit {
     return result[0].color;
   }
 
-  /*
+  /**
   * Image loaded event
   */
   imageLoaded(event, contentIndex) {
     console.log('imageLoaded');
-    /*const slideImg: any = document.getElementById('story-image-' + contentIndex);
+    /**const slideImg: any = document.getElementById('story-image-' + contentIndex);
     this.getColor(slideImg.src).then((res => {
       this.activeStoryOption.storyActiveColor = res;
     }));*/
   }
 
-  /*
+  /**
   * Modal dismiss event
   */
   async modalWillDismiss() {
@@ -178,7 +178,7 @@ export class StoriesComponent implements OnInit {
   ngOnDestroy(): void {
     // this.activeStoryOption.storyActiveColor = '#fff';
 
-    /*
+    /**
     * Unlisten story modal events
     */
     if (this.storyEventListner) {

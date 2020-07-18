@@ -23,6 +23,9 @@ export class MessagePage {
     private fakerService: FakerService
   ) { }
 
+  /**
+  * On refresh
+  */
   doRefresh(event) {
     this.dataInit();
 
