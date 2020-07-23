@@ -125,8 +125,11 @@ export class StoriesComponent implements OnInit {
 
   /**
   * Get image dominant color for background
+  * 
+  * @param {string} url - image url
+  * @returns {Promise}
   */
-  async getColor(url: string) {
+  async getColor(url: string): Promise<string> {
     const result = await analyze(url, { scale: 0.5 });
 
     return result[0].color;
@@ -134,8 +137,11 @@ export class StoriesComponent implements OnInit {
 
   /**
   * Image loaded event
+  * 
+  * @param {Event} event - event
+  * @param {number} contentIndex - content index
   */
-  imageLoaded(event, contentIndex) {
+  imageLoaded(event: Event, contentIndex: number) {
     console.log('imageLoaded');
     /**const slideImg: any = document.getElementById('story-image-' + contentIndex);
     this.getColor(slideImg.src).then((res => {

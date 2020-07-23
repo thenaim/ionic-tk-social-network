@@ -194,7 +194,7 @@ export class AppComponent {
   */
   async getCameraFocusCoordinates(event) {
     this.cameraFocusPosition.top = event.y - 15;
-    this.cameraFocusPosition.left = event.x - 20;
+    this.cameraFocusPosition.left = event.x - 15;
 
     // start focus animation
     this.cameraFocusPosition.show = false;
