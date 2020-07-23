@@ -5,7 +5,6 @@ import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from '
 import { SubscriptionLike } from 'rxjs';
 
 import { AppData } from '../../providers/app-data';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-music',
@@ -17,7 +16,9 @@ export class MusicPage implements OnInit {
   activeSegment: FormControl = new FormControl('my_music');
 
   playlists: any[] = [];
+  isLoadingPlaylists = true;
   musics: any[] = [];
+  isLoadingMusics = true;
   playingSongId = null;
 
   music: PlayerEventOptions = initialPlayerEventOptions;
@@ -60,9 +61,11 @@ export class MusicPage implements OnInit {
   ngOnInit() {
     this.appData.getPlaylists().then((playlist) => {
       this.playlists = playlist;
+      this.isLoadingPlaylists = false;
 
       this.appData.getMusics().then((music) => {
         this.musics = music;
+        this.isLoadingMusics = false;
       });
     });
 
@@ -83,6 +86,10 @@ export class MusicPage implements OnInit {
         this.music = { ...this.music, ...res };
       })
     );
+  }
+
+  ionViewDidEnter() {
+
   }
 
   ngOnDestroy(): void {

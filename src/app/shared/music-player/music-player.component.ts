@@ -67,6 +67,8 @@ export class MusicPlayerComponent implements OnInit {
 
   /**
   * Toggle music repeat
+  * 
+  * @param {boolean} repeat
   */
   repeat(repeat: boolean) {
     this.musicController.progress.next({ repeat: !repeat });
