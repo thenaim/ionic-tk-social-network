@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
+  },
+  {
+    path: 'message-detail',
+    loadChildren: () => import('./pages/message-detail/message-detail.module').then( m => m.MessageDetailPageModule)
   }
 ];
 @NgModule({

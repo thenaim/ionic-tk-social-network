@@ -42,7 +42,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('./message/message.module').then(m => m.MessagePageModule)
-          }
+          },
+          {
+            path: 'message-detail',
+            loadChildren: () => import('../pages/message-detail/message-detail.module').then(m => m.MessageDetailPageModule)
+          },
         ]
       },
       // Tab 4

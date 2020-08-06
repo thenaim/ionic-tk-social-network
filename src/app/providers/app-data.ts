@@ -59,6 +59,13 @@ export class AppData {
         });
     }
 
+    async getMessageUser(id) {
+        return this.load().then((data) => {
+            const res = data.messages.find(mes => mes.id === id);
+            return res;
+        });
+    }
+
     async getPlaylists() {
         return this.load().then((data) => {
             return data.playlists;

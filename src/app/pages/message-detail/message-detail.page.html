@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="''" defaultHref="/tabs/message"></ion-back-button>
+    </ion-buttons>
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img [src]="user.image">
+      </ion-avatar>
+      <ion-label class="ion-no-margin">
+        {{user.first_name}} {{user.last_name}}
+        <p class="ion-no-margin">two minutes ago</p>
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()">
+  <ion-item-group class="messages-list" *ngFor="let item of [1,2,3,4,5]">
+    <ion-item-divider sticky class="message-divider" [ngClass]="{'scrolling': pageScrolling}">
+      <ion-label>
+        Date {{item}}
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item-sliding *ngFor="let is of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]">
+      <ion-item lines="none">
+        <ion-label>{{is}}</ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option>Unread</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-item-group>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar style="height: auto;">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="add-circle-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-textarea autoGrow rows="1" [placeholder]="'messages_title' | translate" style="    --background: var(--ion-color-light);
+    border-radius: 20px;
+    --padding-top: 10px;
+    --padding-end: 10px;
+    --padding-bottom: 10px;
+    --padding-start: 10px;"></ion-textarea>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="happy-outline" color="primary"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="mic-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,34 @@
+ion-content, .messages-list {
+    --background: var(--ion-item-background);
+}
+
+.message-divider {
+    position: relative;
+    z-index: 4;
+    width: 120px;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    // remove paddings
+    --padding-end: 0px;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    --ion-safe-area-left: 0px;
+    --ion-safe-area-right: 0px;
+
+    // on scrolling set sticky divider
+    &.scrolling {
+        position: sticky;
+        top: 10px;
+    }
+
+    // center divider text
+    ion-label {
+        width: 100%;
+        font-size: 14px;
+        font-weight: normal;
+        text-align: center;
+    }
+}

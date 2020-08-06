@@ -85,6 +85,12 @@ ion-refresher {
     --padding-end: 0;
 }
 
+// textarea
+ion-textarea,
+.native-textarea {
+    max-height: 250px !important;
+}
+
 /*
  * App iOS CSS
  * ----------------------------------------------------------------------------
