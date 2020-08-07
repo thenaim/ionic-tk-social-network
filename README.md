@@ -1,6 +1,6 @@
 <a href="https://github.com/thenaim/ion-tk-social-network">
   <p align="center">
-    <img src="https://i.imgur.com/zwtMLgs.gif">
+    <img src="https://i.imgur.com/xcNkbhv.gif">
   </p>
 </a>
 <h2 align="center">
