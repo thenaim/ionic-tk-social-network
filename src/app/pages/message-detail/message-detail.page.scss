@@ -34,6 +34,10 @@ ion-content, .messages-item-group {
 }
 
 .messages-item-group {
+    &:last-child {
+        margin-bottom: 20px;
+    }
+
     .message-item-sliding:first-of-type {
         .message-container {
             margin-top: 0px;
@@ -60,7 +64,7 @@ ion-content, .messages-item-group {
 
     .message-container {
         position: relative;
-        background: rgb(var(--ion-color-primary-rgb), 0.4);
+        background: rgb(var(--ion-color-primary-rgb), 0.2);
         border-radius: 12px;
 
         padding: 4px 8px;
@@ -69,12 +73,20 @@ ion-content, .messages-item-group {
         margin-right: 0px;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
-        max-width: 80%;
+        max-width: 70%;
+
+        &.user-msg-padding {
+            margin-left: 33px;
+        }
 
         .text {
+            font-weight: 400;
+            font-size: 14px;
+            white-space: pre-wrap;
+
             &:after {
                 content: '';
-                width: 3em;
+                width: 3.4em;
                 height: 12px;
                 display: inline-block;
                 vertical-align: top;
@@ -90,7 +102,7 @@ ion-content, .messages-item-group {
             padding: 4px 8px 4px 4px;
             line-height: 14px;
             pointer-events: auto;
-            color: var()
+            color: var(--ion-color-medium);
         }
     }
 }

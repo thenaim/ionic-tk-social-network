@@ -91,6 +91,13 @@ ion-textarea,
     max-height: 250px !important;
 }
 
+// border 
+
+.ion-no-border {
+    --border-width: 0;
+    border: 0px;
+}
+
 /*
  * App iOS CSS
  * ----------------------------------------------------------------------------

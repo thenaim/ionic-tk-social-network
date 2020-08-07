@@ -15,8 +15,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
-  (ionScrollEnd)="logScrollEnd()">
+<ion-content [scrollY]="isAllowScroll" [scrollEvents]="true" (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()">
   <ion-item-group class="messages-item-group" *ngFor="let chat of chats">
     <ion-item-divider sticky class="message-divider" [ngClass]="{'scrolling': pageScrolling}">
       <ion-label>
@@ -24,26 +24,31 @@
       </ion-label>
     </ion-item-divider>
 
-    <ion-item-sliding class="message-item-sliding" *ngFor="let message of chat.chats">
+    <ion-item-sliding class="message-item-sliding"
+      *ngFor="let message of chat.chats; let index = index; let last = last" #slidingItem
+      (ionDrag)="messageDraged($event, slidingItem)">
       <ion-item lines="none" class="message-user" *ngIf="message.type === 'user'">
-        <ion-avatar slot="start" class="user-avatar">
+        <ion-avatar slot="start" class="ion-align-self-end user-avatar"
+          *ngIf="chat.chats[index + 1]?.type === 'me' || last">
           <img [src]="message.avatar">
         </ion-avatar>
-        <div class="message-container">
-          <span class="text">{{message.message}}</span>
+        <div class="message-container" [ngClass]="{'user-msg-padding': chat.chats[index + 1]?.type !== 'me' && !last}">
+          <span class="text" [innerHTML]="message.message"></span>
           <small class="time">12:45</small>
         </div>
       </ion-item>
 
       <ion-item lines="none" class="message-me" *ngIf="message.type === 'me'">
         <div class="message-container" slot="end">
-          <span class="text">{{message.message}}</span>
+          <span class="text" [innerHTML]="message.message"></span>
           <small class="time">12:45</small>
         </div>
       </ion-item>
 
-      <ion-item-options side="end" *ngIf="message.type === 'user'">
-        <ion-item-option>Share</ion-item-option>
+      <ion-item-options side="end" class="ion-no-border">
+        <ion-item-option disabled style="--background: var(--ion-item-background);">
+          <ion-icon slot="icon-only" name="arrow-undo-outline" color="primary"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-item-group>
@@ -56,7 +61,7 @@
         <ion-icon slot="icon-only" name="add-circle-outline" color="primary"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-textarea autoGrow rows="1" [placeholder]="'messages_title' | translate" style="    --background: var(--ion-color-light);
+    <ion-textarea autoGrow rows="1" [placeholder]="'messages_title' | translate" [formControl]="messageControl" style="    --background: var(--ion-color-light);
     border-radius: 20px;
     --padding-top: 10px;
     --padding-end: 10px;
@@ -66,7 +71,10 @@
       <ion-button>
         <ion-icon slot="icon-only" name="happy-outline" color="primary"></ion-icon>
       </ion-button>
-      <ion-button>
+      <ion-button (mousedown)="sendMessage($event)" *ngIf="messageControl.valid">
+        <ion-icon slot="icon-only" name="send-outline" color="primary"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="!messageControl.valid">
         <ion-icon slot="icon-only" name="mic-outline" color="primary"></ion-icon>
       </ion-button>
     </ion-buttons>
