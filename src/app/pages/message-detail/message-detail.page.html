@@ -17,20 +17,33 @@
 
 <ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()" (ionScroll)="logScrolling($event)"
   (ionScrollEnd)="logScrollEnd()">
-  <ion-item-group class="messages-list" *ngFor="let item of [1,2,3,4,5]">
+  <ion-item-group class="messages-item-group" *ngFor="let chat of chats">
     <ion-item-divider sticky class="message-divider" [ngClass]="{'scrolling': pageScrolling}">
       <ion-label>
-        Date {{item}}
+        {{chat.date}}
       </ion-label>
     </ion-item-divider>
 
-    <ion-item-sliding *ngFor="let is of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]">
-      <ion-item lines="none">
-        <ion-label>{{is}}</ion-label>
+    <ion-item-sliding class="message-item-sliding" *ngFor="let message of chat.chats">
+      <ion-item lines="none" class="message-user" *ngIf="message.type === 'user'">
+        <ion-avatar slot="start" class="user-avatar">
+          <img [src]="message.avatar">
+        </ion-avatar>
+        <div class="message-container">
+          <span class="text">{{message.message}}</span>
+          <small class="time">12:45</small>
+        </div>
       </ion-item>
 
-      <ion-item-options side="end">
-        <ion-item-option>Unread</ion-item-option>
+      <ion-item lines="none" class="message-me" *ngIf="message.type === 'me'">
+        <div class="message-container" slot="end">
+          <span class="text">{{message.message}}</span>
+          <small class="time">12:45</small>
+        </div>
+      </ion-item>
+
+      <ion-item-options side="end" *ngIf="message.type === 'user'">
+        <ion-item-option>Share</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-item-group>

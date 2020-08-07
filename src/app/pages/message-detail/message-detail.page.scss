@@ -1,4 +1,4 @@
-ion-content, .messages-list {
+ion-content, .messages-item-group {
     --background: var(--ion-item-background);
 }
 
@@ -30,5 +30,67 @@ ion-content, .messages-list {
         font-size: 14px;
         font-weight: normal;
         text-align: center;
+    }
+}
+
+.messages-item-group {
+    .message-item-sliding:first-of-type {
+        .message-container {
+            margin-top: 0px;
+        }
+    }
+
+    .message-user, .message-me {
+        --padding-start: 8px;
+        --padding-end: 0px;
+        --ion-safe-area-left: 0px;
+        --min-height: 32px;
+    }
+
+    .message-user {
+        .user-avatar {
+            position: sticky;
+            top: 0px;
+            margin-right: 0px;
+            margin-inline-end: 8px;
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    .message-container {
+        position: relative;
+        background: rgb(var(--ion-color-primary-rgb), 0.4);
+        border-radius: 12px;
+
+        padding: 4px 8px;
+        margin-top: 12px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        max-width: 80%;
+
+        .text {
+            &:after {
+                content: '';
+                width: 3em;
+                height: 12px;
+                display: inline-block;
+                vertical-align: top;
+                visibility: hidden;
+                font-size: 11px;
+            }
+        }
+
+        .time {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: 4px 8px 4px 4px;
+            line-height: 14px;
+            pointer-events: auto;
+            color: var()
+        }
     }
 }
