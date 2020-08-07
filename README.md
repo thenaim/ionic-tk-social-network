@@ -32,16 +32,6 @@ ionic cordova run android
 ionic cordova run ios
 ```
 
-# Main Features
-
-- Lazy-loading
-- Auth pages (login, register, forgot and reset)
-- Themes (default and dark)
-- Ngrx
-- LocalStorage
-- i18n (English and Russion)
-- Responsive design
-
 
 # Feature Status
 
