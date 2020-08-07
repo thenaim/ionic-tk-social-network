@@ -1,6 +1,6 @@
 {
   "name": "ion-tk-social-network",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ionic social network starter",
   "scripts": {
     "ng": "ng",
