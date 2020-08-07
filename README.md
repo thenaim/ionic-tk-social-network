@@ -1,9 +1,14 @@
 <a href="https://github.com/thenaim/ion-tk-social-network">
   <p align="center">
-    <img src="https://i.imgur.com/Abfa3cV.png">
+    <img src="https://i.imgur.com/zwtMLgs.gif">
   </p>
 </a>
-
+<h2 align="center">
+  Introducing a open source social network app.
+</h2>
+<p align="center">
+  Providing you with the components, templates, native components, ngrx, i18n, localStorage, themes, auth pages and much more  needed to build a mobile application on ionic framework.
+</p>
 <h2 align="center">
   <a href="https://github.com/thenaim/ion-tk-social-network/releases">
     <img src="https://flat.badgen.net/github/release/thenaim/ion-tk-social-network">
@@ -111,10 +116,6 @@ ionic cordova run ios
 # Preview
 
 [YOUTUBE DEMO](https://www.youtube.com/watch?v=GCs2TVZkC_U) or [DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ion-tk-social-network/blob/master/PREVIEW.md)
-
-| Light  | Dark  |
-| -----------------| -----|
-| ![Light](https://i.imgur.com/XKCKrT8.png) | ![Dark](https://i.imgur.com/HT3ko7i.png) |
 
 ## Supporting platforms
 
