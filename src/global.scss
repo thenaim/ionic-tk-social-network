@@ -42,16 +42,20 @@ ion-app {
 }
 
 // Tab bar height
-ion-tab-bar, ion-toolbar {
+ion-tab-bar,
+ion-toolbar {
     --min-height: 50px;
     height: 50px;
 }
 
 ion-toolbar {
-    ion-buttons, ion-searchbar {
+
+    ion-buttons,
+    ion-searchbar {
         --min-height: 50px;
         height: 50px;
     }
+
     ion-searchbar.ios {
         padding-bottom: 0px;
     }
@@ -93,7 +97,7 @@ ion-textarea,
 
 // border 
 
-.ion-no-border {
+.no-border {
     --border-width: 0;
     border: 0px;
 }
@@ -108,10 +112,6 @@ ion-textarea,
 
     ion-title {
         font-weight: bold !important;
-    }
-
-    ion-toolbar:last-of-type {
-        --border-width: 0;
     }
 
     .dark-theme {}

@@ -2,7 +2,7 @@
   <ion-slides pager="false" [options]="storyCubeOptions" (ionSlidesDidLoad)="storyDidLoad($event)" #story>
     <ion-slide *ngFor="let storyItem of stories; let storyIndex = index">
       <div class="story-item-container">
-        <ion-header class="story-header"
+        <ion-header class="ion-no-border story-header"
           [ngClass]="{'ion-hide': storyItem.items[activeStoryOption.activeStoryIndex].tap}">
           <div class="progress-bar-story">
             <ion-progress-bar *ngFor="let content of storyItem.items; let contentIndex = index"

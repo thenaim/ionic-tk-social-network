@@ -1,3 +1,5 @@
-.divider-bg {
-    background: var(--ion-color-dark-contrast);
+ion-content,
+ion-item-divider {
+    // background-color: var(--ion-item-background);
+    --background: var(--ion-color-light);
 }
