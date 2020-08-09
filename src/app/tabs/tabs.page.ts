@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { MenuController, Platform, ModalController, IonRouterOutlet, AnimationController } from '@ionic/angular';
-import { interval, Subscription, Observable, SubscriptionLike } from 'rxjs';
+import { MenuController, ModalController, IonRouterOutlet, AnimationController } from '@ionic/angular';
+import { SubscriptionLike } from 'rxjs';
 import { MusicPlayerComponent } from '../shared/music-player/music-player.component';
 
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from '../shared/music-controller/music-controller.service';
-import { Store, select } from '@ngrx/store';
-import { actionMusicSetPlaying } from '../shared/music/music.actions';
-import { selectMusic } from '../shared/music/music.selectors';
-import { StateMusic, MusicState } from '../shared/music/music.model';
-import { initialStateMusic } from '../shared/music/music.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-tabs',
@@ -18,11 +14,6 @@ import { initialStateMusic } from '../shared/music/music.reducer';
 })
 export class TabsPage {
   canOpenMenu = false;
-  audioDuration = 0;
-  audioCurrentPosition = 0;
-  audioCheckInterval = interval(200);
-
-  showBar: boolean = true;
 
   player: Howl = null;
   isPlaying = false;
@@ -31,14 +22,10 @@ export class TabsPage {
 
   private subscriptions: SubscriptionLike[] = [];
   constructor(
-    private platform: Platform,
-
     private menu: MenuController,
     private animationCtrl: AnimationController,
     private modalController: ModalController,
-    private routerOutlet: IonRouterOutlet,
-    private musicController: MusicController,
-    private store: Store
+    private musicController: MusicController
   ) { }
 
   /**
@@ -54,14 +41,6 @@ export class TabsPage {
   closePlayer() {
     this.musicController.abort();
   }
-
-  nextMusic() { }
-
-  prevMusic() { }
-
-  seekMusic() { }
-
-  updateProgressMusic() { }
 
   /**
   * On tab change

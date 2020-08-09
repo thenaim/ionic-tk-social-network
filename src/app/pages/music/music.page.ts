@@ -88,9 +88,7 @@ export class MusicPage implements OnInit {
     );
   }
 
-  ionViewDidEnter() {
-
-  }
+  ionViewDidEnter() { }
 
   ngOnDestroy(): void {
     this.audioSubscription.forEach(subscription => subscription.unsubscribe());

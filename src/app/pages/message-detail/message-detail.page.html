@@ -9,7 +9,9 @@
       </ion-avatar>
       <ion-label class="ion-no-margin">
         {{user.first_name}} {{user.last_name}}
-        <p class="ion-no-margin">two minutes ago</p>
+        <p class="ion-no-margin">
+          two minutes ago
+        </p>
       </ion-label>
     </ion-item>
   </ion-toolbar>
@@ -18,6 +20,8 @@
 <ion-content [scrollY]="isAllowScroll" [scrollEvents]="true" (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()">
   <ion-item-group class="messages-item-group" *ngFor="let chat of chats">
+
+    <!-- Date message divider -->
     <ion-item-divider sticky class="message-divider" [ngClass]="{'scrolling': pageScrolling}">
       <ion-label>
         {{chat.date}}
@@ -27,24 +31,33 @@
     <ion-item-sliding class="message-item-sliding"
       *ngFor="let message of chat.chats; let index = index; let last = last" #slidingItem
       (ionDrag)="messageDraged($event, slidingItem)">
-      <ion-item lines="none" class="message-user" *ngIf="message.type === 'user'">
-        <ion-avatar slot="start" class="ion-align-self-end user-avatar"
-          *ngIf="chat.chats[index + 1]?.type === 'me' || last">
-          <img [src]="message.avatar">
-        </ion-avatar>
-        <div class="message-container" [ngClass]="{'user-msg-padding': chat.chats[index + 1]?.type !== 'me' && !last}">
-          <span class="text" [innerHTML]="message.message"></span>
-          <small class="time">12:45</small>
-        </div>
-      </ion-item>
 
-      <ion-item lines="none" class="message-me" *ngIf="message.type === 'me'">
-        <div class="message-container" slot="end">
-          <span class="text" [innerHTML]="message.message"></span>
-          <small class="time">12:45</small>
-        </div>
-      </ion-item>
+      <!-- User message -->
+      <ng-container *ngIf="message.type === 'user'">
+        <ion-item lines="none" class="message-user">
+          <ion-avatar slot="start" class="ion-align-self-end user-avatar"
+            *ngIf="chat.chats[index + 1]?.type === 'me' || last">
+            <img [src]="message.avatar">
+          </ion-avatar>
+          <div class="message-container"
+            [ngClass]="{'user-msg-padding': chat.chats[index + 1]?.type !== 'me' && !last}">
+            <span class="text" [innerHTML]="message.message"></span>
+            <small class="time">12:45</small>
+          </div>
+        </ion-item>
+      </ng-container>
 
+      <!-- My message -->
+      <ng-container *ngIf="message.type === 'me'">
+        <ion-item lines="none" class="message-me">
+          <div class="message-container" slot="end">
+            <span class="text" [innerHTML]="message.message"></span>
+            <small class="time">12:45</small>
+          </div>
+        </ion-item>
+      </ng-container>
+
+      <!-- Reply slide -->
       <ion-item-options side="end" class="ion-no-border">
         <ion-item-option disabled style="--background: var(--ion-item-background);">
           <ion-icon slot="icon-only" name="arrow-undo-outline" color="primary"></ion-icon>
@@ -61,12 +74,8 @@
         <ion-icon slot="icon-only" name="add-circle-outline" color="primary"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-textarea autoGrow rows="1" [placeholder]="'messages_title' | translate" [formControl]="messageControl" style="    --background: var(--ion-color-light);
-    border-radius: 20px;
-    --padding-top: 10px;
-    --padding-end: 10px;
-    --padding-bottom: 10px;
-    --padding-start: 10px;"></ion-textarea>
+    <ion-textarea autoGrow rows="1" [placeholder]="'messages_title' | translate" [formControl]="messageControl"
+      class="message-textarea"></ion-textarea>
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon slot="icon-only" name="happy-outline" color="primary"></ion-icon>

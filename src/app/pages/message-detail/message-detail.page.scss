@@ -1,4 +1,5 @@
-ion-content, .messages-item-group {
+ion-content,
+.messages-item-group {
     --background: var(--ion-item-background);
 }
 
@@ -44,7 +45,8 @@ ion-content, .messages-item-group {
         }
     }
 
-    .message-user, .message-me {
+    .message-user,
+    .message-me {
         --padding-start: 8px;
         --padding-end: 0px;
         --ion-safe-area-left: 0px;
@@ -105,4 +107,13 @@ ion-content, .messages-item-group {
             color: var(--ion-color-medium);
         }
     }
+}
+
+.message-textarea {
+    --background: var(--ion-color-light);
+    border-radius: 20px;
+    --padding-top: 10px;
+    --padding-end: 10px;
+    --padding-bottom: 10px;
+    --padding-start: 10px;
 }

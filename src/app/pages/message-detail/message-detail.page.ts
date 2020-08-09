@@ -37,24 +37,42 @@ export class MessageDetailPage implements OnInit {
     });
   }
 
+  /**
+  * Content scroll start
+  */
   logScrollStart() {
     this.scrolling.next(true);
   }
 
+  /**
+  * Content scrolling
+  */
   logScrolling(event) {
     // console.log('Scrolling');
   }
 
+  /**
+  * Content scroll end
+  */
   logScrollEnd() {
     this.scrolling.next(false);
   }
 
+  /**
+  * Reply message (drag)
+  * 
+  * @param {Event} event - drag event
+  * @param {IonItemSliding} slidingItem - item sliding directive
+  */
   messageDraged(event, slidingItem: IonItemSliding) {
     if (event.detail.ratio === 1) {
       slidingItem.closeOpened();
     }
   }
 
+  /**
+  * Send message
+  */
   sendMessage(event) {
     event.preventDefault();
 
