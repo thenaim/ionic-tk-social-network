@@ -16,3 +16,13 @@
     margin: 0;
     font-weight: 400;
 }
+
+.explore-item {
+    border-radius: 30px;
+    --padding-end: 0px;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    --ion-safe-area-left: 0px;
+    --ion-safe-area-right: 0px;
+    --background-activated-opacity: 0.05;
+}
