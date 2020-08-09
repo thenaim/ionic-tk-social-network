@@ -1,5 +1,6 @@
-ion-content {
-    --background: var(--ion-item-background, #fff);
+:host.ion-page {
+    background-color: var(--ion-item-background);
+    --ion-background-color: var(--ion-item-background);
 }
 
 .message-icon-middle {

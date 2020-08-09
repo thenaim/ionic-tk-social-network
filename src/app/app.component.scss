@@ -1,4 +1,10 @@
 .profile-menu {
+    --background: var(--ion-item-background);
+
+    ion-content {
+        --background: var(--ion-item-background);
+    }
+
     ion-footer {
         ion-buttons {
             height: 45px;
@@ -8,10 +14,12 @@
 
 .camera-menu {
     --width: 100%;
+
     ion-button {
         --color: #ffffff;
     }
 }
+
 .camera {
     --background: transparent !important;
     background-color: transparent !important;
@@ -20,6 +28,7 @@
         --background: transparent !important;
         background: transparent !important;
     }
+
     ion-content {
         --background: transparent;
         background: transparent !important;
