@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title *ngIf="!showSearchbar">
       {{'messages_title' | translate}}
@@ -28,7 +28,7 @@
   </ion-searchbar>
   <ion-list lines="none" class="ion-padding-bottom">
     <ion-item-sliding *ngFor="let user of messagesList">
-      <ion-item button detail="false" [routerLink]="['/tabs', 'message', 'message-detail', user.id]" routerdirection="forward">
+      <ion-item button detail="false" [routerLink]="['/message-detail', user.id]" routerdirection="forward">
         <ion-avatar slot="start">
           <img [src]="user.image">
         </ion-avatar>
