@@ -37,7 +37,7 @@ const routes: Routes = [
       },
       // Tab 3
       {
-        path: 'message',
+        path: 'messages',
         children: [
           {
             path: '',
@@ -47,7 +47,7 @@ const routes: Routes = [
       },
       // Tab 4
       {
-        path: 'notification',
+        path: 'notifications',
         children: [
           {
             path: '',

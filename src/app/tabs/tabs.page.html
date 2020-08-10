@@ -22,38 +22,10 @@
   </ion-toolbar>
 
   <ion-tab-bar slot="bottom" class="tab-animate">
-    <ion-tab-button tab="news">
-      <ion-icon name="reader-outline"></ion-icon>
+    <ion-tab-button *ngFor="let tab of tabs" [tab]="tab.id" (click)="tabClicked(tab)">
+      <ion-icon [name]="tab.icon"></ion-icon>
       <ion-label>
-        {{'news_title' | translate}}
-      </ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="explore">
-      <ion-icon name="compass-outline"></ion-icon>
-      <ion-label>
-        {{'explore_title' | translate}}
-      </ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="message">
-      <ion-icon name="chatbubble-outline"></ion-icon>
-      <ion-label>
-        {{'messages_title' | translate}}
-      </ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="notification">
-      <ion-icon name="notifications-outline"></ion-icon>
-      <ion-label>
-        {{'notifications_title' | translate}}
-      </ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="profile" (click)="openMenu()">
-      <ion-icon name="person-circle-outline"></ion-icon>
-      <ion-label>
-        {{'profile_title' | translate}}
+        {{tab.id + '_title' | translate}}
       </ion-label>
     </ion-tab-button>
   </ion-tab-bar>

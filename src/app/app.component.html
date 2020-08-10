@@ -1,4 +1,4 @@
-<ion-app [ngClass]="{'dark-theme': isDarkTheme, 'camera': isCameraStart}">
+<ion-app [ngClass]="{'dark-theme': (theme$ | async), 'camera': isCameraStart}">
   <ion-menu side="start" type="push" menuId="camera" contentId="main" class="camera-menu" disabled
     (ionWillOpen)="onOpenCameraMenu($event)" (ionDidClose)="onCloseCameraMenu($event)">
     <ion-content (click)="getCameraFocusCoordinates($event)">

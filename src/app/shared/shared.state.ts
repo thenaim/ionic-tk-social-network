@@ -7,15 +7,15 @@ import {
   UPDATE
 } from '@ngrx/store';
 
-import { LocalStorageService } from './local-storage/local-storage.service';
+import { LocalStorageService } from '../services/local-storage/local-storage.service';
 
 // Settings
-import { settingsReducer } from './settings/settings.reducer';
-import { SettingsState } from './settings/settings.model';
+import { settingsReducer } from './ngrx/settings/settings.reducer';
+import { SettingsState } from './ngrx/settings/settings.model';
 
 // Music
-import { MusicState } from './music/music.model';
-import { musicReducer } from './music/music.reducer';
+import { MusicState } from './ngrx/music/music.model';
+import { musicReducer } from './ngrx/music/music.reducer';
 
 export const metaReducers: MetaReducer<AppState>[] = [
   initStateFromLocalStorage

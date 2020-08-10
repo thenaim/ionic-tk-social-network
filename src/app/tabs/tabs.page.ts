@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { MenuController, ModalController, IonRouterOutlet, AnimationController } from '@ionic/angular';
+import { MenuController, ModalController, AnimationController } from '@ionic/angular';
 import { SubscriptionLike } from 'rxjs';
-import { MusicPlayerComponent } from '../shared/music-player/music-player.component';
+import { MusicModalEnterAnimation, MusicModalLeaveAnimation } from '../app.animations';
 
 import { Howl } from 'howler';
-import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from '../shared/music-controller/music-controller.service';
-import { Store } from '@ngrx/store';
+import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from '../services/music-controller/music-controller.service';
+import { MusicPlayerComponent } from '../shared/components/music-player/music-player.component';
+import { AppEventsService } from '../services/app-events/app-events.service';
 
 @Component({
   selector: 'app-tabs',
@@ -13,7 +14,14 @@ import { Store } from '@ngrx/store';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-  canOpenMenu = false;
+  tabs: any[] = [
+    { id: 'news', badge: 0, icon: 'reader-outline' },
+    { id: 'explore', badge: 0, icon: 'compass-outline' },
+    { id: 'messages', badge: 0, icon: 'chatbubble-outline' },
+    { id: 'notifications', badge: 0, icon: 'notifications-outline' },
+    { id: 'profile', badge: 0, icon: 'person-circle-outline' }
+  ];
+  activeTab = '';
 
   player: Howl = null;
   isPlaying = false;
@@ -22,6 +30,7 @@ export class TabsPage {
 
   private subscriptions: SubscriptionLike[] = [];
   constructor(
+    private appEvents: AppEventsService,
     private menu: MenuController,
     private animationCtrl: AnimationController,
     private modalController: ModalController,
@@ -47,7 +56,18 @@ export class TabsPage {
   * check tab if profile tab or not
   */
   tabChanged(event) {
-    this.canOpenMenu = event.tab === 'profile';
+    this.activeTab = event.tab;
+  }
+
+  /**
+  * On tab click
+  * Send event, if user click tab second time or more
+  * @param {any} tab - tab object
+  */
+  tabClicked(tab) {
+    if (this.activeTab === tab.id) {
+      this.appEvents.tabClicks.next(tab);
+    }
   }
 
   /**
@@ -57,49 +77,6 @@ export class TabsPage {
     event.stopPropagation();
     event.preventDefault();
 
-    // modal enter animation
-    const enterAnimation = (baseEl: any) => {
-      const backdropAnimation = this.animationCtrl.create()
-        .addElement(baseEl.querySelector('ion-backdrop')!)
-        .fromTo('opacity', '0.01', 'var(--backdrop-opacity)');
-
-      const wrapperAnimation = this.animationCtrl.create()
-        .addElement(baseEl.querySelector('.modal-wrapper')!)
-        .keyframes([
-          { offset: 0, opacity: '0', transform: 'translateY(100vh)' },
-          { offset: 1, opacity: '0.99', transform: 'translateY(0vh)' }
-        ]);
-
-      return this.animationCtrl.create()
-        .addElement(baseEl)
-        .easing('cubic-bezier(0.32,0.72,0,1)')
-        .duration(500)
-        .addAnimation([backdropAnimation, wrapperAnimation]);
-    }
-
-    // modal leave animation
-    const leaveAnimation = (baseEl: any) => {
-      const backdropAnimation = this.animationCtrl.create()
-        .addElement(baseEl.querySelector('ion-backdrop')!)
-        .fromTo('opacity', 'var(--backdrop-opacity)', 0.0);
-
-      const wrapperAnimation = this.animationCtrl.create()
-        .addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')!)
-        .beforeStyles({ 'opacity': 1 })
-        .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)')
-        .keyframes([
-          { offset: 0, transform: 'translateY(0vh)' },
-          { offset: 1, transform: 'translateY(100vh)' }
-        ]);
-
-      return this.animationCtrl.create()
-        .addElement(baseEl)
-        .easing('cubic-bezier(0.32,0.72,0,1)')
-        .duration(500)
-        .addAnimation([backdropAnimation, wrapperAnimation]);
-    }
-
-    // create modal
     const modal = await this.modalController.create({
       component: MusicPlayerComponent,
       cssClass: 'music-modal',
@@ -107,20 +84,11 @@ export class TabsPage {
       componentProps: {
         music: this.music
       },
-      enterAnimation,
-      leaveAnimation,
+      enterAnimation: MusicModalEnterAnimation,
+      leaveAnimation: MusicModalLeaveAnimation,
       // presentingElement: this.routerOutlet.nativeEl
     });
     return await modal.present();
-  }
-
-  /**
-  * Close modal
-  */
-  openMenu(): void {
-    if (this.canOpenMenu) {
-      this.menu.open();
-    }
   }
 
   ngOnInit(): void {

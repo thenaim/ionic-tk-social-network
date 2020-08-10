@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
-import { selectTheme } from '../../../shared/settings/settings.selectors';
-import { actionSettingsChangeTheme } from '../../../shared/settings/settings.actions';
+import { selectTheme } from '../../../shared/ngrx/settings/settings.selectors';
+import { actionSettingsChangeTheme } from '../../../shared/ngrx/settings/settings.actions';
 
 @Component({
   selector: 'app-appearance',

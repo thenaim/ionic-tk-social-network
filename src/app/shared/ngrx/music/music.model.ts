@@ -1,4 +1,4 @@
-import { AppState } from '../shared.state';
+import { AppState } from '../../shared.state';
 
 export type id = string;
 export type isPlaying = boolean;

@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppData } from 'src/app/providers/app-data';
+import { AppData } from '../../providers/app-data';
 import { IonContent, IonItemSliding } from '@ionic/angular';
 import { BehaviorSubject, SubscriptionLike } from 'rxjs';
 import { debounceTime, tap } from 'rxjs/operators';
-import { FakerService } from 'src/app/shared/faker/faker.service';
+import { FakerService } from '../../services/faker/faker.service';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 
 import { SettingsState } from './settings.model';
-import { selectSettingsState } from '../shared.state';
+import { selectSettingsState } from '../../shared.state';
 
 export const selectSettings = createSelector(
   selectSettingsState,

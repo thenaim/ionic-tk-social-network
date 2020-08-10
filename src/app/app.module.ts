@@ -18,11 +18,11 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './shared/shared.state';
-import { SettingsEffects } from './shared/settings/settings.effects';
-import { MusicEffects } from './shared/music/music.effects';
+import { SettingsEffects } from './shared/ngrx/settings/settings.effects';
+import { MusicEffects } from './shared/ngrx/music/music.effects';
 import { SharedModule } from './shared/shared.module';
-import { MusicPlayerComponent } from './shared/music-player/music-player.component';
-import { StoriesComponent } from './shared/stories/stories.component';
+import { MusicPlayerComponent } from './shared/components/music-player/music-player.component';
+import { StoriesComponent } from './shared/components/stories/stories.component';
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FakerService } from '../../shared/faker/faker.service';
-import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from 'src/app/shared/music-controller/music-controller.service';
+import { FakerService } from '../../services/faker/faker.service';
+import { MusicController, PlayerEventOptions, initialPlayerEventOptions } from '../../services/music-controller/music-controller.service';
 import { SubscriptionLike } from 'rxjs';
 
 import { AppData } from '../../providers/app-data';

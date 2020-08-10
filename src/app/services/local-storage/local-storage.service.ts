@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActionReducer, INIT, UPDATE } from '@ngrx/store';
-import { AppState } from '../shared.state';
+import { AppState } from '../../shared/shared.state';
 
 const APP_PREFIX = 'SOCIAL-NETWORK-';
 

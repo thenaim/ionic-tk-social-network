@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform, MenuController, LoadingController } from '@ionic/angular';
 
@@ -8,21 +8,22 @@ import { CameraPreview, CameraPreviewOptions, CameraPreviewPictureOptions } from
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { Store, select } from '@ngrx/store';
-import { selectTheme } from './shared/settings/settings.selectors';
+import { selectTheme } from './shared/ngrx/settings/settings.selectors';
 
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, SubscriptionLike } from 'rxjs';
-import { actionSettingsChangeTheme } from './shared/settings/settings.actions';
-import { FakerService } from './shared/faker/faker.service';
+import { Observable, Subscription, SubscriptionLike } from 'rxjs';
+import { actionSettingsChangeTheme } from './shared/ngrx/settings/settings.actions';
+import { FakerService } from './services/faker/faker.service';
+import { AppEventsService } from './services/app-events/app-events.service';
+import { map, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   theme$: Observable<boolean>;
-  isDarkTheme = false;
   isCameraStart = false;
   isCameraFront = false;
   isCameraFlashMode = true;
@@ -52,6 +53,7 @@ export class AppComponent {
   };
 
   private subscriptions: SubscriptionLike[] = [];
+  private orientationSubscription: Subscription;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -66,6 +68,7 @@ export class AppComponent {
 
     private fakerService: FakerService,
 
+    private appEvents: AppEventsService,
     private menu: MenuController,
     public loadingController: LoadingController
   ) {
@@ -90,8 +93,9 @@ export class AppComponent {
   /**
   * Theme toggle
   */
-  toggleDarkTheme() {
-    this.store.dispatch(actionSettingsChangeTheme({ isDark: !this.isDarkTheme }));
+  async toggleDarkTheme() {
+    const isDark = await this.store.pipe(select(selectTheme), take(1)).toPromise();
+    this.store.dispatch(actionSettingsChangeTheme({ isDark: !isDark }));
   }
 
   /**
@@ -132,6 +136,22 @@ export class AppComponent {
       (err) => {
         console.log(err)
       });
+
+    /**
+    * Subscribe to orientation change
+    */
+    this.orientationSubscription = this.screenOrientation.onChange().subscribe(async () => {
+      await this.cameraPreview.stopCamera();
+      this.cameraPreviewOpts = { ...this.cameraPreviewOpts, width: window.screen.width, height: window.screen.height };
+
+      this.cameraPreview.startCamera(this.cameraPreviewOpts).then(async (res) => {
+        await this.cameraPreview.setFlashMode(this.isCameraFlashMode ? this.cameraPreview.FLASH_MODE.ON : this.cameraPreview.FLASH_MODE.OFF);
+        console.log(res)
+      },
+        (err) => {
+          console.log(err)
+        });
+    });
   }
 
   /**
@@ -140,6 +160,7 @@ export class AppComponent {
   onCloseCameraMenu(event) {
     this.isCameraStart = false;
     this.cameraPreview.stopCamera();
+    this.orientationSubscription.unsubscribe();
   }
 
   /**
@@ -205,37 +226,5 @@ export class AppComponent {
     await this.cameraPreview.tapToFocus(event.clientX || 0, event.clientY || 0);
   }
 
-  ngOnInit(): void {
-    /**
-    * Subscribe to theme change
-    */
-    this.subscriptions.push(
-      this.theme$.subscribe((isDark) => {
-        this.isDarkTheme = isDark;
-      })
-    );
-
-    /**
-    * Subscribe to orientation change
-    */
-    this.subscriptions.push(
-      this.screenOrientation.onChange().subscribe(async () => {
-        await this.cameraPreview.stopCamera();
-        this.cameraPreviewOpts = { ...this.cameraPreviewOpts, width: window.screen.width, height: window.screen.height };
-
-        this.cameraPreview.startCamera(this.cameraPreviewOpts).then(async (res) => {
-          await this.cameraPreview.setFlashMode(this.isCameraFlashMode ? this.cameraPreview.FLASH_MODE.ON : this.cameraPreview.FLASH_MODE.OFF);
-          console.log(res)
-        },
-          (err) => {
-            console.log(err)
-          });
-      })
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    this.subscriptions = [];
-  }
+  ngOnInit() { }
 }

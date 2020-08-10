@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Config } from '@ionic/angular';
 
-import { FakerService } from '../../shared/faker/faker.service';
+import { FakerService } from '../../services/faker/faker.service';
 import { AppData } from 'src/app/providers/app-data';
 
 @Component({

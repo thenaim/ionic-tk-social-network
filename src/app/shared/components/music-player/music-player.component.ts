@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, Config } from '@ionic/angular';
-import { PlayerEventOptions, initialPlayerEventOptions, MusicController } from '../music-controller/music-controller.service';
+import { PlayerEventOptions, initialPlayerEventOptions, MusicController } from '../../../services/music-controller/music-controller.service';
 import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 

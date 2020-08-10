@@ -4,7 +4,7 @@ import { Subject, SubscriptionLike } from 'rxjs';
 import analyze from 'rgbaster'
 
 import { storyCubeOptions } from './storyOptions';
-import { AppData } from '../../providers/app-data';
+import { AppData } from '../../../providers/app-data';
 
 export interface StoryProgressTimerInterface {
   type: 'video' | 'image';
