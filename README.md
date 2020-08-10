@@ -1,4 +1,4 @@
-<a href="https://github.com/thenaim/ion-tk-social-network">
+<a href="https://github.com/thenaim/ionic-tk-social-network">
   <p align="center">
     <img src="https://i.imgur.com/xcNkbhv.gif">
   </p>
@@ -9,19 +9,11 @@
 <p align="center">
   Providing you with the components, templates, native components, ngrx, i18n, localStorage, themes, auth pages and much more  needed to build a mobile application on ionic framework.
 </p>
-<h2 align="center">
-  <a href="https://github.com/thenaim/ion-tk-social-network/releases">
-    <img src="https://flat.badgen.net/github/release/thenaim/ion-tk-social-network">
-  </a>
-  <a href="https://github.com/thenaim/ion-tk-social-network/blob/master/LICENSE">
-    <img src="https://flat.badgen.net/github/license/thenaim/ion-tk-social-network">
-  </a>
-</h2>
 
 # Getting started
 
 ```bash
-git clone https://github.com/thenaim/ion-tk-social-network myApp
+git clone https://github.com/thenaim/ionic-tk-social-network myApp
 cd myApp
 npm i
 
@@ -105,7 +97,7 @@ ionic cordova run ios
 
 # Preview
 
-[YOUTUBE DEMO](https://www.youtube.com/watch?v=GCs2TVZkC_U) or [DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ion-tk-social-network/blob/master/PREVIEW.md)
+[YOUTUBE DEMO](https://www.youtube.com/watch?v=GCs2TVZkC_U) or [DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ionic-tk-social-network/blob/master/PREVIEW.md)
 
 ## Supporting platforms
 
@@ -122,8 +114,8 @@ See [Ionic Docs](https://ionicframework.com/docs/reference/browser-support) for 
 
 Want to start contributing to open source with ionic? Leave your mark and join the growing team of contributors!
 
-Get started by checking out list of open [issues](https://github.com/thenaim/ion-tk-social-network/issues) and reading [Contributor Guide](https://github.com/thenaim/ion-tk-social-network/blob/master/CONTRIBUTING.md)
+Get started by checking out list of open [issues](https://github.com/thenaim/ionic-tk-social-network/issues) and reading [Contributor Guide](https://github.com/thenaim/ionic-tk-social-network/blob/master/CONTRIBUTING.md)
 
 ## License
 
-License MIT (see the [LICENSE](https://github.com/thenaim/ion-tk-social-network/blob/master/LICENSE) file for the full text)
+License MIT (see the [LICENSE](https://github.com/thenaim/ionic-tk-social-network/blob/master/LICENSE) file for the full text)
