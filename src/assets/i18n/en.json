@@ -40,6 +40,7 @@
     "my_posts": "My posts",
     "who_can_contact_me": "Who can contact me",
     "stories": "Stories",
+    "auth_pin": "Enter your {{app_name}} Passcode",
     "discover_categories": {
         "for_you": "For You",
         "games": "Games",

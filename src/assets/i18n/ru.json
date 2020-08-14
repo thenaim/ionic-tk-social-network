@@ -37,6 +37,7 @@
     "my_posts": "My posts",
     "who_can_contact_me": "Who can contact me",
     "stories": "Stories",
+    "auth_pin": "Введите код-пароль от {{app_name}}",
     "discover_categories": {
         "for_you": "Для Вас",
         "games": "Игры",

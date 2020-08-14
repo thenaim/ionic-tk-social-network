@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'message-detail',
-    loadChildren: () => import('./pages/message-detail/message-detail.module').then( m => m.MessageDetailPageModule)
+    loadChildren: () => import('./pages/message-detail/message-detail.module').then(m => m.MessageDetailPageModule)
   }
 ];
 @NgModule({

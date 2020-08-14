@@ -15,19 +15,23 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+        loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
       },
       {
         path: 'register',
-        loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+        loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
       },
       {
         path: 'forgot',
-        loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
+        loadChildren: () => import('./forgot/forgot.module').then(m => m.ForgotPageModule)
       },
       {
         path: 'reset',
-        loadChildren: () => import('./reset/reset.module').then( m => m.ResetPageModule)
+        loadChildren: () => import('./reset/reset.module').then(m => m.ResetPageModule)
+      },
+      {
+        path: 'pin',
+        loadChildren: () => import('./auth-pin/auth-pin.module').then(m => m.AuthPinPageModule)
       }
     ]
   }
@@ -37,4 +41,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthPageRoutingModule {}
+export class AuthPageRoutingModule { }
