@@ -19,8 +19,7 @@
       </ion-col>
       <ion-col size="12" size-sm="6" size-lg="6" class="ion-no-margin ion-no-padding ion-align-self-center">
         <ion-row>
-          <ion-col size="4" class=" ion-align-self-center ion-text-center" *ngFor="let dig of digits">
-
+          <ion-col size="4" class="ion-align-self-center ion-text-center" *ngFor="let dig of digits">
             <ng-container [ngSwitch]="dig.area">
 
               <!-- Clear area -->
@@ -28,24 +27,21 @@
 
               <!-- Finger print activate button -->
               <ng-container *ngSwitchCase="'finger'">
-                <ion-button color="medium" fill="clear" style="width: 70px;height: 70px;--border-radius: 64px;"
-                  *ngIf="dig.active">
+                <ion-button color="medium" fill="clear" class="finger-print-button" *ngIf="dig.active">
                   <ion-icon slot="icon-only" name="finger-print-outline"></ion-icon>
                 </ion-button>
               </ng-container>
 
               <!-- Clear button -->
               <ng-container *ngSwitchCase="'clear'">
-                <ion-button color="medium" fill="clear" style="width: 70px;height: 70px;--border-radius: 64px;"
-                  (click)="passwordClear()">
+                <ion-button color="medium" fill="clear" class="clear-button" (click)="passwordClear()">
                   <ion-icon slot="icon-only" name="backspace-outline"></ion-icon>
                 </ion-button>
               </ng-container>
 
               <!-- Digits -->
               <ng-container *ngSwitchDefault>
-                <ion-button color="light" style="width: 70px;height: 70px;--border-radius: 64px;--box-shadow: none;"
-                  (click)="passwordClick(dig)">
+                <ion-button color="light" class="digit-button" (click)="passwordClick(dig)">
                   <ion-text style="font-size: 22px;">
                     {{dig.number}}
                   </ion-text>

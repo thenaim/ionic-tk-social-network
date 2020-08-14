@@ -6,3 +6,15 @@ ion-grid {
 ion-row {
     height: 100%;
 }
+
+.digit-button {
+    --box-shadow: none;
+}
+
+.digit-button,
+.clear-button,
+.finger-print-button {
+    width: 70px;
+    height: 70px;
+    --border-radius: 64px;
+}
