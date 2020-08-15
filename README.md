@@ -40,6 +40,7 @@ ionic cordova run ios
 | Register | Available | [register.ts](src/app/pages/auth/register) | - |
 | Forgot | Available | [forgot.ts](src/app/pages/auth/forgot) | - |
 | Reset | Available, but needs to be modified | [reset.ts](src/app/pages/auth/reset)  | - |
+| Friends | Available | [friends.ts](src/app/pages/friends) | - |
 | Music | Available | [music.ts](src/app/pages/settings) | - |
 | Music modal | Available | [music-player.ts](src/app/shared/music-player) | - |
 | Story modal | Available | [stories.component.ts](src/app/shared/stories) | - |
