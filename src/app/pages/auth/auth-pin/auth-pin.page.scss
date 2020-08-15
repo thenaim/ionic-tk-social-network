@@ -7,6 +7,11 @@ ion-row {
     height: 100%;
 }
 
+.digit-max-width {
+    max-width: 300px;
+    margin: auto;
+}
+
 .digit-button {
     --box-shadow: none;
 }

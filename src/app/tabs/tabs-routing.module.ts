@@ -32,6 +32,10 @@ const routes: Routes = [
           {
             path: 'music',
             loadChildren: () => import('../pages/music/music.module').then(m => m.MusicPageModule)
+          },
+          {
+            path: 'friends',
+            loadChildren: () => import('../pages/friends/friends.module').then(m => m.FriendsPageModule)
           }
         ]
       },
