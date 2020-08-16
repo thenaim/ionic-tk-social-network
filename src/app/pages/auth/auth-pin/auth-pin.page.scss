@@ -37,25 +37,17 @@ ion-row {
 }
 
 .hidesm-showlg {
-    display: initial;
+    display: inline-block;
 
-    @media (min-width: 576px) {
+    @media (min-width: 576px) and (max-width: 992px) {
         display: none !important;
-    }
-
-    @media (min-width: 992px) {
-        display: initial !important;
     }
 }
 
 .showsm-hidelg {
     display: none;
 
-    @media (min-width: 576px) {
-        display: initial !important;
-    }
-
-    @media (min-width: 992px) {
-        display: none !important;
+    @media (min-width: 576px) and (max-width: 992px) {
+        display: inline-block !important;
     }
 }
