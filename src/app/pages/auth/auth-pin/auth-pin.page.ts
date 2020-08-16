@@ -22,12 +22,12 @@ export class AuthPinPage implements OnInit {
     { area: 'number', number: 7 },
     { area: 'number', number: 8 },
     { area: 'number', number: 9 },
-    { area: 'null' },
+    { area: false },
     { area: 'number', number: 0 },
-    { area: 'clear' },
-    { area: 'null' },
+    { area: 'backspace' },
+    { area: false },
     { area: 'finger' },
-    { area: 'null' },
+    { area: false },
   ];
 
   constructor() { }
