@@ -10,6 +10,7 @@ export class AuthPinPage implements OnInit {
   pinLength = 6;
   pinRange = Array(this.pinLength).fill(undefined);
   pin: number[] = [];
+  fingerPrintAvailable = true;
 
   digits: any[] = [
     { area: 'number', number: 1 },
@@ -21,9 +22,12 @@ export class AuthPinPage implements OnInit {
     { area: 'number', number: 7 },
     { area: 'number', number: 8 },
     { area: 'number', number: 9 },
-    { area: 'finger', active: true },
+    { area: 'null' },
     { area: 'number', number: 0 },
-    { area: 'clear' }
+    { area: 'clear' },
+    { area: 'null' },
+    { area: 'finger' },
+    { area: 'null' },
   ];
 
   constructor() { }

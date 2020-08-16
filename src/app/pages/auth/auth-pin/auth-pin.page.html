@@ -1,7 +1,7 @@
 <ion-content>
-  <ion-grid>
-    <ion-row class="ion-no-margin ion-no-padding ion-justify-content-center">
-      <ion-col size="12" size-sm="5" size-lg="12" class="ion-align-self-center ion-text-center">
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="5" size-lg="4" class="ion-align-self-center ion-text-center">
         <p>
           <ion-icon name="lock-closed" color="dark" size="large"></ion-icon>
         </p>
@@ -16,8 +16,12 @@
             [color]="pin[i] !== undefined ? 'primary' : 'dark'">
           </ion-icon>
         </div>
+        <ion-button color="medium" fill="clear" class="finger-print-button ion-hide-sm-down"
+          *ngIf="fingerPrintAvailable">
+          <ion-icon slot="icon-only" name="finger-print-outline"></ion-icon>
+        </ion-button>
       </ion-col>
-      <ion-col size="12" size-sm="6" size-lg="6" class="ion-no-margin ion-no-padding ion-align-self-center">
+      <ion-col size="12" size-sm="6" size-lg="8" class="ion-no-margin ion-no-padding digit-coll-position">
         <ion-row class="digit-max-width">
           <ion-col size="4" class="ion-align-self-center ion-text-center" *ngFor="let dig of digits">
             <ng-container [ngSwitch]="dig.area">
@@ -27,7 +31,8 @@
 
               <!-- Finger print activate button -->
               <ng-container *ngSwitchCase="'finger'">
-                <ion-button color="medium" fill="clear" class="finger-print-button" *ngIf="dig.active">
+                <ion-button color="medium" fill="clear" class="finger-print-button ion-hide-sm-up"
+                  *ngIf="fingerPrintAvailable">
                   <ion-icon slot="icon-only" name="finger-print-outline"></ion-icon>
                 </ion-button>
               </ng-container>

@@ -8,8 +8,12 @@ ion-row {
 }
 
 .digit-max-width {
-    max-width: 300px;
+    max-width: 320px;
     margin: auto;
+
+    @media (min-width: 992px) {
+        max-width: 576px !important;
+    }
 }
 
 .digit-button {
@@ -22,4 +26,12 @@ ion-row {
     width: 70px;
     height: 70px;
     --border-radius: 64px;
+}
+
+.digit-coll-position {
+    align-self: flex-end;
+
+    @media (min-width: 576px) {
+        align-self: center !important;
+    }
 }
