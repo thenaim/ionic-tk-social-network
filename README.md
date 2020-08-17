@@ -98,7 +98,7 @@ ionic cordova run ios
 
 # Preview
 
-[YOUTUBE DEMO](https://www.youtube.com/watch?v=GCs2TVZkC_U) or [DEMO GIF AND SCREENSHOTS](https://github.com/thenaim/ionic-tk-social-network/blob/master/PREVIEW.md)
+[YOUTUBE DEMO V1](https://www.youtube.com/watch?v=GCs2TVZkC_U)
 
 ## Supporting platforms
 
