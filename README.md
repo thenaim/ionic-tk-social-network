@@ -98,7 +98,7 @@ ionic cordova run ios
 
 # Preview
 
-[YOUTUBE DEMO V1](https://www.youtube.com/watch?v=GCs2TVZkC_U)
+[YOUTUBE DEMO V1 ANDROID](https://www.youtube.com/watch?v=GCs2TVZkC_U) - [YOUTUBE DEMO V2 iOS](https://www.youtube.com/watch?v=XVjQJn33pw8)
 
 ## Supporting platforms
 
