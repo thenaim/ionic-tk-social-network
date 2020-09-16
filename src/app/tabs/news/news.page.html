@@ -44,7 +44,7 @@
     <ion-card class="post-card" *ngIf="stories.length">
       <ion-item lines="none" class="post-item">
         <ion-avatar slot="start">
-          <img [src]="stories[0].image">
+          <ion-img [src]="stories[0].avatar"></ion-img>
         </ion-avatar>
         <ion-button class="post-some" color="light">
           <span class="post-some-title">{{'whats_new' | translate}}</span>
@@ -59,13 +59,14 @@
         </ion-buttons>
       </ion-item>
     </ion-card>
+
     <!-- Users stories list -->
     <ion-card class="stories-card" scrollX="true">
       <ion-list lines="none" class="story-list scrollX" *ngFor="let story of stories" (click)="openStory($event)"
         routerdirection="forward">
         <ion-item lines="none" class="story-item">
           <ion-avatar class="story-avatar" [ngClass]="{'seen': false}">
-            <img [src]="story.image">
+            <img [src]="story.avatar">
           </ion-avatar>
         </ion-item>
         <div class="story-author">
@@ -220,7 +221,6 @@
               </ion-card>
             </ion-col>
           </ng-container>
-
         </ng-container>
       </ion-row>
     </ion-grid>

@@ -35,8 +35,22 @@ export class MessagePage {
     }, 1000);
   }
 
+  /**
+  * Data init
+  */
   async dataInit() {
-    this.messagesList = await this.appData.getMessages();
+    this.fakerService.getFaker().then((faker) => {
+      this.messagesList = Array.apply(null, Array(25)).map(() => {
+        return {
+          id: faker.random.uuid(),
+          first_name: faker.name.findName().split(' ')[0],
+          last_name: faker.name.lastName(),
+          email: faker.internet.email(),
+          image: faker.internet.avatar(),
+          last_message: faker.lorem.sentence()
+        };
+      });
+    });
   }
 
   ngOnInit(): void {

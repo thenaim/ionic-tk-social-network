@@ -1,13 +1,13 @@
 import { createAction, props } from '@ngrx/store';
 
-import { Language, Theme } from './settings.model';
+import { AppLanguage, AppTheme } from './settings.model';
 
 export const actionSettingsChangeLanguage = createAction(
   '[Settings] Change Language',
-  props<{ language: Language }>()
+  props<{ language: AppLanguage }>()
 );
 
 export const actionSettingsChangeTheme = createAction(
   '[Settings] Change Theme',
-  props<{ isDark: Theme }>()
+  props<{ isDark: AppTheme }>()
 );

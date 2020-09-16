@@ -79,8 +79,8 @@ export class AppComponent implements OnInit {
   * App init
   */
   initializeApp() {
-    this.translate.setDefaultLang('en');
-    this.fakerService.setLang('en');
+    this.translate.setDefaultLang('ru');
+    this.fakerService.setLang('ru');
     this.theme$ = this.store.pipe(select(selectTheme));
 
     this.platform.ready().then(() => {
@@ -119,7 +119,9 @@ export class AppComponent implements OnInit {
     event.stopPropagation();
     event.preventDefault();
 
-    this.menu.close('camera');
+    this.menu.close('camera').then(() => {
+      this.statusBar.hide();
+    });
   }
 
   /**
@@ -131,7 +133,7 @@ export class AppComponent implements OnInit {
 
     this.cameraPreview.startCamera(this.cameraPreviewOpts).then(async (res) => {
       await this.cameraPreview.setFlashMode(this.isCameraFlashMode ? this.cameraPreview.FLASH_MODE.ON : this.cameraPreview.FLASH_MODE.OFF);
-      console.log(res)
+      this.statusBar.hide();
     },
       (err) => {
         console.log(err)
@@ -161,6 +163,7 @@ export class AppComponent implements OnInit {
     this.isCameraStart = false;
     this.cameraPreview.stopCamera();
     this.orientationSubscription.unsubscribe();
+    this.statusBar.show();
   }
 
   /**

@@ -7,6 +7,7 @@ import { StoryModalEnterAnimation, StoryModalLeaveAnimation } from '../../app.an
 
 import { AppData } from '../../providers/app-data';
 import { StoriesComponent } from '../../shared/components/stories/stories.component';
+import { FakerService } from '../../services/faker/faker.service';
 
 @Component({
   selector: 'app-news',
@@ -45,7 +46,8 @@ export class NewsPage {
     private router: Router,
     private route: ActivatedRoute,
 
-    private appData: AppData
+    private appData: AppData,
+    private faker: FakerService,
   ) {
     const tabParam = this.route.snapshot.queryParamMap.get('tab');
     if (this.segments.findIndex(x => x.value === tabParam) >= 0) {
@@ -89,9 +91,76 @@ export class NewsPage {
   }
 
   async dataInit() {
-    this.stories = await this.appData.getStories();
-    this.posts = await this.appData.getPosts();
-    this.discavery = await this.appData.getDiscavery();
+    this.faker.getFaker().then((faker) => {
+      // generate stories
+      this.stories = Array.apply(null, Array(15)).map(() => {
+        return {
+          id: faker.random.uuid(),
+          first_name: faker.name.findName().split(' ')[0],
+          last_name: faker.name.lastName(),
+          avatar: faker.image.avatar()
+        };
+      });
+
+      // generate posts
+      this.posts = Array.apply(null, Array(15)).map(() => {
+        return {
+          id: faker.random.uuid(),
+          first_name: faker.name.findName().split(' ')[0],
+          last_name: faker.name.lastName(),
+          image: faker.image.avatar(),
+          content: faker.lorem.sentences(),
+          likes: faker.random.number(100),
+          comments: faker.random.number(100),
+          shared: faker.random.number(100)
+        };
+      });
+
+      // generate discavery
+      const discaveryTypes = ['image', 'post-image', 'post-full'];
+      for (let index = 0; index < discaveryTypes.length; index++) {
+        this.discavery.push({
+          type: discaveryTypes[index],
+          data: []
+        });
+
+        if (discaveryTypes[index] === 'image') {
+          this.discavery[index].data = Array.apply(null, Array(2)).map(() => {
+            return {
+              id: faker.random.uuid(),
+              img: faker.random.arrayElement([faker.image.people(), faker.image.food()])
+            }
+          });
+        }
+
+        if (discaveryTypes[index] === 'post-image') {
+          this.discavery[index].data = Array.apply(null, Array(2)).map(() => {
+            return {
+              id: faker.random.uuid(),
+              avatar: faker.image.avatar(),
+              author: faker.company.companyName(),
+              img: faker.random.arrayElement([faker.image.technics(), faker.image.sports()])
+            }
+          });
+        }
+
+        if (discaveryTypes[index] === 'post-full') {
+          this.discavery[index].data = Array.apply(null, Array(4)).map(() => {
+            return {
+              id: faker.random.uuid(),
+              avatar: faker.image.avatar(),
+              author: faker.company.companyName(),
+              img: faker.random.arrayElement([faker.image.transport(), faker.image.city(), faker.image.nightlife(), faker.image.image()]),
+              text: faker.lorem.sentences(2)
+            }
+          });
+        }
+      }
+    });
+
+    // this.stories = await this.appData.getStories();
+    // this.posts = await this.appData.getPosts();
+    // this.discavery = await this.appData.getDiscavery();
   }
 
   ngOnInit(): void {

@@ -9,6 +9,7 @@ export interface AppDataInterface {
     posts: any[];
     discavery: any[];
     messages: any[];
+    messagesUser: any[];
     playlists: any[];
     musics: any[];
 };
@@ -53,18 +54,6 @@ export class AppData {
         });
     }
 
-    async getMessages() {
-        return this.load().then((data) => {
-            return data.messages;
-        });
-    }
-
-    async getMessageUser(id) {
-        return this.load().then((data) => {
-            const res = data.messages.find(mes => mes.id === id);
-            return res;
-        });
-    }
 
     async getPlaylists() {
         return this.load().then((data) => {
@@ -75,6 +64,13 @@ export class AppData {
     async getMusics() {
         return this.load().then((data) => {
             return data.musics;
+        });
+    }
+
+    async getMessagesUser(id: number) {
+        this.load().then((data) => {
+            const res = data.messagesUser.find(mes => mes.id === id);
+            return res;
         });
     }
 }

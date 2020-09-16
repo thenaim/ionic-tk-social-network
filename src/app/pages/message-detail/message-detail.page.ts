@@ -82,17 +82,17 @@ export class MessageDetailPage implements OnInit {
       date: new Date(),
       type: 'me'
     });
+
+    // clear input
     this.messageControl.setValue('');
 
     this.faker.getFaker().then(faker => {
-      const answerCount = faker.random.arrayElement([1, 2, 3]);
-
-      // add answer or answers
-      for (let answer = 0; answer < answerCount; answer++) {
+      // generate answer
+      for (let i = 0; i < faker.random.arrayElement([1, 2, 3]); i++) {
         this.chats[this.chats.length - 1].chats.push({
           message: faker.lorem.sentences(faker.random.arrayElement([1, 2, 3])),
           date: faker.date.recent(),
-          first_name: faker.name.findName(),
+          first_name: faker.name.findName().split(' ')[0],
           last_name: faker.name.lastName(),
           avatar: faker.image.avatar(),
           type: 'user'
@@ -102,41 +102,47 @@ export class MessageDetailPage implements OnInit {
       // scroll to bottom
       setTimeout(() => {
         this.content.scrollToBottom(0);
-      }, 100);
+      });
     });
   }
 
   ngOnInit() {
-    // generate fake data
     this.faker.getFaker().then(faker => {
-      for (let ch = 0; ch < 4; ch++) {
+      // generate fake message data
+      this.chats = Array.apply(null, Array(4)).map(() => {
         const chat = {
           date: faker.date.weekday(),
           chats: []
         };
 
-        for (let ms = 0; ms < 5; ms++) {
-          chat.chats.push({
+        chat.chats = Array.apply(null, Array(5)).map(() => {
+          return {
             message: faker.lorem.sentences(faker.random.arrayElement([1, 2, 3])),
             date: faker.date.recent(),
-            first_name: faker.name.findName(),
+            first_name: faker.name.findName().split(' ')[0],
             last_name: faker.name.lastName(),
             avatar: faker.image.avatar(),
             type: faker.random.arrayElement(['user', 'me'])
-          });
-        }
+          };
+        });
 
-        this.chats.push(chat);
-      }
+        return chat;
+      });
 
+      // generate current user, but set id from url param
+      this.user = {
+        id: this.user_id,
+        first_name: faker.name.findName().split(' ')[0],
+        last_name: faker.name.lastName(),
+        email: faker.internet.email(),
+        image: faker.internet.avatar(),
+        last_message: faker.lorem.sentence()
+      };
+
+      // scroll to bottom
       setTimeout(() => {
         this.content.scrollToBottom(0);
       });
-    });
-
-    // get user
-    this.appData.getMessageUser(this.user_id).then((res) => {
-      this.user = res;
     });
 
     // subscribe to scrolling event
