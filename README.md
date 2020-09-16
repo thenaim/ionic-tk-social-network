@@ -22,6 +22,9 @@ ionic cordova run android
 
 # iOS
 ionic cordova run ios
+
+# Browser (native functions not support)
+ionic serve
 ```
 
 
