@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FakerService } from 'src/app/services/faker/faker.service';
+import { FakerService } from '../../services/faker/faker.service';
 
 @Component({
   selector: 'app-friends',
@@ -15,27 +15,26 @@ export class FriendsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.faker.getFaker().then((fake) => {
-      for (let index = 0; index < 15; index++) {
-        this.friends.push({
-          id: fake.random.uuid(),
-          first_name: fake.name.firstName(),
-          last_name: fake.name.lastName(),
-          avatar: fake.image.avatar(),
-          city: fake.address.city(),
-        });
-      }
+    this.faker.getFaker().then((faker) => {
+      this.friends = Array.apply(null, Array(5)).map(() => {
+        return {
+          id: faker.random.uuid(),
+          first_name: faker.name.findName().split(' ')[0],
+          last_name: faker.name.lastName(),
+          avatar: faker.image.avatar(),
+          city: faker.address.city(),
+        };
+      });
 
-      for (let index = 0; index < 5; index++) {
-        this.importantFriends.push({
-          id: fake.random.uuid(),
-          first_name: fake.name.firstName(),
-          last_name: fake.name.lastName(),
-          avatar: fake.image.avatar(),
-          city: fake.address.city(),
-        });
-      }
+      this.importantFriends = Array.apply(null, Array(5)).map(() => {
+        return {
+          id: faker.random.uuid(),
+          first_name: faker.name.findName().split(' ')[0],
+          last_name: faker.name.lastName(),
+          avatar: faker.image.avatar(),
+          city: faker.address.city(),
+        };
+      });
     });
   }
-
 }
