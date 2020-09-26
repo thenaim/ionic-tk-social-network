@@ -14,7 +14,16 @@ export class FriendsPage implements OnInit {
     private faker: FakerService
   ) { }
 
-  ngOnInit() {
+  doRefresh(event) {
+    this.dataInit();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 1000);
+  }
+
+  dataInit() {
     this.faker.getFaker().then((faker) => {
       this.friends = Array.apply(null, Array(5)).map(() => {
         return {
@@ -36,5 +45,9 @@ export class FriendsPage implements OnInit {
         };
       });
     });
+  }
+
+  ngOnInit() {
+    this.dataInit();
   }
 }
