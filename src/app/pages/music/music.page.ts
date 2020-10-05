@@ -50,7 +50,7 @@ export class MusicPage implements OnInit {
 
   /**
   * Play music
-  * 
+  *
   * @param {Object} music - music data for play
   */
   playMusic(music) {

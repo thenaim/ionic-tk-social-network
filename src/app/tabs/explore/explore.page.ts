@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-explore',
   templateUrl: 'explore.page.html',
   styleUrls: ['explore.page.scss']
 })
-export class ExplorePage {
+export class ExplorePage implements OnInit {
   explores: any[] = [
     { id: 'friends_title', icon: 'people-outline', color: 'danger', link: 'friends' },
     { id: 'communities_title', icon: 'people-circle', color: 'warning', link: 'communities' },
@@ -20,12 +20,14 @@ export class ExplorePage {
   constructor() { }
 
   /**
-  * On refresh
-  */
+   * On refresh
+   */
   doRefresh(event) {
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
   }
+
+  ngOnInit(): void {}
 }

@@ -15,7 +15,7 @@ export class AppearancePage implements OnInit {
   isDark: FormControl = new FormControl(false);
 
   theme$: Observable<boolean>;
-  subscriptions: Subscription = new Subscription()
+  subscriptions: Subscription = new Subscription();
 
   constructor(
     private store: Store

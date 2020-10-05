@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalController, Config } from '@ionic/angular';
-import { PlayerEventOptions, initialPlayerEventOptions, MusicController } from '../../../services/music-controller/music-controller.service';
+import {
+  PlayerEventOptions,
+  initialPlayerEventOptions,
+  MusicController
+} from '../../../services/music-controller/music-controller.service';
 import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
@@ -9,12 +13,12 @@ import { FormControl } from '@angular/forms';
   templateUrl: './music-player.component.html',
   styleUrls: ['./music-player.component.scss'],
 })
-export class MusicPlayerComponent implements OnInit {
+export class MusicPlayerComponent implements OnInit, OnDestroy {
   isIos = false;
 
   progress: FormControl = new FormControl(0);
   progressTime = '0:00';
-  progressTimeEnding = '-0:00'
+  progressTimeEnding = '-0:00';
   volume: FormControl = new FormControl(1);
 
   music: PlayerEventOptions = initialPlayerEventOptions;
@@ -27,20 +31,20 @@ export class MusicPlayerComponent implements OnInit {
   ) { }
 
   /**
-  * On close music modal
-  */
+   * On close music modal
+   */
   closeModal(event: Event) {
     event.stopPropagation();
     event.preventDefault();
 
     this.modalCtrl.dismiss({
-      'dismissed': true
+      dismissed: true
     });
   }
 
   /**
-  * On change music progress
-  */
+   * On change music progress
+   */
   progressChanged() {
     this.musicController.seek(this.progress.value);
 
@@ -50,33 +54,32 @@ export class MusicPlayerComponent implements OnInit {
   }
 
   /**
-  * On music value change
-  */
+   * On music value change
+   */
   volumeChanged() {
     const volume = (+this.volume.value / 100);
     this.musicController.volume(volume);
   }
 
   /**
-  * Toggle music
-  * play/pause
-  */
+   * Toggle music
+   * play/pause
+   */
   togglePlayer() {
     this.musicController.togglePlayer(this.music.isPlaying, this.progress.value);
   }
 
   /**
-  * Toggle music repeat
-  * 
-  * @param {boolean} repeat
-  */
+   * Toggle music repeat
+   * @param {boolean} repeat
+   */
   repeat(repeat: boolean) {
     this.musicController.progress.next({ repeat: !repeat });
   }
 
   /**
-  * Music value update function
-  */
+   * Music value update function
+   */
   updateMusicValue() {
     this.progress.setValue(((this.music.seek / this.music.duration) * 100).toFixed(0), { emitEvent: false });
     this.progressTime = this.musicController.secondsToTime(this.music.seek);
@@ -89,9 +92,7 @@ export class MusicPlayerComponent implements OnInit {
     this.music = this.musicController.getOptions();
     this.updateMusicValue();
 
-    /**
-    * Subscribe to music value
-    */
+    // Subscribe to music value
     this.audioSubscription.add(
       this.musicController.onProgress.subscribe((res) => {
         this.music = { ...this.music, ...res };
@@ -103,5 +104,4 @@ export class MusicPlayerComponent implements OnInit {
   ngOnDestroy(): void {
     this.audioSubscription.unsubscribe();
   }
-
 }

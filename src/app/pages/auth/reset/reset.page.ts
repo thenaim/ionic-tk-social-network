@@ -9,7 +9,5 @@ export class ResetPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void {}
 }

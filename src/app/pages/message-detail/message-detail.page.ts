@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppData } from '../../providers/app-data';
 import { IonContent, IonItemSliding } from '@ionic/angular';
@@ -7,14 +7,23 @@ import { debounceTime, tap } from 'rxjs/operators';
 import { FakerService } from '../../services/faker/faker.service';
 import { FormControl, Validators } from '@angular/forms';
 
+export interface CurrentUserInterface {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  image: string;
+  last_message: string;
+}
+
 @Component({
   selector: 'app-message-detail',
   templateUrl: './message-detail.page.html',
   styleUrls: ['./message-detail.page.scss'],
 })
-export class MessageDetailPage implements OnInit {
-  user_id = null;
-  user = {};
+export class MessageDetailPage implements OnInit, OnDestroy {
+  userId = null;
+  user: CurrentUserInterface;
   chats: any[] = [];
 
   messageControl: FormControl = new FormControl('', [
@@ -33,37 +42,36 @@ export class MessageDetailPage implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe(params => {
-      this.user_id = params['id'];
+      this.userId = params.id;
     });
   }
 
   /**
-  * Content scroll start
-  */
+   * Content scroll start
+   */
   logScrollStart() {
     this.scrolling.next(true);
   }
 
   /**
-  * Content scrolling
-  */
+   * Content scrolling
+   */
   logScrolling(event) {
     // console.log('Scrolling');
   }
 
   /**
-  * Content scroll end
-  */
+   * Content scroll end
+   */
   logScrollEnd() {
     this.scrolling.next(false);
   }
 
   /**
-  * Reply message (drag)
-  * 
-  * @param {Event} event - drag event
-  * @param {IonItemSliding} slidingItem - item sliding directive
-  */
+   * Reply message (drag)
+   * @param {Event} event - drag event
+   * @param {IonItemSliding} slidingItem - item sliding directive
+   */
   messageDraged(event, slidingItem: IonItemSliding) {
     if (event.detail.ratio === 1) {
       slidingItem.closeOpened();
@@ -71,8 +79,8 @@ export class MessageDetailPage implements OnInit {
   }
 
   /**
-  * Send message
-  */
+   * Send message
+   */
   sendMessage(event) {
     event.preventDefault();
 
@@ -106,7 +114,7 @@ export class MessageDetailPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.faker.getFaker().then(faker => {
       // generate fake message data
       this.chats = Array.apply(null, Array(4)).map(() => {
@@ -131,7 +139,7 @@ export class MessageDetailPage implements OnInit {
 
       // generate current user, but set id from url param
       this.user = {
-        id: this.user_id,
+        id: this.userId,
         first_name: faker.name.findName().split(' ')[0],
         last_name: faker.name.lastName(),
         email: faker.internet.email(),

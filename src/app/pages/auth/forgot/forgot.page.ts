@@ -23,5 +23,4 @@ export class ForgotPage implements OnInit {
       Validators.email
     ]);
   }
-
 }

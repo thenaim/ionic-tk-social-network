@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthPinPageRoutingModule } from './auth-pin-routing.module';
 
 import { AuthPinPage } from './auth-pin.page';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   imports: [

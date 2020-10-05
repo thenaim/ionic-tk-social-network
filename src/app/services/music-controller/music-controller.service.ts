@@ -9,7 +9,7 @@ export interface PlayerConfiguration {
   image: string;
   author?: string;
   song?: string;
-};
+}
 
 export interface PlayerEventOptions {
   id?: string;
@@ -23,7 +23,7 @@ export interface PlayerEventOptions {
   volume?: number;
   repeat?: boolean;
   show?: boolean;
-};
+}
 
 export const initialPlayerEventOptions: PlayerEventOptions = {
   id: '',
@@ -49,7 +49,7 @@ export class MusicController {
 
   public progress: Subject<PlayerEventOptions> = new Subject();
   public onProgress: Observable<PlayerEventOptions> = this.progress.pipe(tap((options: PlayerEventOptions) => {
-    this.options = { ...this.options, ...options }
+    this.options = { ...this.options, ...options };
   }));
 
   private playerSubscriptions: SubscriptionLike[] = [];
@@ -182,13 +182,13 @@ export class MusicController {
   /**
   * Seconds to time function
   * for music player modal
-  * 
+  *
   * @param {number} seconds
   */
   public secondsToTime(seconds: number) {
-    let h = Math.floor(seconds / 3600);
-    let m = Math.floor(seconds % 3600 / 60);
-    let s = Math.floor(seconds % 60);
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor(seconds % 3600 / 60);
+    const s = Math.floor(seconds % 60);
 
     const hms = [];
     if (h) {

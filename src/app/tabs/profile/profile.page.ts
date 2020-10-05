@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { SubscriptionLike } from 'rxjs';
 import { AppEventsService } from '../../services/app-events/app-events.service';
@@ -9,7 +9,7 @@ import { FakerService } from '../../services/faker/faker.service';
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss']
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   user = {
     full_name: '',
     nickname: '',
@@ -51,9 +51,7 @@ export class ProfilePage {
   ngOnInit(): void {
     this.getUser();
 
-    /**
-    * Subscribe to tab click event
-    */
+    // Subscribe to tab click event
     this.subscriptions.push(
       this.appEvents.onTabClicks.subscribe((tab => {
         if (tab.id === 'profile') {

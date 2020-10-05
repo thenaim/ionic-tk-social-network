@@ -113,8 +113,8 @@ export class AppComponent implements OnInit {
   }
 
   /**
-  * Close camera side
-  */
+   * Close camera side
+   */
   closeCameraSide(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -125,8 +125,8 @@ export class AppComponent implements OnInit {
   }
 
   /**
-  * On open camera side
-  */
+   * On open camera side
+   */
   onOpenCameraMenu(event) {
     this.isCameraStart = true;
     this.cameraPreviewOpts = { ...this.cameraPreviewOpts, camera: 'rear', width: window.screen.width, height: window.screen.height };
@@ -136,29 +136,33 @@ export class AppComponent implements OnInit {
       this.statusBar.hide();
     },
       (err) => {
-        console.log(err)
+        console.log(err);
       });
 
     /**
-    * Subscribe to orientation change
-    */
+     * Subscribe to orientation change
+     */
     this.orientationSubscription = this.screenOrientation.onChange().subscribe(async () => {
       await this.cameraPreview.stopCamera();
       this.cameraPreviewOpts = { ...this.cameraPreviewOpts, width: window.screen.width, height: window.screen.height };
 
       this.cameraPreview.startCamera(this.cameraPreviewOpts).then(async (res) => {
-        await this.cameraPreview.setFlashMode(this.isCameraFlashMode ? this.cameraPreview.FLASH_MODE.ON : this.cameraPreview.FLASH_MODE.OFF);
-        console.log(res)
+        await this.cameraPreview.setFlashMode(
+            this.isCameraFlashMode
+                ? this.cameraPreview.FLASH_MODE.ON
+                : this.cameraPreview.FLASH_MODE.OFF
+        );
+        console.log(res);
       },
         (err) => {
-          console.log(err)
+          console.log(err);
         });
     });
   }
 
   /**
-  * On close camera side
-  */
+   * On close camera side
+   */
   onCloseCameraMenu(event) {
     this.isCameraStart = false;
     this.cameraPreview.stopCamera();
@@ -167,9 +171,9 @@ export class AppComponent implements OnInit {
   }
 
   /**
-  * Switch camera mode 
-  * rear/front
-  */
+   * Switch camera mode
+   * rear/front
+   */
   switchCamera(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -178,14 +182,18 @@ export class AppComponent implements OnInit {
     this.cameraPreview.switchCamera().then(async () => {
       this.isCameraFront = !this.isCameraFront;
       if (!this.isCameraFront) {
-        await this.cameraPreview.setFlashMode(this.isCameraFlashMode ? this.cameraPreview.FLASH_MODE.ON : this.cameraPreview.FLASH_MODE.OFF);
+        await this.cameraPreview.setFlashMode(
+            this.isCameraFlashMode
+                ? this.cameraPreview.FLASH_MODE.ON
+                : this.cameraPreview.FLASH_MODE.OFF
+        );
       }
     });
   }
 
   /**
-  * Take picture camera
-  */
+   * Take picture camera
+   */
   takePicture(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -201,9 +209,9 @@ export class AppComponent implements OnInit {
   }
 
   /**
-  * Switch flash mode
-  * ON/OFF
-  */
+   * Switch flash mode
+   * ON/OFF
+   */
   switchFlashMode(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -214,8 +222,8 @@ export class AppComponent implements OnInit {
   }
 
   /**
-  * Focus camera on click area
-  */
+   * Focus camera on click area
+   */
   async getCameraFocusCoordinates(event) {
     this.cameraFocusPosition.top = event.y - 15;
     this.cameraFocusPosition.left = event.x - 15;

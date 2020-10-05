@@ -19,7 +19,7 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.register = this.fb.group({
       first_name: this.fb.control('', [
         Validators.required,
@@ -50,16 +50,16 @@ export class RegisterPage implements OnInit {
 
   passwordConfirmMatchValidator(g: FormGroup) {
     const password = g.get('password');
-    const password_confirm = g.get('password_confirm');
+    const passwordConfirm = g.get('password_confirm');
 
-    if (password_confirm.hasError('required') || password_confirm.hasError('minlength')) return;
+    if (passwordConfirm.hasError('required') || passwordConfirm.hasError('minlength')) { return; }
 
-    if (password.value !== password_confirm.value) {
-      password_confirm.setErrors({
+    if (password.value !== passwordConfirm.value) {
+      passwordConfirm.setErrors({
         mismatch: true
       });
     } else {
-      password_confirm.setErrors(null);
+      passwordConfirm.setErrors(null);
     }
   }
 }

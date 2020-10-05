@@ -51,7 +51,7 @@ export class LocalStorageService {
   static initStateFromLocalStorage(
     reducer: ActionReducer<AppState>
   ): ActionReducer<AppState> {
-    return function (state, action) {
+    return function(state, action) {
       const newState = reducer(state, action);
       if ([INIT.toString(), UPDATE.toString()].includes(action.type)) {
         return { ...newState, ...LocalStorageService.loadInitialState() };
@@ -62,7 +62,7 @@ export class LocalStorageService {
 
   /**
   * Set item to localStorage
-  * 
+  *
   * @param {string} key - item key
   * @param {any} value - key value
   */
@@ -72,7 +72,7 @@ export class LocalStorageService {
 
   /**
   * Get item from localStorage
-  * 
+  *
   * @param {string} key - item key
   */
   getItem(key: string) {
@@ -81,7 +81,7 @@ export class LocalStorageService {
 
   /**
   * Remove from localStorage
-  * 
+  *
   * @param {string} key - item key
   */
   removeItem(key: string) {

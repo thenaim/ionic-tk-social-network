@@ -9,7 +9,7 @@ export const storyCubeOptions = {
         shadowScale: 0.5,
     },
     on: {
-        beforeInit: function () {
+        beforeInit() {
             const swiper = this;
             swiper.classNames.push(`${swiper.params.containerModifierClass}cube`);
             swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
@@ -28,7 +28,7 @@ export const storyCubeOptions = {
             this.params = Object.assign(this.params, overwriteParams);
             this.originalParams = Object.assign(this.originalParams, overwriteParams);
         },
-        setTranslate: function () {
+        setTranslate() {
             const swiper = this;
             const {
                 $el, $wrapperEl, slides, width: swiperWidth, height: swiperHeight, rtlTranslate: rtl, size: swiperSize,
@@ -96,7 +96,7 @@ export const storyCubeOptions = {
                 const transform$$1 = `rotateX(${isHorizontal ? 0 : -slideAngle}deg) rotateY(${isHorizontal ? slideAngle : 0}deg) translate3d(${tx}px, ${ty}px, ${tz}px)`;
                 if (progress <= 1 && progress > -1) {
                     wrapperRotate = (slideIndex * 90) + (progress * 90);
-                    if (rtl) wrapperRotate = (-slideIndex * 90) - (progress * 90);
+                    if (rtl) { wrapperRotate = (-slideIndex * 90) - (progress * 90); }
                 }
                 $slideEl.transform(transform$$1);
                 if (params.slideShadows) {
@@ -111,8 +111,8 @@ export const storyCubeOptions = {
                         shadowAfter = swiper.$(`<div class="swiper-slide-shadow-${isHorizontal ? 'right' : 'bottom'}"></div>`);
                         $slideEl.append(shadowAfter);
                     }
-                    if (shadowBefore.length) shadowBefore[0].style.opacity = Math.max(-progress, 0);
-                    if (shadowAfter.length) shadowAfter[0].style.opacity = Math.max(progress, 0);
+                    if (shadowBefore.length) { shadowBefore[0].style.opacity = Math.max(-progress, 0); }
+                    if (shadowAfter.length) { shadowAfter[0].style.opacity = Math.max(progress, 0); }
                 }
             }
             $wrapperEl.css({
@@ -142,7 +142,7 @@ export const storyCubeOptions = {
             $wrapperEl
                 .transform(`translate3d(0px,0,${zFactor}px) rotateX(${swiper.isHorizontal() ? 0 : wrapperRotate}deg) rotateY(${swiper.isHorizontal() ? -wrapperRotate : 0}deg)`);
         },
-        setTransition: function (duration) {
+        setTransition(duration) {
             const swiper = this;
             const { $el, slides } = swiper;
             slides

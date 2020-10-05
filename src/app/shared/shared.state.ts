@@ -33,7 +33,7 @@ export const selectSettingsState = createFeatureSelector<
 
 export interface AppState {
   settings: SettingsState;
-  music: MusicState
+  music: MusicState;
 }
 
 export const selectMusicState = createFeatureSelector<
@@ -44,7 +44,7 @@ export const selectMusicState = createFeatureSelector<
 export function initStateFromLocalStorage(
   reducer: ActionReducer<AppState>
 ): ActionReducer<AppState> {
-  return function (state, action) {
+  return function(state, action) {
     const newState = reducer(state, action);
     if ([INIT.toString(), UPDATE.toString()].includes(action.type)) {
       return { ...newState, ...LocalStorageService.loadInitialState() };

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Config } from '@ionic/angular';
 
@@ -7,7 +7,7 @@ import { Config } from '@ionic/angular';
   templateUrl: 'notification.page.html',
   styleUrls: ['notification.page.scss']
 })
-export class NotificationPage {
+export class NotificationPage implements OnInit {
   activeSegment: FormControl = new FormControl('feedback');
   segments: any[] = [
     { title: 'Feedback', value: 'feedback' },

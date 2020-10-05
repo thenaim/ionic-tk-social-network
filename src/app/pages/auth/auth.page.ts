@@ -9,7 +9,5 @@ export class AuthPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void {}
 }

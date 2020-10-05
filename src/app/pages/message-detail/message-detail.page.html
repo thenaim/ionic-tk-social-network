@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button [text]="''" defaultHref="/tabs/messages"></ion-back-button>
     </ion-buttons>
-    <ion-item lines="none">
+    <ion-item lines="none" *ngIf="user">
       <ion-avatar slot="start">
         <img [src]="user.image">
       </ion-avatar>

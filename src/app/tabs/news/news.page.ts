@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SubscriptionLike } from 'rxjs';
@@ -14,7 +14,7 @@ import { FakerService } from '../../services/faker/faker.service';
   templateUrl: 'news.page.html',
   styleUrls: ['news.page.scss']
 })
-export class NewsPage {
+export class NewsPage implements OnInit {
   stories: any[] = [];
   posts: any[] = [];
   activeSegment: FormControl = new FormControl('news');
@@ -56,8 +56,8 @@ export class NewsPage {
   }
 
   /**
-  * On refresh
-  */
+   * On refresh
+   */
   doRefresh(event) {
     this.dataInit();
 
@@ -68,15 +68,15 @@ export class NewsPage {
   }
 
   /**
-  * Toggle camera side
-  */
+   * Toggle camera side
+   */
   toggleMenu() {
     this.menu.toggle('camera');
   }
 
   /**
-  * Open story modal
-  */
+   * Open story modal
+   */
   async openStory(event) {
     const modal = await this.modalController.create({
       component: StoriesComponent,
@@ -129,7 +129,7 @@ export class NewsPage {
             return {
               id: faker.random.uuid(),
               img: faker.random.arrayElement([faker.image.people(), faker.image.food()])
-            }
+            };
           });
         }
 
@@ -140,7 +140,7 @@ export class NewsPage {
               avatar: faker.image.avatar(),
               author: faker.company.companyName(),
               img: faker.random.arrayElement([faker.image.technics(), faker.image.sports()])
-            }
+            };
           });
         }
 
@@ -152,7 +152,7 @@ export class NewsPage {
               author: faker.company.companyName(),
               img: faker.random.arrayElement([faker.image.transport(), faker.image.city(), faker.image.nightlife(), faker.image.image()]),
               text: faker.lorem.sentences(2)
-            }
+            };
           });
         }
       }

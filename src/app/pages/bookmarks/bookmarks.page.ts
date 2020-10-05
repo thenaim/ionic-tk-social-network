@@ -9,7 +9,5 @@ export class BookmarksPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void {}
 }

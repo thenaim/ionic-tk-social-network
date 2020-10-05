@@ -12,7 +12,7 @@ export interface AppDataInterface {
     messagesUser: any[];
     playlists: any[];
     musics: any[];
-};
+}
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +23,7 @@ export class AppData {
     constructor(public http: HttpClient) { }
 
     load(): Promise<AppDataInterface> {
-        if (this.data) return of(this.data).toPromise();
+        if (this.data) { return of(this.data).toPromise(); }
 
         return this.http.get('assets/data/data.json').pipe(
             tap((data: AppDataInterface) => this.data = data)

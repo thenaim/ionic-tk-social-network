@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Config } from '@ionic/angular';
 
@@ -10,7 +10,7 @@ import { AppData } from 'src/app/providers/app-data';
   templateUrl: 'message.page.html',
   styleUrls: ['message.page.scss']
 })
-export class MessagePage {
+export class MessagePage implements OnInit {
   messagesList: any[];
   searchMessageList: FormControl = new FormControl('');
   showSearchbar = false;
@@ -24,8 +24,8 @@ export class MessagePage {
   ) { }
 
   /**
-  * On refresh
-  */
+   * On refresh
+   */
   doRefresh(event) {
     this.dataInit();
 
@@ -36,8 +36,8 @@ export class MessagePage {
   }
 
   /**
-  * Data init
-  */
+   * Data init
+   */
   async dataInit() {
     this.fakerService.getFaker().then((faker) => {
       this.messagesList = Array.apply(null, Array(25)).map(() => {

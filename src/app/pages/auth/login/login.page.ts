@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.login = this.fb.group({
       email: this.fb.control('', [
         Validators.required,
@@ -32,5 +32,4 @@ export class LoginPage implements OnInit {
       ])
     });
   }
-
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { IonSlides, ModalController } from '@ionic/angular';
 import { Subject, SubscriptionLike } from 'rxjs';
-import analyze from 'rgbaster'
+import analyze from 'rgbaster';
 
 import { storyCubeOptions } from './storyOptions';
 import { AppData } from '../../../providers/app-data';
@@ -11,21 +11,21 @@ export interface StoryProgressTimerInterface {
   timer: number;
   story: number;
   storyIndex: number;
-};
+}
 
 export interface StoryProgressInterface {
   type: 'video' | 'image';
   progress: number;
   story: number;
   storyIndex: number;
-};
+}
 
 @Component({
   selector: 'app-stories',
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.scss'],
 })
-export class StoriesComponent implements OnInit {
+export class StoriesComponent implements OnInit, OnDestroy {
   @ViewChild('story', { static: false }) storyElement: ElementRef;
   @ViewChild('story', { static: false }) story: IonSlides;
 
@@ -51,61 +51,61 @@ export class StoriesComponent implements OnInit {
   ) { }
 
   /**
-  * Close story modal
-  */
+   * Close story modal
+   */
   closeModal(event) {
     event.stopPropagation();
     event.preventDefault();
 
     this.modalCtrl.dismiss({
-      'dismissed': true
+      dismissed: true
     });
   }
 
   /**
-  * Add story share clicked
-  */
+   * Add story share clicked
+   */
   addStory(event) {
     console.log('story add button');
   }
 
   /**
-  * Share story clicked
-  */
+   * Share story clicked
+   */
   shareStory(event) {
     console.log('story share button');
   }
 
   /**
-  * Story options clicked
-  */
+   * Story options clicked
+   */
   storyOptions(event) {
     console.log('story options button');
   }
 
   /**
-  * When story load event
-  */
+   * When story load event
+   */
   storyDidLoad(event) {
     this.story.update();
     console.log('storyDidLoad');
   }
 
   /**
-  * Story touchstart event
-  */
+   * Story touchstart event
+   */
   storyTouchStart(event: any) {
     console.log('storyTouchStart', event.target.localName);
     const target = event.target || event.srcElement;
     const ignoreElement = ['ion-avatar', 'ion-text', 'ion-button'];
-    if (ignoreElement.includes(target.localName) || target.id === 'avatar') return;
+    if (ignoreElement.includes(target.localName) || target.id === 'avatar') { return; }
 
     this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStoryIndex].tap = true;
   }
 
   /**
-  * Story touchend event
-  */
+   * Story touchend event
+   */
   storyTouchEnd(event) {
     this.stories[this.activeStoryOption.activeStory].items[this.activeStoryOption.activeStoryIndex].tap = false;
 
@@ -119,16 +119,13 @@ export class StoriesComponent implements OnInit {
         this.activeStoryOption.activeStory = index;
       }
     });
-
-    console.log('storyTouchEnd');
   }
 
   /**
-  * Get image dominant color for background
-  * 
-  * @param {string} url - image url
-  * @returns {Promise}
-  */
+   * Get image dominant color for background
+   * @param {string} url - image url
+   * @promise {Promise}
+   */
   async getColor(url: string): Promise<string> {
     const result = await analyze(url, { scale: 0.5 });
 
@@ -136,22 +133,21 @@ export class StoriesComponent implements OnInit {
   }
 
   /**
-  * Image loaded event
-  * 
-  * @param {Event} event - event
-  * @param {number} contentIndex - content index
-  */
+   * Image loaded event
+   * @param {Event} event - event
+   * @param {number} contentIndex - content index
+   */
   imageLoaded(event: Event, contentIndex: number) {
     console.log('imageLoaded');
-    /**const slideImg: any = document.getElementById('story-image-' + contentIndex);
-    this.getColor(slideImg.src).then((res => {
-      this.activeStoryOption.storyActiveColor = res;
-    }));*/
+    // const slideImg: any = document.getElementById('story-image-' + contentIndex);
+    // this.getColor(slideImg.src).then((res => {
+    //  this.activeStoryOption.storyActiveColor = res;
+    // }));
   }
 
   /**
-  * Modal dismiss event
-  */
+   * Modal dismiss event
+   */
   async modalWillDismiss() {
     return (await this.modalCtrl.getTop()).onWillDismiss();
   }
@@ -159,7 +155,7 @@ export class StoriesComponent implements OnInit {
   ngOnInit() {
     this.appData.getStoriesList().then((stories) => {
       this.stories = stories;
-    })
+    });
 
     this.modalWillDismiss().then(() => {
       console.log('storyModalWillDismiss');
@@ -170,10 +166,10 @@ export class StoriesComponent implements OnInit {
     this.storyEventListner = this.renderer2.listen(document.querySelector('ion-slides'), 'touchstart', (event) => {
       // TouchEnd
       const onTouchEnd = () => {
-        event.target.removeEventListener("touchend", onTouchEnd);
+        event.target.removeEventListener('touchend', onTouchEnd);
         this.storyTouchEnd(event);
       };
-      event.target.addEventListener("touchend", onTouchEnd);
+      event.target.addEventListener('touchend', onTouchEnd);
 
       // TouchStart
       this.storyTouchStart(event);
@@ -184,9 +180,7 @@ export class StoriesComponent implements OnInit {
   ngOnDestroy(): void {
     // this.activeStoryOption.storyActiveColor = '#fff';
 
-    /**
-    * Unlisten story modal events
-    */
+    // Unlisten story modal events
     if (this.storyEventListner) {
       this.storyEventListner();
     }

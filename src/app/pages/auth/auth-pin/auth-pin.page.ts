@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShakeAnimation } from 'src/app/app.animations';
+import { ShakeAnimation } from '../../../app.animations';
 
 @Component({
   selector: 'app-auth-pin',
@@ -41,7 +41,7 @@ export class AuthPinPage implements OnInit {
 
     if (this.pin.length === this.pinLength) {
       await ShakeAnimation(document.getElementById('shake-animation')).play();
-      this.pin = []
+      this.pin = [];
     }
   }
 
@@ -53,5 +53,5 @@ export class AuthPinPage implements OnInit {
     console.log('fingerPrintActivate');
   }
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 }

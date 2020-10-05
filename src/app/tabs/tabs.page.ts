@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { MenuController, ModalController, AnimationController } from '@ionic/angular';
 import { SubscriptionLike } from 'rxjs';
 import { MusicModalEnterAnimation, MusicModalLeaveAnimation } from '../app.animations';
@@ -13,7 +13,7 @@ import { AppEventsService } from '../services/app-events/app-events.service';
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage {
+export class TabsPage implements OnInit, OnDestroy {
   tabs: any[] = [
     { id: 'news', badge: 0, icon: 'reader-outline' },
     { id: 'explore', badge: 0, icon: 'compass-outline' },
@@ -38,32 +38,32 @@ export class TabsPage {
   ) { }
 
   /**
-  * Toggle music play/pause
-  */
+   * Toggle music play/pause
+   */
   toggleMusic() {
     this.musicController.togglePlayer(this.music.isPlaying, (this.music.seek / this.music.duration) * 100);
   }
 
   /**
-  * Close music player
-  */
+   * Close music player
+   */
   closePlayer() {
     this.musicController.abort();
   }
 
   /**
-  * On tab change
-  * check tab if profile tab or not
-  */
+   * On tab change
+   * check tab if profile tab or not
+   */
   tabChanged(event) {
     this.activeTab = event.tab;
   }
 
   /**
-  * On tab click
-  * Send event, if user click tab second time or more
-  * @param {any} tab - tab object
-  */
+   * On tab click
+   * Send event, if user click tab second time or more
+   * @param {any} tab - tab object
+   */
   tabClicked(tab) {
     if (this.activeTab === tab.id) {
       this.appEvents.tabClicks.next(tab);
@@ -71,8 +71,8 @@ export class TabsPage {
   }
 
   /**
-  * Open music modal
-  */
+   * Open music modal
+   */
   async openMusicModal(event: Event) {
     event.stopPropagation();
     event.preventDefault();
@@ -92,9 +92,7 @@ export class TabsPage {
   }
 
   ngOnInit(): void {
-    /**
-    * Subscribe to music events
-    */
+    // Subscribe to music events
     this.subscriptions.push(
       this.musicController.onProgress.subscribe((res) => {
         this.music = { ...this.music, ...res };

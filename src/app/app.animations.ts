@@ -30,7 +30,7 @@ export const MusicModalLeaveAnimation = (baseEl: any) => {
 
     const wrapperAnimation = createAnimation()
         .addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')!)
-        .beforeStyles({ 'opacity': 1 })
+        .beforeStyles({ opacity: 1 })
         .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)')
         .keyframes([
             { offset: 0, transform: 'translateY(0vh)' },
@@ -73,7 +73,7 @@ export const StoryModalLeaveAnimation = (baseEl: any) => {
 
     const wrapperAnimation = createAnimation()
         .addElement(baseEl.querySelectorAll('.modal-wrapper, .modal-shadow')!)
-        .beforeStyles({ 'opacity': 1 })
+        .beforeStyles({ opacity: 1 })
         .fromTo('transform', 'translateY(0vh)', 'translateY(100vh)')
         .fromTo('borderRadius', '0 0 0 0', '30px 30px 0 0')
         .keyframes([

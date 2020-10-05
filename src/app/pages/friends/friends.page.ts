@@ -47,7 +47,7 @@ export class FriendsPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataInit();
   }
 }
