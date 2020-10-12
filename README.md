@@ -27,6 +27,32 @@ ionic cordova run ios
 ionic serve
 ```
 
+### iOS Setup
+
+Download and install [Xcode](https://developer.apple.com/xcode/).
+
+Then make sure the command-line tools are selected for use:
+
+```bash
+xcode-select --install
+```
+
+And you need to install some utilities:
+
+```bash
+npm install -g ios-sim
+npm install -g ios-deploy
+```
+
+# Android Setup
+
+Download and install:
+
+- [JDK8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Gradle](https://gradle.org/install/)
+- [Android Studio](https://developer.android.com/studio/)
+
+Then install Android SDK on Android Studio and configure the [environment variables](https://developer.android.com/studio/command-line/variables) (`ANDROID_SDK_ROOT`).
 
 # Feature Status
 
