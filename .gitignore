@@ -31,3 +31,5 @@ config.xml
 /plugins
 /resources
 /www
+/android
+/ios

@@ -1,7 +1,7 @@
 {
-  "name": "ion-tk-social-network",
+  "name": "ionic social networ",
   "integrations": {
-    "cordova": {}
+    "capacitor": {}
   },
   "type": "angular"
 }

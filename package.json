@@ -36,6 +36,9 @@
     "@angular/platform-browser": "~10.0.14",
     "@angular/platform-browser-dynamic": "~10.0.14",
     "@angular/router": "~10.0.14",
+    "@capacitor/android": "^2.4.2",
+    "@capacitor/cli": "^2.4.2",
+    "@capacitor/core": "^2.4.2",
     "@ionic-native/camera-preview": "^5.28.0",
     "@ionic-native/core": "^5.28.0",
     "@ionic-native/media": "^5.28.0",
@@ -47,8 +50,6 @@
     "@ngrx/store": "^10.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "cordova-android": "^8.1.0",
-    "cordova-browser": "^6.0.0",
     "cordova-plugin-camera-preview": "^0.12.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-media": "^5.0.3",
@@ -106,8 +107,6 @@
       "cordova-plugin-camera-preview": {},
       "cordova-plugin-screen-orientation": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }

@@ -17,14 +17,23 @@ git clone https://github.com/thenaim/ionic-tk-social-network myApp
 cd myApp
 npm i
 
-# Android
-ionic cordova run android
+# Build, before adding any native platforms
+ionic build
 
-# iOS
-ionic cordova run ios
+# Add ios
+npx cap add ios
 
-# Browser (native functions not support)
-ionic serve
+# Add Android
+npx cap add android
+```
+
+# Run Capacitor or see [docs](https://ionicframework.com/docs/cli/commands/capacitor-run)
+```bash
+# Open Android
+npx cap open android
+
+# Open iOS
+npx cap open ios
 ```
 
 ### iOS Setup
