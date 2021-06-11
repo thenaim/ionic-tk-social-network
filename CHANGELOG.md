@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- **app:** native camera preview 
+- **app:** native camera preview
 - **music:** music page with playlists
 
 ### Bug Fixes

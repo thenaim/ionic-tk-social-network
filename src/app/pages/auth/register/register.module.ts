@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { RegisterPageRoutingModule } from './register-routing.module';
+import { IonicModule } from '@ionic/angular';
 import { RegisterPage } from './register.page';
-
-import { SharedModule } from '../../../shared/shared.module';
+import { RegisterPageRoutingModule } from './register-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RegisterPageRoutingModule,
-
-    SharedModule
-  ],
-  declarations: [RegisterPage]
+  imports: [CommonModule, FormsModule, IonicModule, RegisterPageRoutingModule],
+  declarations: [RegisterPage],
 })
-export class RegisterPageModule { }
+export class RegisterPageModule {}

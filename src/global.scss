@@ -10,119 +10,45 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "~@ionic/angular/css/core.css";
+@import '~@ionic/angular/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
 
-@import "./scss/auth.scss";
-@import "./scss/stories.scss";
-@import "./scss/posts.scss";
-@import "./scss/camera-side.scss";
-
-/*
- * App CSS
- * ----------------------------------------------------------------------------
- * Imports a file that can contain Sass/CSS that should be used throughout
- * the entire app.
- */
-
-ion-app {
-    background-color: var(--ion-background-color, #ffffff);
-}
-
-// Tab bar height
-ion-tab-bar,
-ion-toolbar {
-    --min-height: 50px;
-    height: 50px;
-}
-
-ion-toolbar {
-
-    ion-buttons,
-    ion-searchbar {
-        --min-height: 50px;
-        height: 50px;
-    }
-
-    ion-searchbar.ios {
-        padding-bottom: 0px;
-    }
-}
-
-ion-refresher {
-    --ion-text-color: var(--ion-color-medium);
-}
+@import './scss/countries.style.scss';
 
 // Horizontal container
-*[scrollX=true] {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -ms-overflow-style: none;
+*[scrollX] {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none;
 
-    &::-webkit-scrollbar {
-        display: none;
-    }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-    .scrollX {
-        flex: 0 0 auto;
-    }
+  .scrollX {
+    flex: 0 0 auto;
+  }
 }
 
-.no-padding-item {
-    --inner-padding-start: 0;
-    --inner-padding-end: 0;
-    --ion-safe-area-right: 0;
-    --padding-start: 0;
-    --padding-end: 0;
-}
-
-// textarea
-ion-textarea,
-.native-textarea {
-    max-height: 250px !important;
-}
-
-// border 
-
-.no-border {
-    --border-width: 0;
-    border: 0px;
-}
-
-/*
- * App iOS CSS
- * ----------------------------------------------------------------------------
- * iOS only CSS can go here
- */
-
-.ios {
-
-    ion-title {
-        font-weight: bold !important;
-    }
-
-    .dark-theme {}
-}
-
-/*
-   * App Material Design CSS
-   * ----------------------------------------------------------------------------
-   * Material Design only CSS can go here
-   */
-
-.md {
-    .dark-theme {}
+:root {
+  ion-img {
+    /** 
+     * Bug fix for:
+     * https://github.com/ionic-team/ionic/issues/18734
+     */
+    min-height: 1px !important;
+  }
 }

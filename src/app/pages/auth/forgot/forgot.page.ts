@@ -9,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class ForgotPage implements OnInit {
   forgot: FormControl;
 
-  constructor() { }
+  constructor() {}
 
   done() {
     if (this.forgot.valid) {
@@ -18,9 +18,6 @@ export class ForgotPage implements OnInit {
   }
 
   ngOnInit() {
-    this.forgot = new FormControl('', [
-      Validators.required,
-      Validators.email
-    ]);
+    this.forgot = new FormControl('', [Validators.required, Validators.email]);
   }
 }

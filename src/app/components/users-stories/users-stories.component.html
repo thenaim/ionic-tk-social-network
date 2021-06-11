@@ -1,0 +1,14 @@
+<ion-card class="stories-card" scrollX="true">
+  <ion-list lines="none" class="story-list scrollX" *ngFor="let story of stories" (click)="openStory($event, story)">
+    <ion-item lines="none" class="story-item">
+      <ion-avatar class="story-avatar" [ngClass]="{ seen: false }">
+        <img [src]="story.avatar" />
+      </ion-avatar>
+    </ion-item>
+    <div class="story-author">
+      <ion-text color="primary">
+        {{ story.firstName }}
+      </ion-text>
+    </div>
+  </ion-list>
+</ion-card>

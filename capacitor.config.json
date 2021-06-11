@@ -1,31 +1,13 @@
 {
-  "appId": "com.example.app",
-  "appName": "Social Network - ionic",
-  "webDir": "www",
-  "npmClient": "npm",
+  "appId": "io.ionic.starter",
+  "appName": "app",
   "bundledWebRuntime": false,
-  "windowsAndroidStudioPath": "",
-  "linuxAndroidStudioPath": "~/android-studio/bin/studio.sh",
-  "hideLogs": false,
-  "backgroundColor": "#ffffff",
+  "npmClient": "npm",
+  "webDir": "www",
   "plugins": {
     "SplashScreen": {
+      "launchAutoHide": false,
       "launchShowDuration": 0
     }
-  },
-  "cordova": {
-    "preferences": {
-      "ScrollEnabled": "false",
-      "BackupWebStorage": "none",
-      "SplashMaintainAspectRatio": "true",
-      "FadeSplashScreenDuration": "300",
-      "SplashShowOnlyFirstTime": "false",
-      "SplashScreen": "screen",
-      "SplashScreenDelay": "3000"
-    }
-  },
-  "server": {
-    "url": "http://192.168.0.101:8100",
-    "cleartext": true
   }
 }

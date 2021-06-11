@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { ResetPage } from './reset.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ResetPage
-  }
+    component: ResetPage,
+  },
 ];
 
 @NgModule({

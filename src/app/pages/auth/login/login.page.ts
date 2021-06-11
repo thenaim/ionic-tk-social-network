@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavController, Platform } from '@ionic/angular';
+import { Store } from '@ngxs/store';
+import { AuthAction } from '../../../core/auth-guard/auth-guard.actions';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +12,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginPage implements OnInit {
   login: FormGroup;
 
-  constructor(
-    private fb: FormBuilder
-  ) { }
+  constructor(private store: Store, private navController: NavController, private platform: Platform) {}
+
+  onAuth() {
+    this.store.dispatch(new AuthAction.Login());
+  }
 
   onLogin() {
     if (this.login.valid) {
@@ -20,16 +25,9 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.login = this.fb.group({
-      email: this.fb.control('', [
-        Validators.required,
-        Validators.email
-      ]),
-      password: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(150)
-      ])
+    this.login = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(150)]),
     });
   }
 }

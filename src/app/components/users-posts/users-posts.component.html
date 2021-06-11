@@ -1,0 +1,46 @@
+<ion-card class="post-list-card">
+  <ion-item lines="none">
+    <ion-avatar slot="start">
+      <img [src]="post.avatar" />
+    </ion-avatar>
+    <ion-label>
+      {{ post.firstName }} {{ post.lastName }}
+      <p>two minutes ago</p>
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button color="medium">
+        <ion-icon slot="icon-only" md="ellipsis-vertical-outline" ios="ellipsis-horizontal-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+  <img [src]="post.image" />
+
+  <ion-card-content class="post-list-content">
+    {{ post.content }}
+  </ion-card-content>
+
+  <ion-item lines="none" class="ion-no-padding" style="margin-left: 10px">
+    <ion-buttons slot="start">
+      <ion-button color="medium">
+        <ion-icon slot="start" name="heart-outline"></ion-icon>
+        <small>{{ post.likes }}</small>
+      </ion-button>
+      <ion-button color="medium">
+        <ion-icon slot="start" name="chatbox-outline"></ion-icon>
+        <small>{{ post.comments }}</small>
+      </ion-button>
+      <ion-button color="medium">
+        <ion-icon slot="start" name="return-up-forward-outline"></ion-icon>
+        <small>{{ post.shared }}</small>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button color="medium">
+        <ion-icon size="small" slot="start" name="eye-outline"></ion-icon>
+        <small>{{ post.views }}</small>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+</ion-card>

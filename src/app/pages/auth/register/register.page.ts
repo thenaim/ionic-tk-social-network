@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,9 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterPage implements OnInit {
   register: FormGroup;
 
-  constructor(
-    private fb: FormBuilder
-  ) { }
+  constructor() {}
 
   onRegister() {
     if (this.register.valid) {
@@ -20,43 +18,29 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.register = this.fb.group({
-      first_name: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(150)
-      ]),
-      last_name: this.fb.control('', [
-        Validators.required,
-        Validators.maxLength(150)
-      ]),
-      email: this.fb.control('', [
-        Validators.required,
-        Validators.email
-      ]),
-      password: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(150)
-      ]),
-      password_confirm: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(150)
-      ])
-    }, {
-      validators: this.passwordConfirmMatchValidator
-    });
+    this.register = new FormGroup(
+      {
+        firstName: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+        lastName: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(150)]),
+        passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(150)]),
+      },
+      this.passwordConfirmMatchValidator,
+    );
   }
 
-  passwordConfirmMatchValidator(g: FormGroup) {
+  passwordConfirmMatchValidator(g: FormGroup): ValidatorFn {
     const password = g.get('password');
     const passwordConfirm = g.get('password_confirm');
 
-    if (passwordConfirm.hasError('required') || passwordConfirm.hasError('minlength')) { return; }
+    if (passwordConfirm.hasError('required') || passwordConfirm.hasError('minlength')) {
+      return;
+    }
 
     if (password.value !== passwordConfirm.value) {
       passwordConfirm.setErrors({
-        mismatch: true
+        mismatch: true,
       });
     } else {
       passwordConfirm.setErrors(null);

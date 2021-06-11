@@ -1,18 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { TabsPageRoutingModule } from './tabs-routing.module';
-import { TabsPage } from './tabs.page';
-
+import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { TabsPage } from './tabs.page';
+import { TabsPageRoutingModule } from './tabs-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TabsPageRoutingModule,
-
-    SharedModule
-  ],
-  declarations: [TabsPage]
+  imports: [CommonModule, TabsPageRoutingModule, SharedModule],
+  declarations: [TabsPage],
 })
-export class TabsPageModule { }
+export class TabsPageModule {}

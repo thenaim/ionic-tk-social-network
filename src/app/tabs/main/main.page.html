@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{'tabs.main' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollY]="!(loadingStates$ | async).isLoading">
+  <app-users-stories [stories]="[]"></app-users-stories>
+  <p *ngIf="(loadingStates$ | async).isFailed">Failed!!!</p>
+
+  <ng-container *ngIf="(loadingStates$ | async).isSuccess">
+    <app-users-posts *ngFor="let newsItem of news$ | async;" [post]="newsItem"></app-users-posts>
+  </ng-container>
+</ion-content>

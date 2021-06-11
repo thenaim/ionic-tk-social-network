@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset.page.scss'],
 })
 export class ResetPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {}
+  ngOnInit() {}
 }

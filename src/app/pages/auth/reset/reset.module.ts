@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { ResetPageRoutingModule } from './reset-routing.module';
+import { IonicModule } from '@ionic/angular';
 import { ResetPage } from './reset.page';
-
-import { SharedModule } from '../../../shared/shared.module';
+import { ResetPageRoutingModule } from './reset-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ResetPageRoutingModule,
-
-    SharedModule
-  ],
-  declarations: [ResetPage]
+  imports: [CommonModule, FormsModule, IonicModule, ResetPageRoutingModule],
+  declarations: [ResetPage],
 })
-export class ResetPageModule { }
+export class ResetPageModule {}

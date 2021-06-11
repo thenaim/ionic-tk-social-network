@@ -1,32 +1,54 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { appConfig } from './app.config';
+import { AuthGuardAfterLoginService, AuthGuardBeforeLoginService } from './core/auth-guard/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    redirectTo: appConfig.routes.tabs.root,
+    pathMatch: 'full',
   },
   {
-    path: 'bookmarks',
-    loadChildren: () => import('./pages/bookmarks/bookmarks.module').then(m => m.BookmarksPageModule)
+    path: appConfig.routes.tabs.root,
+    loadChildren: () => import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    canActivate: [AuthGuardAfterLoginService],
+  },
+
+  /* Auth routes */
+  {
+    path: appConfig.routes.auth.forgot,
+    loadChildren: () => import('./pages/auth/forgot/forgot.module').then((m) => m.ForgotPageModule),
+    canActivate: [AuthGuardBeforeLoginService],
   },
   {
-    path: 'stories',
-    loadChildren: () => import('./pages/stories/stories.module').then(m => m.StoriesPageModule)
+    path: appConfig.routes.auth.login,
+    loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule),
+    canActivate: [AuthGuardBeforeLoginService],
   },
   {
-    path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
+    path: appConfig.routes.auth.register,
+    loadChildren: () => import('./pages/auth/register/register.module').then((m) => m.RegisterPageModule),
+    canActivate: [AuthGuardBeforeLoginService],
   },
   {
-    path: 'message-detail',
-    loadChildren: () => import('./pages/message-detail/message-detail.module').then(m => m.MessageDetailPageModule)
-  }
+    path: appConfig.routes.auth.reset,
+    loadChildren: () => import('./pages/auth/reset/reset.module').then((m) => m.ResetPageModule),
+    canActivate: [AuthGuardBeforeLoginService],
+  },
+
+  /* Redirect routes */
+  {
+    path: 'error',
+    redirectTo: appConfig.routes.redirectOnError,
+  },
+  {
+    path: '**',
+    redirectTo: appConfig.routes.redirectOnNotFound,
+  },
 ];
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
