@@ -28,6 +28,9 @@
     "type": "git",
     "url": "git+https://github.com/thenaim/ion-tk-social-network.git"
   },
+  "engines" : {
+    "node" : ">=12.14"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~12.0.1",
