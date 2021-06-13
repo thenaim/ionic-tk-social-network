@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{'tabs.main' | translate}}</ion-title>
+    <ion-title>{{'bottomTabs.main' | translate}}</ion-title>
     <ion-buttons slot="end">
       <ion-button color="primary">
         <ion-icon slot="icon-only" name="search-outline"></ion-icon>
@@ -15,13 +15,23 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar class="ion-no-padding">
+    <ion-segment mode="md" scrollable value="news">
+      <ion-segment-button *ngFor="let tab of tabs$ | async" [value]="tab.name">
+        <ion-label>{{'mainTabs.' + tab.name | translate}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" [scrollY]="!(loadingStates$ | async).isLoading">
-  <app-users-stories [stories]="[]"></app-users-stories>
-  <p *ngIf="(loadingStates$ | async).isFailed">Failed!!!</p>
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="(loadingStoriesStates$ | async).isSuccess">
+    <app-users-stories [stories]="stories$ | async"></app-users-stories>
+  </ng-container>
 
-  <ng-container *ngIf="(loadingStates$ | async).isSuccess">
+  <p *ngIf="(loadingNewsStates$ | async).isFailed">Failed!!!</p>
+
+  <ng-container *ngIf="(loadingNewsStates$ | async).isSuccess">
     <app-users-posts *ngFor="let newsItem of news$ | async;" [post]="newsItem"></app-users-posts>
   </ng-container>
 </ion-content>

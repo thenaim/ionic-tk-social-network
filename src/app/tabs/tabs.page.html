@@ -1,8 +1,8 @@
-<ion-tabs (ionTabsDidChange)="onTabChange($event)">
+<ion-tabs>
   <ion-tab-bar slot="bottom" [translucent]="true">
-    <ion-tab-button *ngFor="let tab of tabs$ | async; trackBy: trackByFn" [tab]="tab.id" [disabled]="tab.disabled">
+    <ion-tab-button *ngFor="let tab of tabs$ | async; trackBy: trackByTab" [tab]="tab.id" [disabled]="tab.disabled">
       <ion-icon [name]="tab.icon"></ion-icon>
-      <ion-label>{{'tabs.' + tab.id | translate}}</ion-label>
+      <ion-label>{{'bottomTabs.' + tab.id | translate}}</ion-label>
       <ion-badge *ngIf="tab.badge">{{tab.badge}}</ion-badge>
     </ion-tab-button>
   </ion-tab-bar>

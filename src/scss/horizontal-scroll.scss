@@ -1,0 +1,14 @@
+*[scrollX='true'] {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:nth-child(1) {
+    flex: 0 0 auto;
+  }
+}

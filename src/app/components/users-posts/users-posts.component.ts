@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NewsModel } from '../../tabs/main/main.model';
-import { UsersStoriesModel } from './users-posts.model';
 
 @Component({
   selector: 'app-users-posts',
@@ -10,7 +9,6 @@ import { UsersStoriesModel } from './users-posts.model';
 export class UsersPostsComponent implements OnInit {
   @Input() post: NewsModel;
 
-  @Output() onOpenStory = new EventEmitter<UsersStoriesModel>();
   constructor() {}
 
   ngOnInit() {}

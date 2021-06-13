@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { TabModel } from './tabs.model';
 import { TabsSelectors } from './tabs.selectors';
@@ -11,20 +11,10 @@ import { TabsSelectors } from './tabs.selectors';
 })
 export class TabsPage {
   @Select(TabsSelectors.selectTabs()) tabs$: Observable<TabModel[]>;
-  activeTab = 'main';
 
-  constructor(private store: Store) {}
+  constructor() {}
 
-  /**
-   * Set active tab on change
-   *
-   * @param event { tab: string }
-   */
-  onTabChange(event: { tab: string }) {
-    this.activeTab = event.tab;
-  }
-
-  trackByFn(index: number) {
+  trackByTab(index: number) {
     return index;
   }
 }

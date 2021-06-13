@@ -14,15 +14,25 @@ export interface NewsModel {
   views: number;
 }
 
-export interface NewsStateModel extends AppStoreLoadingStatesModel {
-  listData: NewsModel[];
+export interface MainTabModel {
+  id: string;
+  name: string;
+}
+
+export interface MainTabsStateModel extends AppStoreLoadingStatesModel {
+  listData: MainTabModel[];
 }
 
 export interface StoriesStateModel extends AppStoreLoadingStatesModel {
   listData: UsersStoriesModel[];
 }
 
+export interface NewsStateModel extends AppStoreLoadingStatesModel {
+  listData: NewsModel[];
+}
+
 export interface MainPageStateModel {
-  news: NewsStateModel;
+  tabs: MainTabsStateModel;
   stories: StoriesStateModel;
+  news: NewsStateModel;
 }

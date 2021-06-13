@@ -20,7 +20,7 @@ export class ClearBadgeAction {
 
 export const initialState: TabsStateModel = {
   active: 'main',
-  listData: [{ id: 'main', badge: 0, icon: 'globe-outline', disabled: false }],
+  listData: [{ id: 'main', badge: 0, icon: 'reader-outline', disabled: false }],
   isLoading: false,
   isFailed: false,
   isSuccess: false,

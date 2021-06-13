@@ -1,5 +1,15 @@
 {
-  "tabs": {
+  "bottomTabs": {
     "main": "Main"
+  },
+  "mainTabs": {
+    "news": "News",
+    "recommended": "Recommended",
+    "music": "Music",
+    "it": "IT",
+    "football": "Football",
+    "design": "Design",
+    "beauty": "Beauty",
+    "health": "Health"
   }
 }

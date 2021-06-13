@@ -25,23 +25,7 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-@import './scss/countries.style.scss';
-
-// Horizontal container
-*[scrollX] {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  .scrollX {
-    flex: 0 0 auto;
-  }
-}
+@import './scss/horizontal-scroll.scss';
 
 :root {
   ion-img {
