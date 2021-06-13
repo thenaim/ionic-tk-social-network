@@ -1,6 +1,7 @@
 {
   "bottomTabs": {
-    "main": "Главная"
+    "main": "Главная",
+    "services": "Сервисы"
   },
   "mainTabs": {
     "news": "Новости",

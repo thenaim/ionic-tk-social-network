@@ -17,6 +17,15 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'services',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./services/services.module').then((m) => m.ServicesPageModule),
+          },
+        ],
+      },
+      {
         path: '',
         redirectTo: '/tabs/main',
         pathMatch: 'full',
