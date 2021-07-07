@@ -3,20 +3,35 @@
   "version": "0.2.0",
   "description": "Ionic social network starter",
   "scripts": {
-    "start": "ionic serve --external",
-    "test": "ng test",
-    "e2e": "ng e2e",
-    "lint": "ng lint",
-    "lint:fix": "ng lint --fix",
-    "prettify": "prettier src --write",
-    "prebuild": "ionic build"
+    "start": "npx ionic serve --external",
+    "test": "npx ng test",
+    "e2e": "npx ng e2e",
+    "build:dev": "npx ionic build",
+    "build:prod": "npx ionic build --prod",
+    "android:add": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:update": "npx cap update android",
+    "android:resources": "cordova-res android --skip-config --copy",
+    "android:serve": "npx cap run android -l --external",
+    "android:prod": "npx ionic build --prod",
+    "ios:add": "npx cap add ios",
+    "ios:sync": "npx cap sync ios",
+    "ios:update": "npx cap update ios",
+    "ios:resources": "cordova-res ios --skip-config --copy",
+    "ios:serve": "npx cap run ios -l --external",
+    "ios:prod": "npx ionic build --prod",
+    "lint": "npx ng lint",
+    "lint:fix": "npx ng lint --fix",
+    "prettify": "npx prettier src --write"
   },
-    "keywords": [
+  "keywords": [
     "ionic",
     "ionic starter",
     "ionic template",
     "ionic social network",
-    "social network"
+    "social network",
+    "capacitorjs",
+    "ngxs"
   ],
   "author": "Naim",
   "license": "MIT",
@@ -28,8 +43,8 @@
     "type": "git",
     "url": "git+https://github.com/thenaim/ion-tk-social-network.git"
   },
-  "engines" : {
-    "node" : ">=12.14"
+  "engines": {
+    "node": ">=12.14"
   },
   "private": true,
   "dependencies": {
@@ -50,6 +65,8 @@
     "@ngxs/router-plugin": "^3.7.2",
     "@ngxs/storage-plugin": "^3.7.2",
     "@ngxs/store": "^3.7.2",
+    "moment": "^2.29.1",
+    "ngx-moment": "^5.0.0",
     "rxjs": "~7.1.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
