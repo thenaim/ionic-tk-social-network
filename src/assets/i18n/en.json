@@ -1,7 +1,8 @@
 {
   "bottomTabs": {
     "main": "Main",
-    "services": "Services"
+    "services": "Services",
+    "messages": "Messages"
   },
   "services": {
     "friends_title": "Friends",
@@ -22,5 +23,7 @@
     "design": "Design",
     "beauty": "Beauty",
     "health": "Health"
-  }
+  },
+  "messagesSearchTitle": "Search",
+  "message": "Message"
 }
