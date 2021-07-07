@@ -13,10 +13,10 @@ export const initialState: ServicesPageStateModel = {
   },
 };
 
-export const NEWS_STATE_TOKEN = new StateToken<ServicesPageStateModel>('services');
+export const STATE_TOKEN = new StateToken<ServicesPageStateModel>('services');
 
 @State({
-  name: NEWS_STATE_TOKEN,
+  name: STATE_TOKEN,
   defaults: initialState,
 })
 @Injectable()

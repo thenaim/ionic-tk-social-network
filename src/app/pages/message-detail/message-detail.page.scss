@@ -1,0 +1,135 @@
+// ion-content,
+// .messages-item-group {
+//   --background: var(--ion-item-background);
+// }
+
+.message-divider {
+  position: relative;
+  --background: transparent;
+  z-index: 4;
+  margin: auto;
+  border-bottom: 0px;
+
+  // remove paddings
+  --padding-end: 0px;
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
+  --ion-safe-area-left: 0px;
+  --ion-safe-area-right: 0px;
+
+  // on scrolling set sticky divider
+  &.scrolling {
+    position: sticky;
+    top: 10px;
+  }
+
+  // center divider text
+  ion-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    margin: 8px auto 0px auto;
+    padding: 8px 16px 8px 16px;
+    border-radius: 20px;
+    background: var(--ion-background-color, #fff);
+  }
+}
+
+.messages-item-group {
+  &:last-child {
+    margin-bottom: 20px;
+  }
+
+  .message-item-sliding:first-of-type {
+    .message-container {
+      margin-top: 0px;
+    }
+  }
+
+  .message-me {
+    --padding-start: 8px;
+    --padding-end: 0px;
+    --ion-safe-area-left: 0px;
+    --min-height: 32px;
+
+    .message-container {
+      background: rgb(var(--ion-color-primary-rgb), 0.2);
+    }
+  }
+
+  .message-user {
+    --padding-start: 8px;
+    --padding-end: 0px;
+    --ion-safe-area-left: 0px;
+    --min-height: 32px;
+
+    .user-avatar {
+      position: sticky;
+      top: 0px;
+      margin-right: 0px;
+      margin-inline-end: 8px;
+      width: 26px;
+      height: 26px;
+    }
+
+    .message-container {
+      background: rgb(var(--ion-color-medium-rgb), 0.2);
+    }
+  }
+
+  .message-container {
+    position: relative;
+    border-radius: 18px;
+    padding: 8px 12px;
+    margin-top: 12px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    max-width: 70%;
+
+    &.user-msg-padding {
+      margin-left: 33px;
+    }
+
+    .text {
+      font-weight: 400;
+      font-size: 14px;
+      white-space: pre-wrap;
+
+      &:after {
+        content: '';
+        width: 3.4em;
+        height: 12px;
+        display: inline-block;
+        vertical-align: top;
+        visibility: hidden;
+        font-size: 11px;
+      }
+    }
+
+    .time {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: 4px 8px 4px 4px;
+      line-height: 14px;
+      pointer-events: auto;
+      color: var(--ion-color-medium);
+    }
+  }
+}
+
+.message-textarea {
+  max-height: 100px;
+  --background: var(--ion-color-light);
+  border-radius: 20px;
+  --padding-top: 10px;
+  --padding-end: 10px;
+  --padding-bottom: 10px;
+  --padding-start: 10px;
+}
+
+.item-options-ios.item-options-end {
+  border-bottom-width: 0px;
+}

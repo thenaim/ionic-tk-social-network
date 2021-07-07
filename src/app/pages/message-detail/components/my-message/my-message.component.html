@@ -1,0 +1,6 @@
+<ion-item lines="none" class="message-me">
+  <div class="message-container" slot="end">
+    <span class="text" [innerHTML]="message"></span>
+    <small class="time">{{ createdAt | amDateFormat: 'hh:mm' }}</small>
+  </div>
+</ion-item>

@@ -7,6 +7,7 @@ import { UsersStoriesModel } from './users-stories.model';
   styleUrls: ['./users-stories.component.scss'],
 })
 export class UsersStoriesComponent implements OnInit {
+  @Input() isLoading = true;
   @Input() stories: UsersStoriesModel[];
 
   @Output() onOpenStory = new EventEmitter<UsersStoriesModel>();
@@ -14,6 +15,10 @@ export class UsersStoriesComponent implements OnInit {
 
   openStory(event: Event, story: UsersStoriesModel) {
     this.onOpenStory.emit(story);
+  }
+
+  trackByStory(index) {
+    return index;
   }
 
   ngOnInit() {}

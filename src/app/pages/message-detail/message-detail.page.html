@@ -1,0 +1,68 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="''" color="primary" defaultHref="/tabs/messages"></ion-back-button>
+    </ion-buttons>
+    <ion-item lines="none" *ngIf="messageDetail$ | async as messageDetail">
+      <ion-avatar slot="start">
+        <img [src]="messageDetail.avatar" />
+      </ion-avatar>
+      <ion-label class="ion-no-margin">
+        {{messageDetail.firstName}} {{messageDetail.lastName}}
+        <p class="ion-no-margin">{{messageDetail.lastOnline | amTimeAgo}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  [fullscreen]="true"
+  [scrollEvents]="true"
+  [scrollY]="isAllowScroll"
+  (ionScrollStart)="logScrollStart()"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollEnd)="logScrollEnd()"
+>
+  <ion-item-group class="messages-item-group" *ngFor="let message of messages$ | async; trackBy: trackBy">
+    <!-- Date message divider -->
+    <app-message-divider [isPageScrolling]="isPageScrolling" [createdAt]="message.createdAt"> </app-message-divider>
+
+    <ion-item-sliding
+      class="message-item-sliding"
+      [id]="'message_' + messageItem.id"
+      *ngFor="let messageItem of message.data; trackBy: trackBy; let index = index; let last = last"
+      #slidingItem
+      (ionDrag)="messageDraged($event, slidingItem)"
+    >
+      <!-- User message -->
+      <app-user-message
+        [isLastMessage]="message.data[index + 1]?.type === 'me' || last"
+        [isLastUserMessage]="message.data[index + 1]?.type !== 'me' && !last"
+        [userAvatar]="(messageDetail$ | async).avatar"
+        [message]="messageItem.message"
+        [createdAt]="messageItem.createdAt"
+        *ngIf="messageItem.type === 'user'"
+      >
+      </app-user-message>
+
+      <!-- My message -->
+      <app-my-message
+        [message]="messageItem.message"
+        [createdAt]="messageItem.createdAt"
+        *ngIf="messageItem.type === 'me'"
+      >
+      </app-my-message>
+
+      <!-- Reply slide -->
+      <ion-item-options side="end" class="no-border">
+        <ion-item-option disabled style="--background: var(--ion-item-background)">
+          <ion-icon slot="icon-only" name="arrow-undo-outline" color="primary"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-item-group>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <div appMessagesDetailFooter [ionContent]="ionContent"></div>
+</ion-footer>

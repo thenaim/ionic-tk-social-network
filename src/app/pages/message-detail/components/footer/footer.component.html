@@ -1,0 +1,26 @@
+<ion-toolbar style="height: auto">
+  <ion-buttons slot="start">
+    <ion-button>
+      <ion-icon slot="icon-only" name="add-circle-outline" color="primary"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-textarea
+    autoGrow
+    rows="1"
+    cols="10"
+    [placeholder]="'message' | translate"
+    [formControl]="messageControl"
+    class="message-textarea"
+  ></ion-textarea>
+  <ion-buttons slot="end">
+    <ion-button>
+      <ion-icon slot="icon-only" name="happy-outline" color="primary"></ion-icon>
+    </ion-button>
+    <ion-button (mousedown)="sendMessage($event)" *ngIf="messageControl.valid">
+      <ion-icon slot="icon-only" name="send-outline" color="primary"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="!messageControl.valid">
+      <ion-icon slot="icon-only" name="mic-outline" color="primary"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>

@@ -4,7 +4,9 @@ import { MainPageState } from './main.state';
 
 export class NewsSelectors {
   static selectMainTabs() {
-    return createSelector([MainPageState], (state: MainPageStateModel) => state.tabs.listData);
+    return createSelector([MainPageState], (state: MainPageStateModel) =>
+      state.tabs.isLoading ? Array(10).fill({ skeleton: true }) : state.tabs.listData,
+    );
   }
   static selectMainTabsLoadingStates() {
     return createSelector([MainPageState], (state: MainPageStateModel) => ({
@@ -15,7 +17,9 @@ export class NewsSelectors {
   }
 
   static selectStories() {
-    return createSelector([MainPageState], (state: MainPageStateModel) => state.stories.listData);
+    return createSelector([MainPageState], (state: MainPageStateModel) =>
+      state.stories.isLoading ? Array(10).fill({ skeleton: true }) : state.stories.listData,
+    );
   }
   static selectStoriesLoadingStates() {
     return createSelector([MainPageState], (state: MainPageStateModel) => ({
@@ -26,13 +30,8 @@ export class NewsSelectors {
   }
 
   static selectNews() {
-    return createSelector([MainPageState], (state: MainPageStateModel) => state.news.listData);
-  }
-  static selectNewsLoadingStates() {
-    return createSelector([MainPageState], (state: MainPageStateModel) => ({
-      isLoading: state.news.isLoading,
-      isSuccess: state.news.isSuccess,
-      isFailed: state.news.isFailed,
-    }));
+    return createSelector([MainPageState], (state: MainPageStateModel) =>
+      state.news.isLoading ? Array(10).fill({ skeleton: true }) : state.news.listData,
+    );
   }
 }

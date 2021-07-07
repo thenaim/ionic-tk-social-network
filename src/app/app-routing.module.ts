@@ -37,6 +37,14 @@ const routes: Routes = [
     canActivate: [AuthGuardBeforeLoginService],
   },
 
+  /* Other routes */
+
+  {
+    path: 'message-detail/:messageId',
+    loadChildren: () => import('./pages/message-detail/message-detail.module').then((m) => m.MessageDetailPageModule),
+    canActivate: [AuthGuardAfterLoginService],
+  },
+
   /* Redirect routes */
   {
     path: 'error',

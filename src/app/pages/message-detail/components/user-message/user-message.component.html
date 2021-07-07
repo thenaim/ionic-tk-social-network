@@ -1,0 +1,9 @@
+<ion-item lines="none" class="message-user">
+  <ion-avatar slot="start" class="ion-align-self-end user-avatar" *ngIf="isLastMessage">
+    <img [src]="userAvatar" />
+  </ion-avatar>
+  <div class="message-container" [ngClass]="{ 'user-msg-padding': isLastUserMessage }">
+    <span class="text" [innerHTML]="message"></span>
+    <small class="time">{{ createdAt | amDateFormat: 'hh:mm' }}</small>
+  </div>
+</ion-item>

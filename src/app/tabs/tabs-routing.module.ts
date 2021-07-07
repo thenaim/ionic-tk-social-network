@@ -26,6 +26,20 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'messages',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./messages/messages.module').then((m) => m.MessagesPageModule),
+          },
+          {
+            path: 'detail/:messageId',
+            loadChildren: () =>
+              import('../pages/message-detail/message-detail.module').then((m) => m.MessageDetailPageModule),
+          },
+        ],
+      },
+      {
         path: '',
         redirectTo: '/tabs/main',
         pathMatch: 'full',

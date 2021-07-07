@@ -1,46 +1,89 @@
-<ion-card class="post-list-card">
-  <ion-item lines="none">
-    <ion-avatar slot="start">
-      <img [src]="post.avatar" />
-    </ion-avatar>
-    <ion-label>
-      {{ post.firstName }} {{ post.lastName }}
-      <p>two minutes ago</p>
-    </ion-label>
-    <ion-buttons slot="end">
-      <ion-button color="medium">
-        <ion-icon slot="icon-only" md="ellipsis-vertical-outline" ios="ellipsis-horizontal-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-item>
+<ng-container>
+  <ion-card class="post-list-card" *ngFor="let post of posts; trackBy: trackByPost">
+    <ng-container *ngIf="post['skeleton']">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="width: 100%; height: 100%; border-radius: 50%"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          <p>
+            <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
 
-  <ion-img [src]="post.image"></ion-img>
+      <ion-skeleton-text animated style="width: 100%; height: 200px"></ion-skeleton-text>
 
-  <ion-card-content class="post-list-content">
-    {{ post.content }}
-  </ion-card-content>
+      <ion-card-content class="post-list-content">
+        <ion-skeleton-text animated style="width: 100%; height: 50px"></ion-skeleton-text>
+      </ion-card-content>
 
-  <ion-item lines="none" class="ion-no-padding" style="margin-left: 10px">
-    <ion-buttons slot="start">
-      <ion-button color="medium">
-        <ion-icon slot="start" name="heart-outline"></ion-icon>
-        <small>{{ post.likes }}</small>
-      </ion-button>
-      <ion-button color="medium">
-        <ion-icon slot="start" name="chatbox-outline"></ion-icon>
-        <small>{{ post.comments }}</small>
-      </ion-button>
-      <ion-button color="medium">
-        <ion-icon slot="start" name="return-up-forward-outline"></ion-icon>
-        <small>{{ post.shared }}</small>
-      </ion-button>
-    </ion-buttons>
+      <ion-item lines="none" class="ion-no-padding" style="margin-left: 10px">
+        <ion-buttons slot="start">
+          <ion-button color="medium">
+            <ion-skeleton-text animated style="width: 32px; height: 32px; border-radius: 50%"></ion-skeleton-text>
+          </ion-button>
+          <ion-button color="medium">
+            <ion-skeleton-text animated style="width: 32px; height: 32px; border-radius: 50%"></ion-skeleton-text>
+          </ion-button>
+          <ion-button color="medium">
+            <ion-skeleton-text animated style="width: 32px; height: 32px; border-radius: 50%"></ion-skeleton-text>
+          </ion-button>
+        </ion-buttons>
 
-    <ion-buttons slot="end">
-      <ion-button color="medium">
-        <ion-icon size="small" slot="start" name="eye-outline"></ion-icon>
-        <small>{{ post.views }}</small>
-      </ion-button>
-    </ion-buttons>
-  </ion-item>
-</ion-card>
+        <ion-buttons slot="end">
+          <ion-button color="medium">
+            <ion-skeleton-text animated style="width: 32px; height: 32px; border-radius: 50%"></ion-skeleton-text>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ng-container>
+    <ng-container *ngIf="!post['skeleton']">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="post.avatar" />
+        </ion-avatar>
+        <ion-label>
+          {{ post.firstName }} {{ post.lastName }}
+          <p>two minutes ago</p>
+        </ion-label>
+        <ion-buttons slot="end">
+          <ion-button color="medium">
+            <ion-icon slot="icon-only" md="ellipsis-vertical-outline" ios="ellipsis-horizontal-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-img [src]="post.image"></ion-img>
+
+      <ion-card-content class="post-list-content">
+        {{ post.content }}
+      </ion-card-content>
+
+      <ion-item lines="none" class="ion-no-padding" style="margin-left: 10px">
+        <ion-buttons slot="start">
+          <ion-button color="medium">
+            <ion-icon slot="start" name="heart-outline"></ion-icon>
+            <small>{{ post.likes }}</small>
+          </ion-button>
+          <ion-button color="medium">
+            <ion-icon slot="start" name="chatbox-outline"></ion-icon>
+            <small>{{ post.comments }}</small>
+          </ion-button>
+          <ion-button color="medium">
+            <ion-icon slot="start" name="return-up-forward-outline"></ion-icon>
+            <small>{{ post.shared }}</small>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-buttons slot="end">
+          <ion-button color="medium">
+            <ion-icon size="small" slot="start" name="eye-outline"></ion-icon>
+            <small>{{ post.views }}</small>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ng-container>
+  </ion-card>
+</ng-container>

@@ -14,13 +14,9 @@ export class LoginPage implements OnInit {
 
   constructor(private store: Store, private navController: NavController, private platform: Platform) {}
 
-  onAuth() {
-    this.store.dispatch(new AuthAction.Login());
-  }
-
   onLogin() {
     if (this.login.valid) {
-      console.log(this.login.value);
+      this.store.dispatch(new AuthAction.Login());
     }
   }
 

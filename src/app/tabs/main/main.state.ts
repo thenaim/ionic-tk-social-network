@@ -8,21 +8,21 @@ import { MainPageStateModel, MainTabModel, NewsModel } from './main.model';
 
 export const initialState: MainPageStateModel = {
   tabs: {
-    isLoading: false,
+    isLoading: true,
     isFailed: false,
     isSuccess: false,
     error: null,
     listData: [],
   },
   stories: {
-    isLoading: false,
+    isLoading: true,
     isFailed: false,
     isSuccess: false,
     error: null,
     listData: [],
   },
   news: {
-    isLoading: false,
+    isLoading: true,
     isFailed: false,
     isSuccess: false,
     error: null,

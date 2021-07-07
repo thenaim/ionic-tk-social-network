@@ -1,14 +1,34 @@
 <ion-card class="stories-card" scrollX="true">
-  <ion-list lines="none" class="story-list" *ngFor="let story of stories" (click)="openStory($event, story)">
-    <ion-item lines="none" class="story-item">
-      <ion-avatar class="story-avatar" [ngClass]="{ seen: false }">
-        <ion-img [src]="story.avatar"></ion-img>
-      </ion-avatar>
-    </ion-item>
-    <div class="story-author">
-      <ion-text color="primary">
-        {{ story.firstName }}
-      </ion-text>
-    </div>
+  <ion-list
+    lines="none"
+    class="story-list"
+    (click)="openStory($event, story)"
+    *ngFor="let story of stories; trackBy: trackByStory"
+  >
+    <ng-container *ngIf="story['skeleton']">
+      <ion-item lines="none" class="story-item">
+        <ion-skeleton-text
+          animated
+          style="height: 64px; width: 64px; border-radius: 50%; margin: auto"
+        ></ion-skeleton-text>
+      </ion-item>
+      <div class="story-author">
+        <ion-text color="primary">
+          <ion-skeleton-text animated style="width: 80%; margin: auto"></ion-skeleton-text>
+        </ion-text>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!story['skeleton']">
+      <ion-item lines="none" class="story-item">
+        <ion-avatar class="story-avatar" [ngClass]="{ seen: false }">
+          <ion-img [src]="story.avatar"></ion-img>
+        </ion-avatar>
+      </ion-item>
+      <div class="story-author">
+        <ion-text color="primary">
+          {{ story.firstName }}
+        </ion-text>
+      </div>
+    </ng-container>
   </ion-list>
 </ion-card>

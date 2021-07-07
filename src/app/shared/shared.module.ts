@@ -7,11 +7,27 @@ import { IonicModule } from '@ionic/angular';
  */
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, TranslateModule, NgxsFormPluginModule.forRoot()],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TranslateModule,
+    /* NGX MOMENT */
+    MomentModule,
+  ],
   declarations: [],
-  exports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, NgxsFormPluginModule],
+  exports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    NgxsFormPluginModule,
+    /* NGX MOMENT */
+    MomentModule,
+  ],
   entryComponents: [],
 })
 export class SharedModule {}

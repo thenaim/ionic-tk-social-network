@@ -7,9 +7,14 @@ import { NewsModel } from '../../tabs/main/main.model';
   styleUrls: ['./users-posts.component.scss'],
 })
 export class UsersPostsComponent implements OnInit {
-  @Input() post: NewsModel;
+  @Input() isLoading = true;
+  @Input() posts: NewsModel[];
 
   constructor() {}
+
+  trackByPost(index) {
+    return index;
+  }
 
   ngOnInit() {}
 }

@@ -1,0 +1,52 @@
+.message-container {
+  position: relative;
+  border-radius: 18px;
+  padding: 8px 12px;
+  margin-top: 12px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  max-width: 70%;
+
+  &.user-msg-padding {
+    margin-left: 33px;
+  }
+
+  .text {
+    font-weight: 400;
+    font-size: 14px;
+    white-space: pre-wrap;
+
+    &:after {
+      content: '';
+      width: 3.4em;
+      height: 12px;
+      display: inline-block;
+      vertical-align: top;
+      visibility: hidden;
+      font-size: 11px;
+    }
+  }
+
+  .time {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 4px 8px 4px 4px;
+    line-height: 14px;
+    pointer-events: auto;
+    color: var(--ion-color-medium);
+  }
+}
+
+.message-me {
+  --padding-start: 8px;
+  --padding-end: 0px;
+  --ion-safe-area-left: 0px;
+  --min-height: 32px;
+
+  .message-container {
+    background: rgb(var(--ion-color-primary-rgb), 0.2);
+  }
+}

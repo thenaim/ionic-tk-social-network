@@ -23,6 +23,7 @@ export const initialState: TabsStateModel = {
   listData: [
     { id: 'main', badge: 0, icon: 'reader-outline', disabled: false },
     { id: 'services', badge: 0, icon: 'grid-outline', disabled: false },
+    { id: 'messages', badge: 0, icon: 'chatbubble-outline', disabled: false },
   ],
   isLoading: false,
   isFailed: false,

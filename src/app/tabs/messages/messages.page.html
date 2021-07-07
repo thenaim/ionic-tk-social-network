@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title *ngIf="!showSearchbar">
+      {{'bottomTabs.messages' | translate}}
+      <ion-icon name="chevron-down-outline" color="primary" class="message-icon-middle"></ion-icon>
+    </ion-title>
+    <ion-searchbar
+      [formControl]="searchMessageList"
+      showCancelButton="always"
+      cancelButtonIcon="arrow-back-outline"
+      (ionCancel)="showSearchbar = false"
+      [placeholder]="'messagesSearchTitle' | translate"
+      *ngIf="showSearchbar"
+    >
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button color="primary" *ngIf="!isIos && !showSearchbar" (click)="(showSearchbar = true)">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="primary" *ngIf="!showSearchbar">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-searchbar
+    [formControl]="searchMessageList"
+    cancelButtonIcon="arrow-back-outline"
+    [placeholder]="'messagesSearchTitle' | translate"
+    *ngIf="isIos"
+  >
+  </ion-searchbar>
+
+  <ion-list lines="none" class="ion-padding-bottom">
+    <ion-item-sliding
+      *ngFor="let message of messages$ | async as messageLists; trackBy: trackByMessages; let messageIndex = index;"
+    >
+      <ion-item *ngIf="message['skeleton']">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated style="border-radius: 50%"></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h2>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h2>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+
+      <ng-container *ngIf="!message['skeleton']">
+        <ion-item
+          button
+          [lines]="message.isPin ? messageLists[messageIndex + 1].isPin ? 'none' : 'full' : 'none'"
+          detail="false"
+          (click)="openMessageDetail(message)"
+        >
+          <ion-avatar slot="start">
+            <img [src]="message.avatar" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{message.firstName}} {{message.lastName}}</h2>
+            <p>{{message.lastMessage}}</p>
+          </ion-label>
+          <ion-icon name="arrow-up-circle-outline" slot="end" *ngIf="message.isPin"></ion-icon>
+        </ion-item>
+
+        <ion-item-options side="start">
+          <ion-item-option color="primary" expandable>
+            <ion-icon slot="start" name="chatbubble-ellipses-outline"></ion-icon>
+            <ion-label> Not readed </ion-label>
+          </ion-item-option>
+          <ion-item-option color="medium" (click)="pinMessage(message.id)" *ngIf="!message.isPin">
+            <ion-icon slot="start" name="arrow-up-circle-outline"></ion-icon>
+            <ion-label> Pin </ion-label>
+          </ion-item-option>
+          <ion-item-option color="medium" (click)="unPinMessage(message.id)" *ngIf="message.isPin">
+            <ion-icon slot="start" name="arrow-down-circle-outline"></ion-icon>
+            <ion-label> UnPin </ion-label>
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item-options side="end">
+          <ion-item-option color="medium">
+            <ion-icon slot="start" name="volume-mute-outline"></ion-icon>
+            <ion-label> Mute </ion-label>
+          </ion-item-option>
+          <ion-item-option color="danger" expandable>
+            <ion-icon slot="start" name="trash-outline"></ion-icon>
+            <ion-label> Delete </ion-label>
+          </ion-item-option>
+        </ion-item-options>
+      </ng-container>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div
+    class="ion-margin ion-text-center"
+    *ngIf="!(loadingMessagesStates$ | async).isLoading && !(messages$ | async).length"
+  >
+    <p>По вашему запросу ничего не найдено</p>
+  </div>
+</ion-content>

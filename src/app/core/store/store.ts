@@ -6,11 +6,21 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsModuleOptions } from '@ngxs/store';
 import { environment } from '../../../environments/environment';
+import { MessageDetailPageState } from '../../pages/message-detail/message-detail.state';
 import { MainPageState } from '../../tabs/main/main.state';
+import { MessagesPageState } from '../../tabs/messages/messages.state';
+import { ServicesPageState } from '../../tabs/services/services.state';
 import { TabsState } from '../../tabs/tabs.state';
 import { AuthGuardState } from '../auth-guard/auth-guard.state';
 
-const ngxsMainStates = [AuthGuardState, TabsState, MainPageState];
+const ngxsMainStates = [
+  AuthGuardState,
+  TabsState,
+  MainPageState,
+  ServicesPageState,
+  MessagesPageState,
+  MessageDetailPageState,
+];
 const ngxsStorageStates = [AuthGuardState];
 
 const ngxsConfig: NgxsModuleOptions = {
