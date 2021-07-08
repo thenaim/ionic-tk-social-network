@@ -1,12 +1,6 @@
 import { createSelector } from '@ngxs/store';
 import { AuthStateModel } from './auth-guard.models';
+import { AuthGuardState } from './auth-guard.state';
 
-export class AuthGuardSelectors {
-  static isAuth(stateClass) {
-    return createSelector([stateClass], (state: AuthStateModel) => state.isAuth);
-  }
-
-  static authToken(stateClass) {
-    return createSelector([stateClass], (state: AuthStateModel) => state.accessToken);
-  }
-}
+export const selectIsAuth = () => createSelector([AuthGuardState], (state: AuthStateModel) => state.isAuth);
+export const selectAuthToken = () => createSelector([AuthGuardState], (state: AuthStateModel) => state.accessToken);

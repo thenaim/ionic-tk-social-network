@@ -16,7 +16,8 @@ export class LoginPage implements OnInit {
 
   onLogin() {
     if (this.login.valid) {
-      this.store.dispatch(new AuthAction.Login());
+      const randomUserId = Math.floor(Math.random() * 100).toString();
+      this.store.dispatch(new AuthAction.Login(randomUserId));
     }
   }
 

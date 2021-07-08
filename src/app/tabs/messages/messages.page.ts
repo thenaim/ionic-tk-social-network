@@ -6,7 +6,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { MessagesActions, PinMessage, UnPinMessage } from './messages.actions';
 import { MessageModel } from './messages.model';
-import { MessagesSelectors } from './messages.selectors';
+import { selectMessages, selectMessagesLoadingStates } from './messages.selectors';
 
 @Component({
   selector: 'app-messages',
@@ -17,8 +17,8 @@ export class MessagesPage implements OnInit {
   @ViewChild(IonContent) ionContent: IonContent;
   @ViewChild(IonItemSliding) ionItemSliding: IonItemSliding;
 
-  @Select(MessagesSelectors.selectMessages()) messages$: Observable<MessageModel[]>;
-  @Select(MessagesSelectors.selectMessagesLoadingStates()) loadingMessagesStates$: Observable<{
+  @Select(selectMessages()) messages$: Observable<MessageModel[]>;
+  @Select(selectMessagesLoadingStates()) loadingMessagesStates$: Observable<{
     isLoading: boolean;
     isFailed: boolean;
     isSuccess: boolean;

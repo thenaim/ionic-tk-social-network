@@ -3,7 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { TabListModel, TabModel } from './tabs.model';
-import { TabsSelectors } from './tabs.selectors';
+import { selectTabsList } from './tabs.selectors';
 
 @Component({
   selector: 'app-tabs',
@@ -11,7 +11,7 @@ import { TabsSelectors } from './tabs.selectors';
   styleUrls: ['tabs.page.scss'],
 })
 export class TabsPage {
-  @Select(TabsSelectors.selectTabs()) tabs$: Observable<TabModel[]>;
+  @Select(selectTabsList()) tabs$: Observable<TabModel[]>;
 
   activeTab: TabListModel = 'main';
   constructor(private menuController: MenuController) {}

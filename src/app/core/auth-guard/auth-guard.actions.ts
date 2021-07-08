@@ -2,7 +2,7 @@
 export namespace AuthAction {
   export class Login {
     static readonly type = '[Login] User login';
-    constructor(public isAuth: boolean = true) {}
+    constructor(public userId: string, public isAuth: boolean = true) {}
   }
 
   export class Logout {

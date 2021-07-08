@@ -16,11 +16,11 @@ export const initialState: AuthStateModel = {
 @Injectable()
 export class AuthGuardState {
   @Action(AuthAction.Login)
-  login(context: StateContext<AuthAction.Login>) {
+  login(context: StateContext<AuthAction.Login>, action: AuthAction.Login) {
     const state = context.getState();
     context.setState({
       ...state,
-      isAuth: true,
+      ...action,
     });
   }
 

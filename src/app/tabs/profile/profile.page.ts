@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { ProfileActions } from './profile.actions';
+import { ProfileModel } from './profile.model';
+import { selectUser, selectUserLoadingStates } from './profile.selectors';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +12,14 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  constructor(private menuController: MenuController) {}
+  @Select(selectUser()) user$: Observable<ProfileModel>;
+  @Select(selectUserLoadingStates()) userLoadingStates$: Observable<{
+    isLoading: boolean;
+    isFailed: boolean;
+    isSuccess: boolean;
+  }>;
+
+  constructor(private store: Store, private menuController: MenuController) {}
 
   doRefresh(event) {
     setTimeout(() => {
@@ -19,7 +31,9 @@ export class ProfilePage implements OnInit {
     this.menuController.toggle('profile');
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.store.dispatch(new ProfileActions.FetchUser('1'));
+  }
 
   ionViewDidEnter() {
     this.menuController.enable(true, 'profile');

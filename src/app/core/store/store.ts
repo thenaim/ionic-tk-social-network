@@ -10,6 +10,7 @@ import { MessageDetailPageState } from '../../pages/message-detail/message-detai
 import { SettingsPageState } from '../../pages/settings/settings.state';
 import { MainPageState } from '../../tabs/main/main.state';
 import { MessagesPageState } from '../../tabs/messages/messages.state';
+import { ProfilePageState } from '../../tabs/profile/profile.state';
 import { ServicesPageState } from '../../tabs/services/services.state';
 import { TabsState } from '../../tabs/tabs.state';
 import { AuthGuardState } from '../auth-guard/auth-guard.state';
@@ -20,6 +21,7 @@ const ngxsMainStates = [
   MainPageState,
   ServicesPageState,
   MessagesPageState,
+  ProfilePageState,
   SettingsPageState,
   MessageDetailPageState,
 ];
