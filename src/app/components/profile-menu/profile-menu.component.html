@@ -1,16 +1,7 @@
-<ion-menu
-  side="end"
-  type="push"
-  menuId="profile"
-  contentId="main"
-  class="profile-menu"
-  max-edge-start="100"
-  swipe-gesture="true"
-  disabled
->
+<ion-menu side="end" type="push" menuId="profile" contentId="main" class="profile-menu" disabled>
   <ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-title>John Smith</ion-title>
+    <ion-toolbar *ngIf="user$ | async as user">
+      <ion-title>{{ user.firstName }} {{ user.lastName }}</ion-title>
     </ion-toolbar>
   </ion-header>
 

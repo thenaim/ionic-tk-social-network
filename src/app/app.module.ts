@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileMenuComponentModule } from './components/profile-menu/profile-menu.module';
+import { CameraSideMenuComponentModule } from './components/camera-side-menu/camera-side-menu.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { ProfileMenuComponentModule } from './components/profile-menu/profile-me
     HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    CameraSideMenuComponentModule,
     ProfileMenuComponentModule,
     CoreModule,
   ],

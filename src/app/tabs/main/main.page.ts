@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
+import { IonContent, MenuController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UsersStoriesModel } from '../../components/users-stories/users-stories.model';
@@ -19,10 +19,15 @@ export class MainPage implements OnInit {
   @Select(selectStories()) stories$: Observable<UsersStoriesModel[]>;
   @Select(selectNews()) news$: Observable<NewsModel[]>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private menuController: MenuController) {}
 
   trackBy(index) {
     return index;
+  }
+
+  toggleCameraMenu() {
+    console.log('toggleCameraMenu');
+    this.menuController.toggle('camera');
   }
 
   async ngOnInit() {
@@ -32,7 +37,12 @@ export class MainPage implements OnInit {
       new FetchNewsActions.FetchNews(),
     ]);
   }
-  ionViewWillEnter() {}
 
-  ionViewDidLeave() {}
+  ionViewDidEnter() {
+    this.menuController.enable(true, 'camera');
+  }
+
+  ionViewDidLeave() {
+    this.menuController.enable(false, 'camera');
+  }
 }
