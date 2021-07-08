@@ -1,0 +1,23 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="qr-code-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center"> @boss </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" style="--ion-text-color: var(--ion-color-medium)" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
+  </ion-refresher>
+</ion-content>

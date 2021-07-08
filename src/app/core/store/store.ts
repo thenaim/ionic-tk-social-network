@@ -7,6 +7,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsModuleOptions } from '@ngxs/store';
 import { environment } from '../../../environments/environment';
 import { MessageDetailPageState } from '../../pages/message-detail/message-detail.state';
+import { SettingsPageState } from '../../pages/settings/settings.state';
 import { MainPageState } from '../../tabs/main/main.state';
 import { MessagesPageState } from '../../tabs/messages/messages.state';
 import { ServicesPageState } from '../../tabs/services/services.state';
@@ -19,6 +20,7 @@ const ngxsMainStates = [
   MainPageState,
   ServicesPageState,
   MessagesPageState,
+  SettingsPageState,
   MessageDetailPageState,
 ];
 const ngxsStorageStates = [AuthGuardState];

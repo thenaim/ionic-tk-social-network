@@ -1,0 +1,53 @@
+ion-grid {
+  width: 100%;
+  height: 100%;
+}
+
+ion-row {
+  height: 100%;
+}
+
+.digit-max-width {
+  max-width: 320px;
+  margin: auto;
+
+  @media (min-width: 992px) {
+    max-width: 576px !important;
+  }
+}
+
+.digit-button {
+  --box-shadow: none;
+}
+
+.digit-button,
+.clear-button,
+.finger-print-button {
+  width: 70px;
+  height: 70px;
+  --border-radius: 64px;
+}
+
+.digit-coll-position {
+  align-self: flex-end;
+
+  @media (min-width: 576px) {
+    align-self: center !important;
+  }
+}
+
+.hidesm-showlg {
+  display: inline-block;
+
+  @media (min-width: 576px) and (max-width: 992px) {
+    display: none !important;
+  }
+}
+
+.showsm-hidelg {
+  display: none;
+
+  @media (min-width: 576px) and (max-width: 992px) {
+    display: inline-block !important;
+  }
+}

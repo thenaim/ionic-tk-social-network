@@ -1,7 +1,60 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'backButtonTitle' | translate" defaultHref="/auth/login"></ion-back-button>
+    </ion-buttons>
     <ion-title>register</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content [fullscreen]="true" class="auth-page">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center" size-md="6" size-lg="5" size-xs="12">
+        <form [formGroup]="register" (ngSubmit)="onRegister()">
+          <div class="logo">
+            <img src="./assets/logo/TK_DEFAULT_LOGO.png" width="96px" />
+          </div>
+
+          <ion-card color="light" class="auth-card ion-margin">
+            <ion-item color="light">
+              <ion-input type="text" placeholder="First name" formControlName="firstName"></ion-input>
+            </ion-item>
+            <ion-item color="light">
+              <ion-input type="text" placeholder="Last name" formControlName="lastName"></ion-input>
+            </ion-item>
+            <ion-item color="light">
+              <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item color="light" class="ion-no-inner-padding-end">
+              <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item color="light" class="ion-no-inner-padding-end">
+              <ion-input type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm">
+              </ion-input>
+            </ion-item>
+          </ion-card>
+
+          <ion-button
+            expand="block"
+            class="ion-margin-start ion-margin-end ion-margin-bottom"
+            type="submit"
+            [disabled]="!register.valid"
+          >
+            Sign Up
+          </ion-button>
+          <span class="ion-margin"></span>
+        </form>
+
+        <p class="ion-margin">
+          <ion-text>
+            By pressing Sign Up, you agree to the service's
+            <a href="http://">Terms of Service</a>
+            and
+            <a href="http://">Privacy Policy</a>
+          </ion-text>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

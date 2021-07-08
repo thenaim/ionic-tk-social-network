@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'backButtonTitle' | translate" defaultHref="/tabs/profile/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'accountTitle' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button lines="none">
+      <ion-label>Short Name</ion-label>
+      <span slot="end">@user</span>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Posts on your wall</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none">
+      <ion-label>Show by default</ion-label>
+      <span slot="end">My Posts</span>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Allow Comments</ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Community Management</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none">
+      <ion-label>
+        Commenting as Community
+        <p>In Your Communities Only</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Comments</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none">
+      <ion-label> Comment Order </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

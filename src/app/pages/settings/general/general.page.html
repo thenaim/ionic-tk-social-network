@@ -1,0 +1,66 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'backButtonTitle' | translate" defaultHref="/tabs/profile/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'generalTitle' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Media Upload</ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label>Compress Photos</ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Compress Videos</ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>System Settings</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none">
+      <ion-label> Location </ion-label>
+      <p slot="end">Never</p>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text color="medium">
+        Allow access to location services to arrach your location to messages, posts, photos and stories, to improve ads
+        in your news feed and optimize content and friend suggestions
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Other</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none">
+      <ion-label> Autoplay Media </ion-label>
+      <p slot="end">Never</p>
+    </ion-item>
+    <ion-item button lines="none">
+      <ion-label> Stickers </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Cache</ion-label>
+    </ion-list-header>
+    <ion-item button lines="none">
+      <ion-label> Clear Cache </ion-label>
+      <p slot="end">0 MB</p>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text color="medium"> The cache stores recently loaded images to help the app work faster </ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'backButtonTitle' | translate" defaultHref="/tabs/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'settingsTitle' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    <ng-container *ngFor="let setting of settings; let index = index">
+      <ion-item-divider *ngIf="index === 0 || index === 1 || index === 7"></ion-item-divider>
+      <ion-item button [routerLink]="setting.link" routerDirection="forward">
+        <ion-icon color="primary" slot="start" [name]="setting.icon"></ion-icon>
+        <ion-label>{{setting.id + 'Title' | translate}}</ion-label>
+      </ion-item>
+    </ng-container>
+    <ion-item-divider></ion-item-divider>
+    <ion-item button detail="false" [routerLink]="[ '/auth', 'login' ]" routerDirection="root">
+      <ion-label color="danger">{{'logOut' | translate}}</ion-label>
+    </ion-item>
+    <ion-item-divider></ion-item-divider>
+  </ion-list>
+</ion-content>

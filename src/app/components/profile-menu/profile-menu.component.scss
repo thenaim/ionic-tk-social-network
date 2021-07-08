@@ -1,0 +1,13 @@
+.profile-menu {
+  --background: var(--ion-item-background);
+
+  ion-title.ios {
+    padding: 0px 60px;
+  }
+
+  ion-footer {
+    ion-buttons {
+      height: 45px;
+    }
+  }
+}

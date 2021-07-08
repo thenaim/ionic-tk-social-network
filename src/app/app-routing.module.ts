@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { appConfig } from './app.config';
-import { AuthGuardAfterLoginService, AuthGuardBeforeLoginService } from './core/auth-guard/auth-guard.service';
+import { AuthGuardAfterLoginService } from './core/auth-guard/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -17,24 +17,8 @@ const routes: Routes = [
 
   /* Auth routes */
   {
-    path: appConfig.routes.auth.forgot,
-    loadChildren: () => import('./pages/auth/forgot/forgot.module').then((m) => m.ForgotPageModule),
-    canActivate: [AuthGuardBeforeLoginService],
-  },
-  {
-    path: appConfig.routes.auth.login,
-    loadChildren: () => import('./pages/auth/login/login.module').then((m) => m.LoginPageModule),
-    canActivate: [AuthGuardBeforeLoginService],
-  },
-  {
-    path: appConfig.routes.auth.register,
-    loadChildren: () => import('./pages/auth/register/register.module').then((m) => m.RegisterPageModule),
-    canActivate: [AuthGuardBeforeLoginService],
-  },
-  {
-    path: appConfig.routes.auth.reset,
-    loadChildren: () => import('./pages/auth/reset/reset.module').then((m) => m.ResetPageModule),
-    canActivate: [AuthGuardBeforeLoginService],
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthPageModule),
   },
 
   /* Other routes */

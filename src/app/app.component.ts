@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private translateService: TranslateService) {
     this.initializeApp();
   }
 

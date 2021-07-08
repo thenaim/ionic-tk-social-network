@@ -1,0 +1,62 @@
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="6" size-lg="12" class="ion-align-self-center ion-text-center">
+        <p>
+          <ion-icon name="lock-closed" color="dark" size="large"></ion-icon>
+        </p>
+        <p>
+          <ion-text color="dark"> {{'authPin' | translate: { app_name: 'Tk' } }} </ion-text>
+        </p>
+        <div id="shake-animation">
+          <ion-icon
+            class="ion-margin-end"
+            *ngFor="let _ of pinRange; let i = index"
+            [name]="pin[i] !== undefined ? 'ellipse' : 'ellipse-outline'"
+            [color]="pin[i] !== undefined ? 'primary' : 'dark'"
+          >
+          </ion-icon>
+        </div>
+        <ion-button color="medium" fill="clear" class="finger-print-button showsm-hidelg" *ngIf="fingerPrintAvailable">
+          <ion-icon slot="icon-only" name="finger-print-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-lg="12" class="ion-no-margin ion-no-padding digit-coll-position">
+        <ion-row class="digit-max-width">
+          <ion-col size="4" class="ion-align-self-center ion-text-center" *ngFor="let dig of digits">
+            <ng-container [ngSwitch]="dig.area">
+              <!-- Clear area -->
+              <ng-container *ngSwitchCase="false"></ng-container>
+
+              <!-- Finger print activate button -->
+              <ng-container *ngSwitchCase="'finger'">
+                <ion-button
+                  color="medium"
+                  fill="clear"
+                  class="finger-print-button hidesm-showlg"
+                  *ngIf="fingerPrintAvailable"
+                >
+                  <ion-icon slot="icon-only" name="finger-print-outline"></ion-icon>
+                </ion-button>
+              </ng-container>
+
+              <!-- Clear button -->
+              <ng-container *ngSwitchCase="'backspace'">
+                <ion-button color="medium" fill="clear" class="clear-button" (click)="passwordClear()">
+                  <ion-icon slot="icon-only" name="backspace-outline"></ion-icon>
+                </ion-button>
+              </ng-container>
+
+              <!-- Digits -->
+              <ng-container *ngSwitchDefault>
+                <ion-button color="light" class="digit-button" (click)="passwordClick(dig)">
+                  <ion-text style="font-size: 22px"> {{dig.pin}} </ion-text>
+                </ion-button>
+              </ng-container>
+            </ng-container>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

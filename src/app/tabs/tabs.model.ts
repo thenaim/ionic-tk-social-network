@@ -1,6 +1,6 @@
 import { AppStoreLoadingStatesModel } from '../core/store/store.model';
 
-export type TabListModel = 'main' | 'services' | 'messages' | 'tab4';
+export type TabListModel = 'main' | 'services' | 'messages' | 'profile';
 
 export interface TabModel {
   id: TabListModel;

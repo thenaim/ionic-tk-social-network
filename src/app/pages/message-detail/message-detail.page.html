@@ -1,7 +1,11 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [text]="''" color="primary" defaultHref="/tabs/messages"></ion-back-button>
+      <ion-back-button
+        [text]="'backButtonTitle' | translate"
+        color="primary"
+        defaultHref="/tabs/messages"
+      ></ion-back-button>
     </ion-buttons>
     <ion-item lines="none" *ngIf="messageDetail$ | async as messageDetail">
       <ion-avatar slot="start">

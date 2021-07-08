@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 /*
  * Other modules
@@ -22,6 +23,7 @@ import { MomentModule } from 'ngx-moment';
     IonicModule,
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     TranslateModule,
     NgxsFormPluginModule,

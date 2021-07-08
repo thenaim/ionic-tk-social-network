@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
-import { TabModel } from './tabs.model';
+import { TabListModel, TabModel } from './tabs.model';
 import { TabsSelectors } from './tabs.selectors';
 
 @Component({
@@ -12,9 +13,22 @@ import { TabsSelectors } from './tabs.selectors';
 export class TabsPage {
   @Select(TabsSelectors.selectTabs()) tabs$: Observable<TabModel[]>;
 
-  constructor() {}
+  activeTab: TabListModel = 'main';
+  constructor(private menuController: MenuController) {}
 
   trackByTab(index: number) {
     return index;
+  }
+
+  tabChanged(event) {
+    this.activeTab = event.tab;
+  }
+
+  tabClicked(tab) {
+    if (this.activeTab === tab.id) {
+      if (this.activeTab === 'profile') {
+        this.menuController.toggle('profile');
+      }
+    }
   }
 }

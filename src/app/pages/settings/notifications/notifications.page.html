@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'backButtonTitle' | translate" defaultHref="/tabs/profile/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'notificationsTitle' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let page of pages">
+    <ion-list-header lines="none">
+      <ion-label>{{page.id | translate}}</ion-label>
+    </ion-list-header>
+    <ion-item
+      button
+      lines="none"
+      *ngFor="let page_item of page.pages"
+      [routerLink]="page_item.link"
+      routerDirection="forward"
+      style="--min-height: 56px"
+    >
+      <ion-fab-button slot="start" size="small" [color]="page_item.color" style="width: 30px; height: 30px">
+        <ion-icon size="small" color="light" [name]="page_item.icon"></ion-icon>
+      </ion-fab-button>
+      <ion-label>{{'settingsNotifications.' + page_item.id | translate}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>Music</ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label>
+        Connection Headphones
+        <p>A notification offering you to listen to music will appeare when headphones are connected</p>
+      </ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-label>In the app</ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label> Sound and Vibration </ion-label>
+      <ion-toggle slot="end"></ion-toggle>
+    </ion-item>
+    <ion-item button lines="none">
+      <ion-label> Alert </ion-label>
+      <p slot="end">Banner</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
