@@ -1,13 +1,9 @@
 <ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button
-        [text]="'backButtonTitle' | translate"
-        color="primary"
-        defaultHref="/tabs/messages"
-      ></ion-back-button>
+      <ion-back-button [text]="''" color="primary" defaultHref="/tabs/messages"></ion-back-button>
     </ion-buttons>
-    <ion-item lines="none" *ngIf="messageDetail$ | async as messageDetail">
+    <ion-item lines="none" style="--background: transparent" *ngIf="messageDetail$ | async as messageDetail">
       <ion-avatar slot="start">
         <img [src]="messageDetail.avatar" />
       </ion-avatar>
@@ -16,6 +12,14 @@
         <p class="ion-no-margin">{{messageDetail.lastOnline | amTimeAgo}}</p>
       </ion-label>
     </ion-item>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="videocam-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

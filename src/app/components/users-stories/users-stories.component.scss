@@ -4,6 +4,8 @@
   border-radius: 0px;
 
   .story-list {
+    --background: inherit;
+    background: initial;
     padding-top: 0px;
     padding-bottom: 0px;
   }
@@ -15,6 +17,7 @@
     --inner-padding-top: 0px;
     --padding-end: 0px;
     --padding-start: 0px;
+    --background: inherit;
 
     margin: var(--ion-margin, 8px);
     transition: all 0.1s ease-in-out;

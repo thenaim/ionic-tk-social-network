@@ -16,7 +16,7 @@
       button
       lines="none"
       *ngFor="let type_item of type.pages"
-      [routerLink]="type_item.link"
+      [routerLink]="['/tabs', 'profile', 'settings', 'privacy', type.link, type_item.link]"
       routerDirection="forward"
     >
       <ion-label class="ion-text-wrap">

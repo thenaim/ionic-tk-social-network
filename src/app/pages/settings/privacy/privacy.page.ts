@@ -9,6 +9,7 @@ export class PrivacyPage implements OnInit {
   types: any[] = [
     {
       id: 'myProfile',
+      link: 'my-profile',
       pages: [
         { id: 'profile', link: 'profile' },
         { id: 'photos_with', link: 'photos-with' },
@@ -23,6 +24,7 @@ export class PrivacyPage implements OnInit {
     },
     {
       id: 'myPosts',
+      link: 'my-posts',
       pages: [
         { id: 'wall', link: 'wall' },
         { id: 'wall_send', link: 'wall-send' },
@@ -33,6 +35,7 @@ export class PrivacyPage implements OnInit {
     },
     {
       id: 'whoCanContactMe',
+      link: 'can-contact',
       pages: [
         { id: 'mail_send', link: 'mail-send' },
         { id: 'calls', link: 'calls' },
@@ -46,6 +49,7 @@ export class PrivacyPage implements OnInit {
     },
     {
       id: 'stories',
+      link: 'stories',
       pages: [
         { id: 'stories', link: 'stories' },
         { id: 'stories_replies', link: 'stories-replies' },
@@ -54,6 +58,7 @@ export class PrivacyPage implements OnInit {
     },
     {
       id: 'other',
+      link: 'other',
       pages: [
         { id: 'search', link: 'search' },
         { id: 'updates', link: 'updates' },

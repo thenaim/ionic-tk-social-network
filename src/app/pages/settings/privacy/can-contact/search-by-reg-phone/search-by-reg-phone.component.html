@@ -1,1 +1,16 @@
-<p>search-by-reg-phone works!</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        [text]="'backButtonTitle' | translate"
+        defaultHref="/tabs/profile/settings/privacy"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 class="ion-no-margin ion-padding" style="font-weight: 600">
+    {{ 'settings_privacy.search_by_reg_phone' | translate }}
+  </h3>
+</ion-content>

@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-radio-group [formControl]="isDark">
+    <ion-radio-group [value]="isDarkMode$ | async" (ionChange)="onChangeTheme($event)">
       <ion-list-header>
         <ion-label>Modes</ion-label>
       </ion-list-header>
