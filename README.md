@@ -37,6 +37,12 @@ npx cap open android
 npx cap open ios
 ```
 
+# Run in Browser
+
+```bash
+npm run start
+```
+
 ### iOS Setup
 
 Download and install [Xcode](https://developer.apple.com/xcode/).
@@ -80,6 +86,10 @@ See [Ionic Docs](https://ionicframework.com/docs/reference/browser-support) for 
 Want to start contributing to open source with ionic? Leave your mark and join the growing team of contributors!
 
 Get started by checking out list of open [issues](https://github.com/thenaim/ionic-tk-social-network/issues) and reading [Contributor Guide](https://github.com/thenaim/ionic-tk-social-network/blob/master/CONTRIBUTING.md)
+
+## Thanks for support
+
+[MockAPI](https://mockapi.io?utm_source=ionic-tk-social-network) - MockAPI is a simple tool that lets you easily mock up APIs, generate custom data, and preform operations on it using RESTful interface.
 
 ## License
 
