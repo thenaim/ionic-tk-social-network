@@ -1,4 +1,4 @@
-<ion-app>
+<ion-app [ngClass]="{ dark: (isDarkMode$ | async) }">
   <app-camera-side-menu></app-camera-side-menu>
   <app-profile-menu></app-profile-menu>
 

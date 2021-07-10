@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { State, StateToken } from '@ngxs/store';
+import { Action, State, StateContext, StateToken } from '@ngxs/store';
 import { ApiService } from '../../services/api/api.service';
+import { SettingsUpdateTheme } from './settings.actions';
 import { SettingsPageStateModel } from './settings.model';
 
 export const initialState: SettingsPageStateModel = {
@@ -21,4 +22,13 @@ export const STATE_TOKEN = new StateToken<SettingsPageStateModel>('settings');
 @Injectable()
 export class SettingsPageState {
   constructor(private apiService: ApiService) {}
+
+  @Action(SettingsUpdateTheme)
+  updateTheme(ctx: StateContext<SettingsPageStateModel>, action: SettingsUpdateTheme) {
+    ctx.patchState({
+      appearance: {
+        isDarkMode: action.isDarkMode,
+      },
+    });
+  }
 }

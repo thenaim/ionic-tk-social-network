@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { selectIsDarkMode } from './pages/settings/settings.selectors';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  @Select(selectIsDarkMode()) isDarkMode$: Observable<boolean>;
   constructor(private platform: Platform, private translateService: TranslateService) {
     this.initializeApp();
   }
