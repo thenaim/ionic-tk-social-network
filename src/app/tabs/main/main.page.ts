@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent, MenuController } from '@ionic/angular';
+import { IonContent, IonInfiniteScroll, IonRefresher, MenuController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { UsersStoriesModel } from '../../components/users-stories/users-stories.model';
+import { AppStoreModel } from '../../core/store';
 import { FetchNewsActions, MainTabsActions, StoriesActions } from './main.actions';
 import { MainTabModel, NewsModel } from './main.model';
-import { selectMainTabsList, selectNews, selectStories } from './main.selectors';
+import { selectMainTabsList, selectNews, selectNewsIsLoading, selectStories } from './main.selectors';
 
 @Component({
   selector: 'app-main',
@@ -14,10 +15,14 @@ import { selectMainTabsList, selectNews, selectStories } from './main.selectors'
 })
 export class MainPage implements OnInit {
   @ViewChild(IonContent) ionContent: IonContent;
+  @ViewChild(IonRefresher) ionRefresher: IonRefresher;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   @Select(selectMainTabsList()) tabs$: Observable<MainTabModel[]>;
   @Select(selectStories()) stories$: Observable<UsersStoriesModel[]>;
+
   @Select(selectNews()) news$: Observable<NewsModel[]>;
+  @Select(selectNewsIsLoading()) newsIsLoading$: Observable<boolean>;
 
   constructor(private store: Store, private menuController: MenuController) {}
 
@@ -30,15 +35,26 @@ export class MainPage implements OnInit {
     this.menuController.toggle('camera');
   }
 
-  async ngOnInit() {
+  async doRefresh(event) {
+    await lastValueFrom(this.store.dispatch(new FetchNewsActions.FetchNews(1, true)));
+    await this.ionRefresher.complete();
+  }
+
+  async loadDataNewsPagination(event) {
+    const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.main.news.activePage);
+    await lastValueFrom(this.store.dispatch(new FetchNewsActions.FetchNews(activePage + 1)));
+    await this.infiniteScroll.complete();
+  }
+
+  async ngOnInit() {}
+
+  ionViewDidEnter() {
+    const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.main.news.activePage);
     this.store.dispatch([
       new MainTabsActions.FetchMainTabs(),
       new StoriesActions.FetchStories(),
-      new FetchNewsActions.FetchNews(),
+      new FetchNewsActions.FetchNews(activePage),
     ]);
-  }
-
-  ionViewDidEnter() {
     this.menuController.enable(true, 'camera');
   }
 

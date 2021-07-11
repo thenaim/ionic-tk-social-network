@@ -23,7 +23,11 @@ export interface MessageModel {
 
 export interface MessagesStateModel extends AppStoreLoadingStatesModel {
   maxPinMessages: number;
-  listData: MessageModel[];
+  activePage: number;
+  pages: number[];
+  listData: {
+    [page: string]: MessageModel[];
+  };
 }
 
 export interface MessagesPageStateModel {

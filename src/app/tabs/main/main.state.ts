@@ -26,7 +26,9 @@ export const initialState: MainPageStateModel = {
     isFailed: false,
     isSuccess: false,
     error: null,
-    listData: [],
+    activePage: 1,
+    pages: [],
+    listData: null,
   },
 };
 
@@ -135,32 +137,46 @@ export class MainPageState {
   @Action(FetchNewsActions.FetchNews)
   fetchNews(ctx: StateContext<MainPageStateModel>, action: FetchNewsActions.FetchNews) {
     const state = ctx.getState();
-    ctx.patchState({
-      news: {
-        ...state.news,
-        isLoading: true,
-        isFailed: false,
-        isSuccess: false,
-      },
-    });
+    if (!state.news.listData || action.isRefresh) {
+      ctx.patchState({
+        news: {
+          ...state.news,
+          activePage: 1,
+          pages: [],
+          isLoading: true,
+          isFailed: false,
+          isSuccess: false,
+        },
+      });
+    }
 
     return this.apiService.get(action.api).pipe(
-      tap((news: NewsModel[]) => ctx.dispatch(new FetchNewsActions.FetchNewsSuccess(news))),
+      tap((news: NewsModel[]) => ctx.dispatch(new FetchNewsActions.FetchNewsSuccess(news, action.page))),
       catchError(() => ctx.dispatch(new FetchNewsActions.FetchNewsFail('Error! Please try again.'))),
     );
   }
 
   @Action(FetchNewsActions.FetchNewsSuccess)
   fetchNewsSuccess(ctx: StateContext<MainPageStateModel>, action: FetchNewsActions.FetchNewsSuccess) {
-    ctx.patchState({
-      news: {
-        listData: action.listData,
-        isLoading: false,
-        isSuccess: true,
-        isFailed: false,
-        error: null,
-      },
-    });
+    const state = ctx.getState();
+    const isPageAlreadyExist = state.news.pages.find((page) => page === action.page);
+    if (action.listData.length) {
+      ctx.patchState({
+        news: {
+          ...state.news,
+          activePage: action.page,
+          pages: isPageAlreadyExist ? [...state.news.pages] : [...state.news.pages, action.page],
+          listData: {
+            ...state.news.listData,
+            [action.page]: action.listData,
+          },
+          isLoading: false,
+          isSuccess: true,
+          isFailed: false,
+          error: null,
+        },
+      });
+    }
   }
 
   @Action(FetchNewsActions.FetchNewsFail)

@@ -28,5 +28,8 @@ export const selectStoriesLoadingStates = () =>
 
 export const selectNews = () =>
   createSelector([MainPageState], (state: MainPageStateModel) =>
-    state.news.isLoading ? Array(10).fill({ skeleton: true }) : state.news.listData,
+    state.news.pages.map((key: number) => state.news.listData[key]).reduce((a, b) => a.concat(b), []),
   );
+
+export const selectNewsIsLoading = () =>
+  createSelector([MainPageState], (state: MainPageStateModel) => state.news.isLoading);

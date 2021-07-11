@@ -25,7 +25,7 @@ const ngxsMainStates = [
   SettingsPageState,
   MessageDetailPageState,
 ];
-const ngxsStorageStates = [AuthGuardState];
+const ngxsStorageStates = [AuthGuardState, TabsState, SettingsPageState];
 
 const ngxsConfig: NgxsModuleOptions = {
   developmentMode: !environment.production,

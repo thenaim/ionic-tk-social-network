@@ -28,7 +28,11 @@ export interface StoriesStateModel extends AppStoreLoadingStatesModel {
 }
 
 export interface NewsStateModel extends AppStoreLoadingStatesModel {
-  listData: NewsModel[];
+  activePage: number;
+  pages: number[];
+  listData: {
+    [page: string]: NewsModel[];
+  };
 }
 
 export interface MainPageStateModel {

@@ -81,7 +81,7 @@
    * -------------------------------------------
    */
 
-.dark {
+[app-theme='dark'] {
   --ion-color-primary: #428cff;
   --ion-color-primary-rgb: 66, 140, 255;
   --ion-color-primary-contrast: #ffffff;
@@ -151,7 +151,7 @@
    * -------------------------------------------
    */
 
-.dark.ios {
+.ios [app-theme='dark'] {
   --ion-background-color: #000000;
   --ion-background-color-rgb: 0, 0, 0;
 
@@ -190,7 +190,7 @@
    * -------------------------------------------
    */
 
-.dark.md {
+.md [app-theme='dark'] {
   --ion-background-color: #121212;
   --ion-background-color-rgb: 18, 18, 18;
 

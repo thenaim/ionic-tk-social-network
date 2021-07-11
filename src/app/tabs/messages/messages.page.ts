@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Config, IonContent, IonItemSliding, NavController } from '@ionic/angular';
+import { Config, IonContent, IonInfiniteScroll, IonItemSliding, IonRefresher, NavController } from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { lastValueFrom, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { AppStoreModel } from '../../core/store';
 import { MessagesActions, PinMessage, UnPinMessage } from './messages.actions';
 import { MessageModel } from './messages.model';
 import { selectMessages, selectMessagesLoadingStates } from './messages.selectors';
@@ -15,7 +16,9 @@ import { selectMessages, selectMessagesLoadingStates } from './messages.selector
 })
 export class MessagesPage implements OnInit {
   @ViewChild(IonContent) ionContent: IonContent;
+  @ViewChild(IonRefresher) ionRefresher: IonRefresher;
   @ViewChild(IonItemSliding) ionItemSliding: IonItemSliding;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   @Select(selectMessages()) messages$: Observable<MessageModel[]>;
   @Select(selectMessagesLoadingStates()) loadingMessagesStates$: Observable<{
@@ -41,10 +44,8 @@ export class MessagesPage implements OnInit {
     this.searchMessageList.setValue('', {
       emitEvent: false,
     });
-    await lastValueFrom(this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value)));
-    setTimeout(() => {
-      event.target.complete();
-    });
+    await lastValueFrom(this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, 1, true)));
+    await this.ionRefresher.complete();
   }
 
   openMessageDetail(userMessage: MessageModel) {
@@ -61,15 +62,27 @@ export class MessagesPage implements OnInit {
     await this.ionItemSliding.closeOpened();
   }
 
-  async ngOnInit() {
-    await lastValueFrom(this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value)));
+  async loadData(event) {
+    const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.messages.messages.activePage);
+    await lastValueFrom(
+      this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, activePage + 1, false)),
+    );
+    await this.infiniteScroll.complete();
+  }
 
+  async ngOnInit() {
+    const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.messages.messages.activePage);
     this.searchMessageList.valueChanges.pipe(debounceTime(300)).subscribe((search: string) => {
-      this.store.dispatch(new MessagesActions.FetchMessages(search));
+      this.store.dispatch(new MessagesActions.FetchMessages(search, activePage));
     });
   }
 
-  ionViewDidEnter() {}
+  async ionViewDidEnter() {
+    const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.messages.messages.activePage);
+    await lastValueFrom(
+      this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, activePage)),
+    );
+  }
 
   ionViewDidLeave() {}
 }

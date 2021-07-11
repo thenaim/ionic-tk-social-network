@@ -42,42 +42,24 @@ export class MessageDetailPage implements OnInit {
     this.navController.navigateForward(explore.link);
   }
 
-  /**
-   * Content scroll start
-   */
   logScrollStart() {
     this.ionContentScrolling.next(true);
   }
 
-  /**
-   * Content scrolling
-   */
   logScrolling(event) {
     // console.log('Scrolling', event);
   }
 
-  /**
-   * Content scroll end
-   */
   logScrollEnd() {
     this.ionContentScrolling.next(false);
   }
 
-  /**
-   * Reply message (drag)
-   *
-   * @param event - drag event
-   * @param slidingItem - item sliding directive
-   */
   messageDraged(event, slidingItem: IonItemSliding) {
     if (event.detail.ratio === 1) {
       slidingItem.closeOpened();
     }
   }
 
-  /**
-   * Send message
-   */
   async sendMessage(event) {
     event.preventDefault();
 
@@ -90,14 +72,7 @@ export class MessageDetailPage implements OnInit {
     });
   }
 
-  async ngOnInit() {
-    const messageId = this.store.selectSnapshot((state: AppStoreModel) => state.router.state.root.params.messageId);
-    this.store.dispatch(new MessageDetailActions.FetchMessageDetail(messageId)).subscribe(() => {
-      setTimeout(() => {
-        this.ionContent.scrollToBottom(0);
-      });
-    });
-
+  setupIonContentScrollingListner() {
     this.ionContentScrolling
       .pipe(
         tap((isScrolling) => {
@@ -110,15 +85,17 @@ export class MessageDetailPage implements OnInit {
       .subscribe((isScrolling) => (this.isPageScrolling = isScrolling));
   }
 
-  async ionViewWillEnter() {
-    setTimeout(() => {
-      this.ionContent.scrollToBottom(0);
-    });
+  ngOnInit() {
+    this.setupIonContentScrollingListner();
   }
 
-  async ionViewDidEnter() {
-    setTimeout(() => {
-      this.ionContent.scrollToBottom(0);
+  ionViewWillEnter() {}
+
+  ionViewDidEnter() {
+    setTimeout(async () => {
+      const messageId = this.store.selectSnapshot((state: AppStoreModel) => state.router.state.root.params.messageId);
+      await lastValueFrom(this.store.dispatch(new MessageDetailActions.FetchMessageDetail(messageId)));
+      await this.ionContent.scrollToBottom(0);
     });
   }
 

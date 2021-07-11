@@ -7,14 +7,19 @@ import { MessageModel } from './messages.model';
 export namespace MessagesActions {
   export class FetchMessages {
     static readonly type = '[Messages Tab] Fetch messages';
-    constructor(public search: string, public api: string = apiGetAllMessages('')) {
-      this.api = apiGetAllMessages(this.search);
+    constructor(
+      public search: string,
+      public page: number,
+      public isRefresh = false,
+      public api: string = apiGetAllMessages(),
+    ) {
+      this.api = apiGetAllMessages(this.search, this.page);
     }
   }
 
   export class FetchMessagesSuccess {
     static readonly type = '[Messages Tab] Fetch messages success';
-    constructor(public listData: MessageModel[]) {}
+    constructor(public listData: MessageModel[], public page: number) {}
   }
 
   export class FetchMessagesFail {

@@ -43,12 +43,14 @@ export namespace StoriesActions {
 export namespace FetchNewsActions {
   export class FetchNews {
     static readonly type = '[Main Tab] Fetch news';
-    constructor(public api: string = apiGetAllNews) {}
+    constructor(public page: number, public isRefresh = false, public api: string = apiGetAllNews()) {
+      this.api = apiGetAllNews(this.page);
+    }
   }
 
   export class FetchNewsSuccess {
     static readonly type = '[Main Tab] Fetch news success';
-    constructor(public listData: NewsModel[]) {}
+    constructor(public listData: NewsModel[], public page: number) {}
   }
 
   export class FetchNewsFail {

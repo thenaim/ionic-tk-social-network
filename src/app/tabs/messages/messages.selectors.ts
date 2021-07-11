@@ -4,10 +4,15 @@ import { MessagesPageState } from './messages.state';
 
 export const selectMessages = () =>
   createSelector([MessagesPageState], (state: MessagesPageStateModel) =>
-    state.messages.isLoading
-      ? Array(10).fill({ skeleton: true })
-      : state.messages.listData.slice().sort((a, b) => +b.isPin - +a.isPin),
+    state.messages.pages
+      .map((key: number) => state.messages.listData[key])
+      .reduce((a, b) => a.concat(b), [])
+      .slice()
+      .sort((a, b) => +b.isPin - +a.isPin),
   );
+
+export const selectActivePage = () =>
+  createSelector([MessagesPageState], (state: MessagesPageStateModel) => state.messages.activePage);
 
 export const selectMessagesLoadingStates = () =>
   createSelector([MessagesPageState], (state: MessagesPageStateModel) => ({

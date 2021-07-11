@@ -7,14 +7,11 @@
   >
     <ng-container *ngIf="story['skeleton']">
       <ion-item lines="none" class="story-item">
-        <ion-skeleton-text
-          animated
-          style="height: 64px; width: 64px; border-radius: 50%; margin: auto"
-        ></ion-skeleton-text>
+        <ion-skeleton-text style="height: 64px; width: 64px; border-radius: 50%; margin: auto"></ion-skeleton-text>
       </ion-item>
       <div class="story-author">
         <ion-text color="primary">
-          <ion-skeleton-text animated style="width: 80%; margin: auto"></ion-skeleton-text>
+          <ion-skeleton-text style="width: 80%; margin: auto"></ion-skeleton-text>
         </ion-text>
       </div>
     </ng-container>

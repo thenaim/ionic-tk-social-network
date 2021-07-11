@@ -21,7 +21,7 @@
     <ion-segment mode="md" scrollable value="news">
       <ng-container *ngFor="let tab of (tabs$ | async);trackBy: trackBy">
         <ion-segment-button *ngIf="tab['skeleton']">
-          <ion-label><ion-skeleton-text animated style="width: 70px"></ion-skeleton-text></ion-label>
+          <ion-label><ion-skeleton-text style="width: 70px"></ion-skeleton-text></ion-label>
         </ion-segment-button>
         <ion-segment-button [value]="tab.name" *ngIf="!tab['skeleton']">
           <ion-label>{{'mainTabs.' + tab.name | translate}}</ion-label>
@@ -31,7 +31,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="50" pullMax="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <app-users-stories [stories]="(stories$ | async)"></app-users-stories>
-  <app-users-posts [posts]="(news$ | async)"></app-users-posts>
+  <app-users-posts [posts]="(news$ | async)" [isLoading]="newsIsLoading$ | async"></app-users-posts>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadDataNewsPagination($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines"> </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
