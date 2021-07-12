@@ -1,7 +1,0 @@
-{
-  "name": "ion-tk-social-network",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

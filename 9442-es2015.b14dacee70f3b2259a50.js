@@ -1,0 +1,1 @@
+(self.webpackChunkion_tk_social_network=self.webpackChunkion_tk_social_network||[]).push([[9442],{19442:function(n,e,s){"use strict";s.r(e),s.d(e,{SplashScreenWeb:function(){return t}});var c=s(15310);class t extends c.Uw{async show(n){}async hide(n){}}}}]);
