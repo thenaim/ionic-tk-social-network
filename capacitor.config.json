@@ -1,13 +1,1 @@
-{
-  "appId": "io.ionic.starter",
-  "appName": "app",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchAutoHide": false,
-      "launchShowDuration": 0
-    }
-  }
-}
+{}
