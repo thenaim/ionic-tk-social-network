@@ -166,30 +166,11 @@ jobs:
        cd $GITHUB_WORKSPACE
        7z a -tzip -p${MY_ZIP_PASSWORD} keys.zip -r keys
 
-    - name: Create tag
-      if: runner.os != 'windows'
-      run: |
-        cd $GITHUB_WORKSPACE
-        export DATE=$(date +'DATE_%Y_%m_%d_%H%M%S')
-        export GIT_COMMIT=COMMIT_$(git log --format=%h -1)
-        export GIT_COMMIT_MGS=$(git log --format=%s -1)
-        export APP_NAME=$(cat android/app/build.gradle | grep applicationId  | cut -d '"' -f2 | grep -o '[^.]*$')
-        export APP_VERSION_CURRENT=$(cat android/app/build.gradle | grep versionName| cut -d '"' -f2)
-        export APK_NAME=${APP_NAME}-${APP_VERSION_CURRENT}-${DATE}-${GIT_COMMIT}
-        export APK_NAME=${APK_NAME// /}
-        export TAG=${TAG:-${APK_NAME}}
-        git tag ${TAG// /}
-        git tag -l
-        echo "TAG=$TAG" >> $GITHUB_ENV
-        echo "GIT_COMMIT_MGS=$GIT_COMMIT_MGS" >> $GITHUB_ENV
-
-
     - name: Release
-      if: runner.os != 'windows'
+      if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{env.TAG}}
-        body: ${{env.GIT_COMMIT_MGS}}
+        body_path: CHANGELOG.md
         files: |
           ./web.zip
           ./keys.zip
