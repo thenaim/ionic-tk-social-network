@@ -52,9 +52,14 @@ jobs:
       run: |
         npm install
         npm install -g @ionic/cli
-        npm install @capacitor/core @capacitor/cli @capacitor/android
 
-    - name: Build web
+    - name: Run eslint and build web in dev mode
+      if: runner.os != 'windows'
+      run: |
+        npm run lint
+        npm run build:dev
+
+    - name: Build web in production mode
       if: runner.os != 'windows'
       run: |
         ionic build --configuration production \
