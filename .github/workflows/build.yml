@@ -204,7 +204,7 @@ jobs:
         env:
           REPO: self
           BRANCH: web
-          FOLDER: $GITHUB_WORKSPACE/www
+          FOLDER: www
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cleanup Gradle Cache
