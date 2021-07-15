@@ -19,8 +19,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" style="--ion-text-color: var(--ion-color-medium)" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-down-outline"></ion-refresher-content>
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="50" pullMax="100" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-list lines="none" *ngIf="!(userLoadingStates$ | async).isLoading">

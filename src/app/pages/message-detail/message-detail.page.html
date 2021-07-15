@@ -40,7 +40,7 @@
       [id]="'message_' + messageItem.id"
       *ngFor="let messageItem of message.data; trackBy: trackBy; let index = index; let last = last"
       #slidingItem
-      (ionDrag)="messageDraged($event, slidingItem)"
+      (ionDrag)="messageDragged($event, slidingItem)"
     >
       <!-- User message -->
       <app-user-message
@@ -63,7 +63,7 @@
 
       <!-- Reply slide -->
       <ion-item-options side="end" class="no-border">
-        <ion-item-option disabled style="--background: var(--ion-item-background)">
+        <ion-item-option disabled style="--background: initial">
           <ion-icon slot="icon-only" name="arrow-undo-outline" color="primary"></ion-icon>
         </ion-item-option>
       </ion-item-options>

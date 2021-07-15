@@ -54,7 +54,7 @@ export class MessageDetailPage implements OnInit {
     this.ionContentScrolling.next(false);
   }
 
-  messageDraged(event, slidingItem: IonItemSliding) {
+  messageDragged(event, slidingItem: IonItemSliding) {
     if (event.detail.ratio === 1) {
       slidingItem.closeOpened();
     }

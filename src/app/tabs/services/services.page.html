@@ -17,7 +17,7 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row class="explore">
-      <ion-col size="4" size-md="3" size-xl="2" class="explore-category" *ngFor="let explore of explores">
+      <ion-col size="4" size-xl="3" class="explore-category" *ngFor="let explore of explores">
         <ion-item lines="none" detail="false" class="explore-item" (click)="openServicePage(explore)">
           <ion-label class="ion-text-center ion-no-margin">
             <ion-icon [name]="explore.icon" [color]="explore.color" class="explore-category-icon"></ion-icon>

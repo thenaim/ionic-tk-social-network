@@ -73,7 +73,7 @@ export class MessagesPage implements OnInit {
   async ngOnInit() {
     const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.messages.messages.activePage);
     this.searchMessageList.valueChanges.pipe(debounceTime(300)).subscribe((search: string) => {
-      this.store.dispatch(new MessagesActions.FetchMessages(search, activePage));
+      this.store.dispatch(new MessagesActions.FetchMessages(search, activePage, true));
     });
   }
 
