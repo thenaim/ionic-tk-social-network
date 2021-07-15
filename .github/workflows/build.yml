@@ -199,7 +199,7 @@ jobs:
             ./web.zip
 
       - name: Build profuction for github pages
-        run: npx ng build --prod --base-href $GITHUB_WORKSPACE
+        run: npx ng build --prod --base-href /ionic-tk-social-network/
 
       - name: Deploy app to web branch for github pages
         uses: s0/git-publish-subdir-action@develop
