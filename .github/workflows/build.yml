@@ -184,17 +184,20 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: CapacitorAPKs
-          retention-days: 3
+          name: Capacitor_APKs_Release
           path: |
-            ./android/app/build/outputs/apk/debug/
             ./android/app/build/outputs/apk/release/
             ./android/app/build/outputs/bundle/release/
 
       - uses: actions/upload-artifact@v2
         with:
+          name: Capacitor_APKs_Debug
+          path: |
+            ./android/app/build/outputs/apk/debug/
+
+      - uses: actions/upload-artifact@v2
+        with:
           name: Web
-          retention-days: 3
           path: |
             ./web.zip
 
