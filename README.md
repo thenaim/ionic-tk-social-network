@@ -10,6 +10,8 @@
   Providing you with the components, templates, native components, ngrx, i18n, localStorage, themes, auth pages and much more  needed to build a mobile application on ionic framework.
 </p>
 
+[![Downloads](https://img.shields.io/github/downloads/thenaim/ionic-tk-social-network/total.svg?style=flat)](https://GitHub.com/thenaim/ionic-tk-social-network/releases/) [![Latest release](https://img.shields.io/github/release/thenaim/ionic-tk-social-network.svg?style=flat)](https://GitHub.com/thenaim/ionic-tk-social-network/releases/) [![Site](https://github.com/thenaim/ionic-tk-social-network/actions/workflows/build.yml/badge.svg)](https://github.com/thenaim/ionic-tk-social-network/actions/workflows/build.yml) [![Last commit](https://img.shields.io/github/last-commit/thenaim/ionic-tk-social-network.svg?style=flat-square)](https://github.com/thenaim/ionic-tk-social-network/commits/main) [![GitHub stars](https://img.shields.io/github/stars/thenaim/ionic-tk-social-network.svg?style=flat-square&label=github%20stars)](https://github.com/thenaim/ionic-tk-social-network) [![GitHub Contributors](https://img.shields.io/github/contributors/thenaim/ionic-tk-social-network.svg?style=flat-square)](https://github.com/thenaim/ionic-tk-social-network/graphs/contributors) [![CodeQL](https://github.com/thenaim/ionic-tk-social-network/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/thenaim/ionic-tk-social-network/actions/workflows/codeql-analysis.yml) [![CodeFactor](https://www.codefactor.io/repository/github/thenaim/ionic-tk-social-network/badge)](https://www.codefactor.io/repository/github/thenaim/ionic-tk-social-network)
+
 # Getting started
 
 ```bash
