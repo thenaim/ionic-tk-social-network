@@ -201,7 +201,7 @@ jobs:
           path: |
             ./web.zip
 
-      - name: Build profuction for github pages
+      - name: Build production for github pages
         if: startsWith(github.ref, 'refs/tags/')
         run: npx ng build --prod --base-href /ionic-tk-social-network/
 
