@@ -50,7 +50,7 @@ npx cap add ios
 npx cap add android
 ```
 
-# Run Capacitor or see [docs](https://ionicframework.com/docs/cli/commands/capacitor-run)
+## Run Capacitor or see [docs](https://ionicframework.com/docs/cli/commands/capacitor-run)
 
 ```bash
 # Open Android
@@ -60,13 +60,19 @@ npx cap open android
 npx cap open ios
 ```
 
-# Run in Browser
+## Run in Browser
 
 ```bash
 npm run start
 ```
 
-### iOS Setup
+## Buy Me a Coffee
+
+<a href="https://www.buymeacoffee.com/thenaim" target="_blank">
+  <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" />
+</a>
+
+# iOS Setup
 
 Download and install [Xcode](https://developer.apple.com/xcode/).
 
