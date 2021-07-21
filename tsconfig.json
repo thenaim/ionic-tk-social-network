@@ -1,11 +1,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "/",
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "paths": {
+      "ion-wrapped-components": ["dist/ion-wrapped-components/ion-wrapped-components", "dist/ion-wrapped-components"]
+    },
     "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
