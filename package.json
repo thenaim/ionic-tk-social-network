@@ -1,6 +1,6 @@
 {
   "name": "ion-tk-social-network",
-  "version": "2.2",
+  "version": "2.2.0",
   "description": "Ionic social network starter",
   "scripts": {
     "start": "npx ionic serve --external",
