@@ -1,10 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Config, IonContent, IonInfiniteScroll, IonItemSliding, IonRefresher, NavController } from '@ionic/angular';
+import {
+  Platform,
+  Config,
+  IonContent,
+  IonInfiniteScroll,
+  IonItemSliding,
+  IonRefresher,
+  NavController,
+} from '@ionic/angular';
 import { Select, Store } from '@ngxs/store';
 import { lastValueFrom, Observable } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { AppStoreModel } from '../../core/store';
+import { getSkeletonLimitHeightItems } from '../../core/urils/common-functions';
 import { MessagesActions, PinMessage, UnPinMessage } from './messages.actions';
 import { MessageModel } from './messages.model';
 import { selectMessages, selectMessagesLoadingStates } from './messages.selectors';
@@ -32,7 +41,14 @@ export class MessagesPage implements OnInit {
   showSearchbar = false;
   isIos = false;
 
-  constructor(private store: Store, private config: Config, private navController: NavController) {
+  skeletronItems = getSkeletonLimitHeightItems(66);
+
+  constructor(
+    public platform: Platform,
+    private store: Store,
+    private config: Config,
+    private navController: NavController,
+  ) {
     this.isIos = this.config.get('mode') === 'ios';
   }
 
@@ -44,7 +60,9 @@ export class MessagesPage implements OnInit {
     this.searchMessageList.setValue('', {
       emitEvent: false,
     });
-    await lastValueFrom(this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, 1, true)));
+    await lastValueFrom(
+      this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, 1, 66, true)),
+    );
     await this.ionRefresher.complete();
   }
 
@@ -65,7 +83,7 @@ export class MessagesPage implements OnInit {
   async loadData(event) {
     const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.messages.messages.activePage);
     await lastValueFrom(
-      this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, activePage + 1, false)),
+      this.store.dispatch(new MessagesActions.FetchMessages(this.searchMessageList.value, activePage + 1, 66, false)),
     );
     await this.infiniteScroll.complete();
   }
@@ -73,7 +91,7 @@ export class MessagesPage implements OnInit {
   async ngOnInit() {
     const activePage = this.store.selectSnapshot((state: AppStoreModel) => state.messages.messages.activePage);
     this.searchMessageList.valueChanges.pipe(debounceTime(300)).subscribe((search: string) => {
-      this.store.dispatch(new MessagesActions.FetchMessages(search, activePage, true));
+      this.store.dispatch(new MessagesActions.FetchMessages(search, activePage, 66, true));
     });
   }
 

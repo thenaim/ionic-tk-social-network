@@ -39,7 +39,7 @@
 
   <ion-list lines="none" class="ion-padding-bottom">
     <ng-container *ngIf="(loadingMessagesStates$ | async).isLoading">
-      <ion-item *ngFor="let item of [1,2,3,4,5,6,7,8]">
+      <ion-item *ngFor="let _ of skeletronItems">
         <ion-avatar slot="start">
           <ion-skeleton-text style="border-radius: 50%"></ion-skeleton-text>
         </ion-avatar>

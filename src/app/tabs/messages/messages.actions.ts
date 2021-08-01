@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 
+import { getLimitItemsHeightPerPage } from '../../core/urils/common-functions';
 import { apiGetAllMessages } from './messages.constant';
 import { MessageModel } from './messages.model';
 
@@ -10,10 +11,11 @@ export namespace MessagesActions {
     constructor(
       public search: string,
       public page: number,
+      public itemHeight = 66,
       public isRefresh = false,
       public api: string = apiGetAllMessages(),
     ) {
-      this.api = apiGetAllMessages(this.search, this.page);
+      this.api = apiGetAllMessages(this.search, this.page, getLimitItemsHeightPerPage(this.itemHeight));
     }
   }
 
